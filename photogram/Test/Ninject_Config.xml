@@ -1,0 +1,14 @@
+﻿<module name="myXmlConfigurationModule">
+
+  <bind service = "Es.Udc.DotNet.Photogram.Model.ImageService.IImageService, Photogram.Model"
+        to = "Es.Udc.DotNet.Photogram.Model.ImageService.ImageService, Photogram.Model" />
+
+  <bind service = "Es.Udc.DotNet.Photogram.Model.ImageDao.IImageDao, Photogram.Model"
+        to = "Es.Udc.DotNet.Photogram.Model.ImageDao.ImageDaoEntityFramework, Photogram.Model" />
+
+  <bind service = "Es.Udc.DotNet.Photogram.Model.CategoryDao.ICategoryDao, Photogram.Model"
+        to = "Es.Udc.DotNet.Photogram.Model.CategoryDao.CategoryDaoEntityFramework, Photogram.Model" />
+
+  <bind service = "System.Data.Entity.DbContext, EntityFramework"
+        to ="System.Data.Entity.DbContext, EntityFramework" />
+</module>

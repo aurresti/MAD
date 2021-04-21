@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Es.Udc.DotNet.Photogram.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ModelUtil">
+      <HintPath>..\Lib\ModelUtil.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
