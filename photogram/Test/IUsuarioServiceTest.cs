@@ -7,6 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
 using System.Transactions;
+using Es.Udc.DotNet.Photogram.Model;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.Photogram.Test
 {
@@ -33,7 +35,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         private static IUserService userService;
         private static IUserDao userProfileDao;
 
-        private TransactionScope transaction;
+        private TransactionScope transactionScope;
 
         /// <summary>
         /// Gets or sets the test context which provides information about and functionality for the
@@ -57,14 +59,14 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var userProfile = userProfileDao.Find(userId);
 
                 // Check data
-                Assert.AreEqual(userId, userProfile.Id);
-                Assert.AreEqual(loginName, userProfile.Login);
-                Assert.AreEqual(PasswordEncrypter.Crypt(clearPassword), userProfile.Password);
-                Assert.AreEqual(firstName, userProfile.FirstName);
-                Assert.AreEqual(lastName, userProfile.LastName);
-                Assert.AreEqual(email, userProfile.Email);
-                Assert.AreEqual(language, userProfile.Language);
-                Assert.AreEqual(country, userProfile.Country);
+                Assert.AreEqual(userId, userProfile.userId);
+                Assert.AreEqual(loginName, userProfile.loginName);
+                Assert.AreEqual(PasswordEncrypter.Crypt(clearPassword), userProfile.password);
+                Assert.AreEqual(firstName, userProfile.firstName);
+                Assert.AreEqual(lastName, userProfile.lastName);
+                Assert.AreEqual(email, userProfile.email);
+                Assert.AreEqual(language, userProfile.language);
+                Assert.AreEqual(country, userProfile.country);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -201,7 +203,58 @@ namespace Es.Udc.DotNet.Photogram.Test
                 // transaction.Complete() is not called, so Rollback is executed.
             }
         }
+
         
+        /// <summary>
+        /// A test for FindUserProfileDetails
+        /// </summary>
+        [TestMethod]
+        public void FindFollowerProfileDetailsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                userService.FollowUser(user1.userId, user2.userId);
+
+                List<UserAccount> obtained =
+                    userService.SeeFollowers(user1.userId);
+
+
+                // Check data
+                Assert.AreEqual(user2, obtained[0]);
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        /// A test for FindUserProfileDetails
+        /// </summary>
+        [TestMethod]
+        public void FindFollowsProfileDetailsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                userService.FollowUser(user1.userId, user2.userId);
+
+                List<UserAccount> obtained =
+                    userService.SeeFollow(user2.userId);
+
+
+                // Check data
+                Assert.AreEqual(user1, obtained[0]);
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
         /// <summary>
         /// A test for FindUserProfileDetails when the user does not exist
         /// </summary>
@@ -351,6 +404,117 @@ namespace Es.Udc.DotNet.Photogram.Test
             }
         }
 
+        /// <summary>
+        ///A test for Follow
+        ///</summary>
+        [TestMethod()]
+        public void FollowUserTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                List<UserAccount> followers = new List<UserAccount>();
+
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                UserAccount user3 = GetValidUser("user3");
+
+                followers.Add(user2);
+                followers.Add(user3);
+                try
+                {
+
+                    userService.FollowUser(user1.userId, user2.userId);
+                    
+                    userService.FollowUser(user1.userId, user3.userId);
+
+                    List<UserAccount> followersBD = userService.SeeFollowers(user1.userId);
+
+                    CollectionAssert.AreEqual(followers, followersBD);
+                    
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail(e.Message);
+                }
+
+            }
+        }
+
+        /// <summary>
+        ///A test for Follow
+        ///</summary>
+        [TestMethod()]
+        public void UnFollowUserTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                UserAccount user3 = GetValidUser("user3");
+
+                try
+                {
+
+                    userService.FollowUser(user1.userId, user2.userId);
+                    userService.FollowUser(user1.userId, user3.userId);
+
+                    userService.UnFollowUser(user1.userId, user2.userId);
+
+                    List<UserAccount> followersBD = userService.SeeFollowers(user1.userId);
+                    Console.WriteLine(followersBD[0].loginName);
+                    Assert.AreEqual(1, followersBD.Count);
+
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail(e.Message);
+                }
+
+            }
+        }
+
+        /// <summary>
+        ///A test for Follow
+        ///</summary>
+        [TestMethod()]
+        public void WhoUserFollowTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                List<UserAccount> follow = new List<UserAccount>();
+
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                UserAccount user3 = GetValidUser("user3");
+
+                follow.Add(user2);
+                follow.Add(user3);
+                try
+                {
+
+                    userService.FollowUser(user2.userId, user1.userId);
+                    userService.FollowUser(user3.userId, user1.userId);
+
+                    List<UserAccount> followBD = userService.SeeFollow(user1.userId);
+
+                    CollectionAssert.AreEqual(follow, followBD);
+
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail(e.Message);
+                }
+
+            }
+        }
+
+
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class
@@ -374,12 +538,28 @@ namespace Es.Udc.DotNet.Photogram.Test
         [TestInitialize]
         public void MyTestInitialize()
         {
+            transactionScope = new TransactionScope();
         }
 
         //Use TestCleanup to run code after each test has run
         [TestCleanup]
         public void MyTestCleanup()
         {
+            transactionScope.Dispose();
+        }
+
+        private UserAccount GetValidUser(String loginName)
+        {
+            UserAccount user = new UserAccount();
+            user.firstName = "pepito";
+            user.loginName = loginName;
+            user.lastName = "perez";
+            user.email = "pepito@udc.es";
+            user.language = "es";
+            user.country = "ES";
+            user.password = "password";
+            userProfileDao.Create(user);
+            return user;
         }
 
         #endregion Additional test attributes

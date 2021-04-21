@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.Photogram.Test
     {
         private static IKernel kernel;
         private static IUserDao userProfileDao;
-        private static User userProfile;
+        private static UserAccount userProfile;
 
         // Variables used in several tests are initialized here
         private const String loginName = "loginNameTest";
@@ -70,14 +70,14 @@ namespace Es.Udc.DotNet.Photogram.Test
         {
             transaction = new TransactionScope();
 
-            userProfile = new User();
-            userProfile.Login = loginName;
-            userProfile.Password = PasswordEncrypter.Crypt(clearPassword);
-            userProfile.FirstName = firstName;
-            userProfile.LastName = lastName;
-            userProfile.Email = email;
-            userProfile.Language = language;
-            userProfile.Country = country;
+            userProfile = new UserAccount();
+            userProfile.loginName = loginName;
+            userProfile.password = PasswordEncrypter.Crypt(clearPassword);
+            userProfile.firstName = firstName;
+            userProfile.lastName = lastName;
+            userProfile.email = email;
+            userProfile.language = language;
+            userProfile.country = country;
 
             userProfileDao.Create(userProfile);
         }
@@ -86,7 +86,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         [TestCleanup()]
         public void MyTestCleanup()
         {
-            transaction.Dispose();
+            //transaction.Dispose();
         }
 
         #endregion Additional test attributes
@@ -99,7 +99,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         {
             try
             {
-                User actual = userProfileDao.FindByLoginName(userProfile.Login);
+                UserAccount actual = userProfileDao.FindByLoginName(userProfile.loginName);
 
                 Assert.AreEqual(userProfile, actual, "User found does not correspond with the original one.");
             }

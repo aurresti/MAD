@@ -14,6 +14,7 @@ namespace Es.Udc.DotNet.Photogram.Model
     
     public partial class Comment
     {
+        public long commentId { get; set; }
         public long imageId { get; set; }
         public long userId { get; set; }
         public string comment1 { get; set; }

@@ -14,9 +14,9 @@
         </EntityType>
         <EntityType Name="Comment">
           <Key>
-            <PropertyRef Name="imageId" />
-            <PropertyRef Name="userId" />
+            <PropertyRef Name="commentId" />
           </Key>
+          <Property Name="commentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="imageId" Type="bigint" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="comment" Type="varchar" MaxLength="255" />
@@ -50,16 +50,6 @@
           <Property Name="imageId" Type="bigint" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="UserAccount">
           <Key>
             <PropertyRef Name="userId" />
@@ -70,8 +60,8 @@
           <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="lastName" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="language" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="country" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="language" Type="varchar" MaxLength="2" />
+          <Property Name="country" Type="varchar" MaxLength="2" />
         </EntityType>
         <Association Name="FK_CommentImageId">
           <End Role="Image" Type="Self.Image" Multiplicity="1">
@@ -183,7 +173,6 @@
           <EntitySet Name="Follow" EntityType="Self.Follow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CommentImageId" Association="Self.FK_CommentImageId">
             <End Role="Image" EntitySet="Image" />
@@ -233,9 +222,9 @@
         </EntityType>
         <EntityType Name="Comment">
           <Key>
-            <PropertyRef Name="imageId" />
-            <PropertyRef Name="userId" />
+            <PropertyRef Name="commentId" />
           </Key>
+          <Property Name="commentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="imageId" Type="Int64" Nullable="false" />
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="comment1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -259,16 +248,6 @@
           <NavigationProperty Name="UserAccount" Relationship="Self.FK_ImageUserId" FromRole="Image" ToRole="UserAccount" />
           <NavigationProperty Name="UserAccounts" Relationship="Self.Likes" FromRole="Image" ToRole="UserAccount" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="UserAccount">
           <Key>
             <PropertyRef Name="userId" />
@@ -279,8 +258,8 @@
           <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_CommentUserId" FromRole="UserAccount" ToRole="Comment" />
           <NavigationProperty Name="Images" Relationship="Self.FK_ImageUserId" FromRole="UserAccount" ToRole="Image" />
           <NavigationProperty Name="UserAccount1" Relationship="Self.Follow" FromRole="UserAccount" ToRole="UserAccount1" />
@@ -353,7 +332,6 @@
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Images" EntityType="Self.Image" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
           <AssociationSet Name="FK_ImageCategoryId" Association="Self.FK_ImageCategoryId">
             <End Role="Category" EntitySet="Categories" />
@@ -397,6 +375,7 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.Comment">
               <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
                 <ScalarProperty Name="imageId" ColumnName="imageId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -414,17 +393,6 @@
                 <ScalarProperty Name="exifInfo" ColumnName="exifInfo" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

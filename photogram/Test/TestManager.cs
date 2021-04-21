@@ -1,6 +1,11 @@
-﻿using Es.Udc.DotNet.Photogram.Model.ImageDao;
+﻿using Es.Udc.DotNet.Photogram.Model.UserDao;
+using Es.Udc.DotNet.Photogram.Model.UserService;
+using Es.Udc.DotNet.Photogram.Model.ImageDao;
 using Es.Udc.DotNet.Photogram.Model.ImageService;
 using Es.Udc.DotNet.Photogram.Model.CategoryDao;
+using Es.Udc.DotNet.Photogram.Model.CategoryService;
+using Es.Udc.DotNet.Photogram.Model.CommentDao;
+using Es.Udc.DotNet.Photogram.Model.CommentService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
@@ -15,17 +20,33 @@ namespace Es.Udc.DotNet.Photogram.Test
         /// <returns>The NInject kernel</returns>
         public static IKernel ConfigureNInjectKernel()
         {
-            #region Option A : configuration via sourcecode
+            NinjectSettings settings = new NinjectSettings() { LoadExtensions = true };
 
-            IKernel kernel = new StandardKernel();
+            IKernel kernel = new StandardKernel(settings);
 
-            kernel.Bind<IImageService>().To<Es.Udc.DotNet.Photogram.Model.ImageService.ImageService>();
+            kernel.Bind<IUserDao>().
+                To<UserDaoEntityFramework>();
+
+            kernel.Bind<IUserService>().
+                To<UserService>();
 
             kernel.Bind<IImageDao>().
-                To<ImagenDaoEntityFramework>();
+                To<ImageDaoEntityFramework>();
+
+            kernel.Bind<IImageService>().
+                To<ImageService>();
 
             kernel.Bind<ICategoryDao>().
                 To<CategoryDaoEntityFramework>();
+
+            kernel.Bind<ICategoryService>().
+                To<CategoryService>();
+
+            kernel.Bind<ICommentDao>().
+                To<CommentDaoEntityFramework>();
+
+            kernel.Bind<ICommentService>().
+                To<CommentService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["PhotogramEntities"].ConnectionString;
@@ -34,18 +55,6 @@ namespace Es.Udc.DotNet.Photogram.Test
                 ToSelf().
                 InSingletonScope().
                 WithConstructorArgument("nameOrConnectionString", connectionString);
-
-            #endregion Option A : configuration via sourcecode
-
-            #region Option B: configuration via external XML configuration file
-
-            // The kernel should automatically load extensions at startup
-            //NinjectSettings settings = new NinjectSettings() { LoadExtensions = false };
-            //IKernel kernel = new StandardKernel(settings, new Ninject.Extensions.Xml.XmlExtensionModule());
-
-            //kernel.Load("Ninject_Config.xml");
-
-            #endregion Option B: configuration via external XML configuration file
 
             return kernel;
         }
@@ -57,7 +66,9 @@ namespace Es.Udc.DotNet.Photogram.Test
         /// <returns>The NInject kernel</returns>
         public static IKernel ConfigureNInjectKernel(string moduleFilename)
         {
-            IKernel kernel = new StandardKernel();
+            NinjectSettings settings = new NinjectSettings() { LoadExtensions = true };
+            IKernel kernel = new StandardKernel(settings);
+
             kernel.Load(moduleFilename);
 
             return kernel;

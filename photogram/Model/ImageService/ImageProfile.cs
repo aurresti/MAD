@@ -18,9 +18,10 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
         public string Exif { get; private set; }
 
-        public Int32 Category { get; private set; }
+        public long Category { get; private set; }
 
-        public Int32 User { get; private set; }
+        public long? User { get; private set; }
+        public long Likes { get; private set; }
 
         #endregion
 
@@ -36,7 +37,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         /// <param name="conect">The conection.</param>
         /// <param name="mantener">The save.</param>
         public ImageProfile(String title, String description,
-            DateTime date, String exif, Int32 category, Int32 user)
+            DateTime date, String exif, long category, long? user, long likes)
         {
             this.Title = title;
             this.Descripction = description;
@@ -44,6 +45,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             this.Exif = exif;
             this.Category = category;
             this.User = user;
+            this.Likes = likes;
         }
 
         public override bool Equals(object obj)

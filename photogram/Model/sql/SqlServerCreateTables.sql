@@ -179,13 +179,14 @@ GO
 /* Comment */
 
 CREATE TABLE Comment(
+	commentId bigint IDENTITY(1,1) NOT NULL,
 	imageId bigint NOT NULL,
 	userId bigint NOT NULL,
 	comment varchar (255),
 	date datetime2 NOT NULL,
 
 
-	CONSTRAINT [PK_Coment] PRIMARY KEY (imageId,userId),
+	CONSTRAINT [PK_Coment] PRIMARY KEY (commentId),
     CONSTRAINT [FK_CommentUserId] FOREIGN KEY(userId)
         REFERENCES UserAccount(userId),
     CONSTRAINT [FK_CommentImageId] FOREIGN KEY(imageId)

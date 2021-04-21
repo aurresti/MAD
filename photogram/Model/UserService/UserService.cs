@@ -6,13 +6,16 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.Photogram.Model.ImageDao;
 
 namespace Es.Udc.DotNet.Photogram.Model.UserService
 {
     public class UserService : IUserService
     {
         [Inject]
-        public IUserDao UsuarioDao { private get; set; }
+        public IUserDao UserDao { private get; set; }       
+        public IImageDao ImageDao { private get; set; }
+
 
         #region IUsuarioService Members
 
@@ -25,7 +28,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
 
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
+                UserAccount userProfile = UserDao.FindByLoginName(loginName);
             }
             catch (InstanceNotFoundException e)
             {
@@ -40,9 +43,9 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
 
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
-                User userProfileFollow = UsuarioDao.FindByLoginName(loginNameFollow);
-                Follow follow = UsuarioDao.FindFollowers(userProfile.Id, userProfileFollow.Id);
+                UserAccount userProfile = UserDao.FindByLoginName(loginName);
+                UserAccount userProfileFollow = UserDao.FindByLoginName(loginNameFollow);
+                //Follow follow = UsuarioDao.FindFollowers(userProfile.Id, userProfileFollow.Id);
             }
             catch (InstanceNotFoundException e)
             {
@@ -58,50 +61,50 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
 
             try
             {
-                UsuarioDao.FindByLoginName(loginName);
+                UserDao.FindByLoginName(loginName);
 
                 throw new DuplicateInstanceException(loginName,
-                    typeof(User).FullName);
+                    typeof(UserAccount).FullName);
             }
             catch (InstanceNotFoundException)
             {
                 String encryptedPassword = PasswordEncrypter.Crypt(password);
 
-                User userProfile = new User();
+                UserAccount userProfile = new UserAccount();
 
-                userProfile.Login = loginName;
-                userProfile.Password = encryptedPassword;
-                userProfile.FirstName = userProfileDetails.FirstName;
-                userProfile.LastName = userProfileDetails.Lastname;
-                userProfile.Email = userProfileDetails.Email;
-                userProfile.Language = userProfileDetails.Language;
-                userProfile.Country = userProfileDetails.Country;
+                userProfile.loginName = loginName;
+                userProfile.password = encryptedPassword;
+                userProfile.firstName = userProfileDetails.FirstName;
+                userProfile.lastName = userProfileDetails.Lastname;
+                userProfile.email = userProfileDetails.Email;
+                userProfile.language = userProfileDetails.Language;
+                userProfile.country = userProfileDetails.Country;
 
-                UsuarioDao.Create(userProfile);
+                UserDao.Create(userProfile);
 
-                return userProfile.Id;
+                return userProfile.userId;
             }
         }
 
         public void UpdateProfile(long userProfileId,
             UserProfile userProfileDetails)
         {
-            User userProfile =
-                UsuarioDao.Find(userProfileId);
+            UserAccount userProfile =
+                UserDao.Find(userProfileId);
 
-            userProfile.FirstName = userProfileDetails.FirstName;
-            userProfile.LastName = userProfileDetails.Lastname;
-            userProfile.Email = userProfileDetails.Email;
-            userProfile.Language = userProfileDetails.Language;
-            userProfile.Country = userProfileDetails.Country;
-            UsuarioDao.Update(userProfile);
+            userProfile.firstName = userProfileDetails.FirstName;
+            userProfile.lastName = userProfileDetails.Lastname;
+            userProfile.email = userProfileDetails.Email;
+            userProfile.language = userProfileDetails.Language;
+            userProfile.country = userProfileDetails.Country;
+            UserDao.Update(userProfile);
         }
 
         public LoginResult ConectUser(string loginName, string password, bool passwordIsEncrypted)
         {
             
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
-                String storedPassword = userProfile.Password;
+                UserAccount userProfile = UserDao.FindByLoginName(loginName);
+                String storedPassword = userProfile.password;
                 if (passwordIsEncrypted)
                 {
                     if (!password.Equals(storedPassword))
@@ -117,8 +120,8 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
                         throw new IncorrectPasswordException(loginName);
                     }
                 }
-                return new LoginResult(userProfile.Id, userProfile.FirstName,
-                    storedPassword, userProfile.Language, userProfile.Country);
+                return new LoginResult(userProfile.userId, userProfile.firstName,
+                    storedPassword, userProfile.language, userProfile.country);
             
         }
 
@@ -126,7 +129,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         {
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
+                UserAccount userProfile = UserDao.FindByLoginName(loginName);
                 return true;
             }
             catch (InstanceNotFoundException e)
@@ -136,13 +139,14 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         }
 
 
-        public List<Follow> SeeFollower(string loginName)
+        public List<UserAccount> SeeFollowers(long userId)
         {
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
-                List<Follow> userFollow = UsuarioDao.FindFollowersByUserById(userProfile.Id);
-                return userFollow;
+
+                List<UserAccount> followers = UserDao.FindFollowersById(userId);
+
+                return followers;
 
             }
             catch (InstanceNotFoundException e)
@@ -151,13 +155,14 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
             }
         }
 
-        public List<Follow> SeeFollow(string loginName)
+        public List<UserAccount> SeeFollow(long userId)
         {
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
-                List<Follow> userFollow = UsuarioDao.FindFollowersById(userProfile.Id);
-                return userFollow;
+
+                List<UserAccount> follow = UserDao.FindFollowById(userId);
+
+                return follow;
 
             }
             catch (InstanceNotFoundException e)
@@ -166,22 +171,27 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
             }
         }
 
-        public bool FollowUser(string loginName, string loginNameFollow)
+        public bool FollowUser(long userId, long followId)
         {
             try
             {
-                User userProfile = UsuarioDao.FindByLoginName(loginName);
-                User userProfileFollow = UsuarioDao.FindByLoginName(loginNameFollow);
-                Follow follow = new Follow();
-                follow.UserId = userProfile.Id;
-                follow.FollowId = userProfileFollow.Id;
-                if (!UserFollowExists(userProfile.Login, userProfileFollow.Login))
-                {
-                    UsuarioDao.AddFollow(userProfile.Id,follow);
-                    return true;
-                } else {
-                    return false;
-                }
+                UserDao.AddFollow(userId, followId);
+
+                return true;
+            }
+            catch (InstanceNotFoundException e)
+            {
+                return false;
+            }
+        }
+
+        public bool UnFollowUser(long userId, long unFollowId)
+        {
+            try
+            {
+                UserDao.RemoveFollow(userId, unFollowId);
+
+                return true;
             }
             catch (InstanceNotFoundException e)
             {
@@ -192,32 +202,33 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         public void ChangePassword(long userProfileId, string oldClearPassword,
     string newClearPassword)
         {
-            User userProfile = UsuarioDao.Find(userProfileId);
-            String storedPassword = userProfile.Password;
+            UserAccount userProfile = UserDao.Find(userProfileId);
+            String storedPassword = userProfile.password;
 
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
                 storedPassword))
             {
-                throw new IncorrectPasswordException(userProfile.Login);
+                throw new IncorrectPasswordException(userProfile.loginName);
             }
 
-            userProfile.Password =
+            userProfile.password =
                 PasswordEncrypter.Crypt(newClearPassword);
 
-            UsuarioDao.Update(userProfile);
+            UserDao.Update(userProfile);
         }
 
         public UserProfile FindUserProfileDetails(long userProfileId)
         {
-            User userProfile = UsuarioDao.Find(userProfileId);
+            UserAccount userProfile = UserDao.Find(userProfileId);
 
             UserProfile userProfileDetails =
-                new UserProfile(userProfile.FirstName,
-                    userProfile.LastName, userProfile.Email,
-                    userProfile.Language, userProfile.Country);
+                new UserProfile(userProfile.firstName,
+                    userProfile.lastName, userProfile.email,
+                    userProfile.language, userProfile.country);
 
             return userProfileDetails;
         }
+
         #endregion IUserService Members
     }
 }

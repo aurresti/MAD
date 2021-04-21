@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
     public interface IUserService 
     { 
         [Inject]
-        IUserDao UsuarioDao { set; }
+        IUserDao UserDao { set; }
 
         /// <summary>
         /// Checks if the specified loginName corresponds to a valid user.
@@ -62,14 +62,14 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// </summary>
         /// <param name="loginName"> User loginName. </param>
         /// <returns> List of followers of the user </returns>
-        List<Follow> SeeFollower(string loginName);
+        List<UserAccount> SeeFollowers(long userId);
 
         /// <summary>
         /// Show the follows of the user.
         /// </summary>
         /// <param name="loginName"> User loginName. </param>
         /// <returns> List of the follows of the user </returns>
-        List<Follow> SeeFollow(string loginName);
+        List<UserAccount> SeeFollow(long userId);
 
         /// <summary>
         /// Exit a valid user.
@@ -84,7 +84,15 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// <param name="loginName"> User loginName. </param>
         /// <param name="loginNameFollow"> User loginName to follow. </param>
         /// <returns> Boolean to indicate if the user follow </returns>
-        bool FollowUser(string loginName, string loginNameFollow);
+        bool FollowUser(long userId, long followedBy);
+
+        /// <summary>
+        /// Follow a valid user.
+        /// </summary>
+        /// <param name="loginName"> User loginName. </param>
+        /// <param name="loginNameFollow"> User loginName to follow. </param>
+        /// <returns> Boolean to indicate if the user follow </returns>
+        bool UnFollowUser(long userId, long unFollowedById);
 
         /// <summary>
         /// Change password of a valid user.
@@ -102,5 +110,6 @@ string newClearPassword);
         /// <param name="userProfileId"> User id. </param>
         /// <returns> The profile of user </returns>
         UserProfile FindUserProfileDetails(long userProfileId);
+
     }
 }

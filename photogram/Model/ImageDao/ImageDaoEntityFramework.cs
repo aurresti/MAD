@@ -1,6 +1,5 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.Photogram.Model.ImageService;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -9,14 +8,14 @@ using System.Linq;
 
 namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 {
-    public class ImagenDaoEntityFramework : GenericDaoEntityFramework<Image, long>, IImageDao
+    public class ImageDaoEntityFramework : GenericDaoEntityFramework<Image, long>, IImageDao
     {
         #region Public Constructors
 
         /// <summary>
         /// Public Constructor
         /// </summary>
-        public ImagenDaoEntityFramework()
+        public ImageDaoEntityFramework()
         {
         }
 
@@ -30,165 +29,215 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// <param name="loginName"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        //public Image FindByTitle(string title)
-        //{
-        //    Image imageProfile = null;
+        public Image FindById(long id)
+        {
+            Image imageProfile = null;
 
-        //    #region Option 1: Using Linq.
+            #region Option 1: Using Linq.
 
-        //    DbSet<Image> imageProfiles = Context.Set<Image>();
+            DbSet<Image> imageProfiles = Context.Set<Image>();
 
-        //    var result =
-        //        (from u in imageProfiles
-        //         where u.Titulo == title
-        //         select u);
+            var result =
+                (from u in imageProfiles
+                 where u.imageId == id
+                 select u);
 
-        //    imageProfile = result.FirstOrDefault();
+            imageProfile = result.FirstOrDefault();
 
-        //    #endregion Option 1: Using Linq.
+            #endregion Option 1: Using Linq.
 
-        //    #region Option 2: Using eSQL over dbSet
 
-        //    //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-        //    //DbParameter loginNameParameter =
-        //    //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(id,
+                    typeof(Image).FullName);
 
-        //    //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-        //    #endregion Option 2: Using eSQL over dbSet
-
-        //    #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-        //    //String sqlQuery =
-        //    //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-        //    //    "WHERE u.loginName=@loginName";
-
-        //    //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-        //    //ObjectQuery<UserProfile> query =
-        //    //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-        //    //var result = query.Execute(MergeOption.AppendOnly);
-
-        //    //try
-        //    //{
-        //    //    userProfile = result.First<UserProfile>();
-        //    //}
-        //    //catch (Exception)
-        //    //{
-        //    //    userProfile = null;
-        //    //}
-
-        //    #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-        //    if (imageProfile == null)
-        //        throw new InstanceNotFoundException(title,
-        //            typeof(Image).FullName);
-
-        //    return imageProfile;
-        //}
+            return imageProfile;
+        }
 
         /// <summary>
         /// Finds a Image by his title
         /// </summary>
-        /// <param name="loginName"></param>
+        /// <param name="title"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        //public Image FindByCategory(string title, string category)
-        //{
-        //    Image imageProfile = null;
-
-        //    Category categoryId = null;
-
-        //    #region Option 1: Using Linq.
-
-        //    DbSet<Category> categoria= Context.Set<Category>();
-
-        //    var resultc =
-        //        (from u in categoria
-        //         where u.categoryName == category
-        //         select u);
-
-        //    categoryId = resultc.FirstOrDefault();
-
-        //    DbSet<Image> imageProfiles = Context.Set<Image>();
-
-        //    var result =
-        //        (from u in imageProfiles
-        //         where u.title == title && u.categoryId == categoryId.Id
-        //         select u);
-
-        //    imageProfile = result.FirstOrDefault();
-
-        //    #endregion Option 1: Using Linq.
-
-        //    if (imageProfile == null)
-        //        throw new InstanceNotFoundException(title,
-        //            typeof(Image).FullName);
-
-        //    return imageProfile;
-        //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-        public List<ImageInfo> FindImages(String[] palabrasClave, long? categoryId, int indiceInicial, int cuenta)
+        public Image FindByTitle(String title)
         {
-            DbSet<Image> imagenes = Context.Set<Image>();
-            List<Image> result;
+            Image imageProfile = null;
 
-            if (categoryId == null)
-            {
-                if (palabrasClave == null)
-                {
-                    result =
-                    (from img in imagenes
-                     where img.date > DateTime.Now
-                     orderby img.date
-                     select img).Skip(indiceInicial).Take(cuenta).ToList();
-                }
-                else
-                {
-                    result =
-                    (from img in imagenes
-                     where palabrasClave.All(s => img.title.Contains(s)) ||
-                           palabrasClave.All(s => img.description.Contains(s))
-                     orderby img.date
-                     select img).Skip(indiceInicial).Take(cuenta).ToList();
-                }
-            }
-            else
-            {
-                if (palabrasClave == null)
-                {
-                    result =
-                        (from img in imagenes
-                         where img.categoryId == categoryId
-                         orderby img.date
-                         select img).Skip(indiceInicial).Take(cuenta).ToList();
-                }
-                else
-                {
-                    result =
-                        (from img in imagenes
-                         where palabrasClave.All(s => img.title.Contains(s)) && img.categoryId == categoryId
-                         orderby img.date
-                         select img).Skip(indiceInicial).Take(cuenta).ToList();
-                }
-            }
+            #region Option 1: Using Linq.
 
-            List<ImageInfo> imagenesinfo = new List<ImageInfo>();
-            ImageInfo ei;
-            foreach (Image img in result)
-            {
-                ei = new ImageInfo(img.imageId, img.title, img.description, img.date, img.categoryId, img.Category.name, img.Comments.Count);
-                imagenesinfo.Add(ei);
-            }
+            DbSet<Image> imageProfiles = Context.Set<Image>();
 
-            return imagenesinfo;
+            var result =
+                (from u in imageProfiles
+                 where u.title == title
+                 select u);
+
+            imageProfile = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+
+
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(title,
+                    typeof(Image).FullName);
+
+            return imageProfile;
+        }
+
+        /// <summary>
+        /// Finds a Image by text
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public List<Image> FindByText(String texto)
+        {
+            List<Image> imageProfile = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            var result =
+                (from u in imageProfiles
+                 where u.title == texto || u.description == texto
+                 select u);
+
+            imageProfile = result.ToList();
+
+            #endregion Option 1: Using Linq.
+
+
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(texto,
+                    typeof(Image).FullName);
+
+            return imageProfile;
+        }
+
+        /// <summary>
+        /// Finds a Image by his title and description of a category
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public List<Image> FindByCategory(string title, string category)
+        {
+            List<Image> imageProfile = null;
+
+            Category categoryId = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Category> categoria = Context.Set<Category>();
+
+            var resultc =
+                (from u in categoria
+                 where u.name == category
+                 select u);
+
+            categoryId = resultc.FirstOrDefault();
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            var result =
+                (from u in imageProfiles
+                 where u.title == title || u.description == title && u.categoryId == categoryId.categoryId
+                 select u);
+
+            imageProfile = result.ToList();
+
+            #endregion Option 1: Using Linq.
+
+
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(title,
+                    typeof(Image).FullName);
+
+            return imageProfile;
+        }
+
+        /// <summary>
+        /// Finds a Image by his id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public List<Comment> FindComments(long id)
+        {
+            List<Comment> comentarioProfile = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Comment> comentarioProfiles = Context.Set<Comment>();
+
+            var result =
+                (from u in comentarioProfiles
+                 where u.imageId == id orderby u.date
+                 select u);
+
+            comentarioProfile = result.ToList();
+
+            #endregion Option 1: Using Linq.
+
+
+            if (comentarioProfile == null)
+                throw new InstanceNotFoundException(id,
+                    typeof(Image).FullName);
+
+            return comentarioProfile;
+        }
+
+        public void AddCommentDao(UserAccount user, long imageId, String description)
+        {
+            Image c = Find(imageId);
+            if (c != null && user != null)
+            {
+                Comment comment= new Comment();
+                comment.userId = user.userId;
+                comment.imageId = imageId;
+                comment.comment1 = description; 
+                comment.date = new DateTime(2008, 5, 1, 8, 30, 52);
+                //Comment.Add(comment);
+               String query = "INSERT INTO Comment(imageId, userId, comment1, date)" + 
+                    "VALUES("+ imageId + ", "+ user.userId + ", "+ description + ", "+ comment.date +")";
+            }
+            Update(c);
+        }
+
+        public void RemoveCommentDao(UserAccount user, long imageId)
+        {
+            Image c = Find(imageId);
+            if (c != null && user != null)
+            {
+                Comment comment = new Comment();
+                comment.userId = user.userId;
+                comment.imageId = imageId;
+                //Comment.Remove(comment);
+                //Suposicion, non sei como vai
+                String query = "REMOVE INTO Comment(imageId, userId, comment1, date)" +
+                     "VALUES(" + imageId + ", " + user.userId + ")";
+            }
+            Update(c);
+        }
+
+
+        public void AddLikeDao(UserAccount user, long imageId)
+        {
+            Image c = Find(imageId);
+            if (c != null && user != null)
+            {
+                /*Like comment = new Comment();
+                comment.userId = user.userId;
+                comment.imageId = imageId;*/
+                //Comment.Add(comment);
+                String query = "INSERT INTO Like(imageId, userId)" +
+                     "VALUES(" + imageId + ", " + user.userId + ")";
+            }
+            Update(c);
         }
         #endregion IImagenDao Members
     }
-
 }

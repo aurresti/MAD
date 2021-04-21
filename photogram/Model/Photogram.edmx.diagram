@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="466a0a3ad6084f2eb3b66aee1f9e0f90" Name="Diagram1">
+      <Diagram DiagramId="e9458deb907f4f59b8098ceb61ac2782" Name="Diagram1">
         <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.Category" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.Comment" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.Image" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.UserAccount" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.Comment" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.Image" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.UDC.DotNet.Photogram.UserAccount" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="Es.UDC.DotNet.Photogram.FK_ImageCategoryId" ManuallyRouted="false" />
         <AssociationConnector Association="Es.UDC.DotNet.Photogram.FK_CommentImageId" ManuallyRouted="false" />
         <AssociationConnector Association="Es.UDC.DotNet.Photogram.FK_CommentUserId" ManuallyRouted="false" />

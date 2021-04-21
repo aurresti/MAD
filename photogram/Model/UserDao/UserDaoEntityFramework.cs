@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Es.Udc.DotNet.Photogram.Model.UserDao
 {
-    public class UserDaoEntityFramework : GenericDaoEntityFramework<User, long>, IUserDao
+    public class UserDaoEntityFramework : GenericDaoEntityFramework<UserAccount, long>, IUserDao
     {
         #region Public Constructors
 
@@ -29,257 +29,138 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         /// <param name="loginName"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public User FindByLoginName(string loginName)
+        public UserAccount FindByLoginName(string loginName)
         {
-            User userProfile = null;
+            UserAccount userProfile = null;
 
             #region Option 1: Using Linq.
 
-            DbSet<User> userProfiles = Context.Set<User>();
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
 
             var result =
                 (from u in userProfiles
-                 where u.Login == loginName
+                 where u.loginName == loginName
                  select u);
 
             userProfile = result.FirstOrDefault();
 
             #endregion Option 1: Using Linq.
 
-            #region Option 2: Using eSQL over dbSet
-
-            //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-            //DbParameter loginNameParameter =
-            //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
-
-            //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion Option 2: Using eSQL over dbSet
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-            #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
 
             if (userProfile == null)
                 throw new InstanceNotFoundException(loginName,
-                    typeof(User).FullName);
+                    typeof(UserAccount).FullName);
 
             return userProfile;
         }
 
-        public List<Follow> FindFollowersById(long id)
+        public List<UserAccount> FindFollowersById(long id)
         {
-            List<Follow> userProfile = null;
+            List<UserAccount> followers = null;
 
-            #region Option 1: Using Linq.
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
 
-            DbSet<Follow> followers = Context.Set<Follow>();
 
-            var result =
-                (from u in followers
-                 where u.UserId == id
-                 select u);
+            followers =
+                (from u in userProfiles
+                 from g in u.UserAccounts
+                 where u.userId == id
+                 orderby g.loginName
+                 select g).ToList();
 
-            userProfile = (List<Follow>)result;
-
-            #endregion Option 1: Using Linq.
-
-            #region Option 2: Using eSQL over dbSet
-
-            //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-            //DbParameter loginNameParameter =
-            //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
-
-            //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion Option 2: Using eSQL over dbSet
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-            #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            if (userProfile == null)
-                throw new InstanceNotFoundException("No tienes seguidores",
-                    typeof(User).FullName);
-
-            return userProfile;
+            return followers;
         }
 
-        public List<Follow> FindFollowersByUserById(long id)
+        public List<UserAccount> FindFollowById(long id)
         {
-            List<Follow> userProfile = null;
+            List<UserAccount> follow = null;
 
-            #region Option 1: Using Linq.
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
 
-            DbSet<Follow> followers = Context.Set<Follow>();
+            follow =
+                (from u in userProfiles
+                 from g in u.UserAccount1
+                 where u.userId == id
+                 orderby g.loginName
+                 select g).ToList();
 
-            var result =
-                (from u in followers
-                 where u.FollowId == id
-                 select u);
-
-            userProfile = (List<Follow>)result;
-
-            #endregion Option 1: Using Linq.
-
-            #region Option 2: Using eSQL over dbSet
-
-            //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-            //DbParameter loginNameParameter =
-            //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
-
-            //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion Option 2: Using eSQL over dbSet
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-            #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            if (userProfile == null)
-                throw new InstanceNotFoundException("No tienes seguidores",
-                    typeof(User).FullName);
-
-            return userProfile;
+            return follow;
         }
 
-        public Follow FindFollowers(long id, long idf)
+        public void AddFollow(long userId, long followId)
         {
-            Follow userProfile = null;
+            UserAccount user;
+            UserAccount follow;
 
-            #region Option 1: Using Linq.
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
 
-            DbSet<Follow> followers = Context.Set<Follow>();
-
-            var result =
-                (from u in followers
-                 where u.FollowId == idf && u.UserId == id
-                 select u);
-
-            userProfile = result.FirstOrDefault();
-
-            #endregion Option 1: Using Linq.
-
-            #region Option 2: Using eSQL over dbSet
-
-            //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-            //DbParameter loginNameParameter =
-            //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
-
-            //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion Option 2: Using eSQL over dbSet
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-            #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            if (userProfile == null)
-                throw new InstanceNotFoundException("No tienes seguidores",
-                    typeof(User).FullName);
-
-            return userProfile;
-        }
-
-        public void AddFollow(long userId, Follow userFollow)
-        {
-            User c = Find(userId);
-            if (c != null)
+            try
             {
-                c.Follow.Add(userFollow);
+                user =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
             }
-            Update(c);
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                follow =
+                     (from u in userProfiles
+                      where u.userId == followId
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(followId, typeof(UserAccount).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
+
+            user.UserAccounts.Add(follow);
+
+            Context.SaveChanges();
         }
 
-        public void RemoveFollow(long userId, Follow userFollow)
+        public void RemoveFollow(long userId, long unFollowById)
         {
-            User c = Find(userId);
-            if (c != null)
+            UserAccount user;
+            UserAccount unFollow;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            try
             {
-                c.Follow.Clear();
+                user =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
             }
-            Update(c);
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                unFollow =
+                     (from u in userProfiles
+                      where u.userId == unFollowById
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(unFollowById, typeof(UserAccount).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + ", is followed by" + unFollow.loginName + "\n");
+
+            user.UserAccounts.Remove(unFollow);
+
+            Context.SaveChanges();
         }
-        #endregion IUsuarioDao Members
+
+        #endregion IUsuarioDao Members. Specific Operations
     }
 }
