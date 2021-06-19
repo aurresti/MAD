@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
 
-        public Comment AddComment(long userId, long imageId, string description)
+        public long AddComment(long userId, long imageId, string description)
         {
             Comment comment = null;
             if (userDao.Exists(userId) && ImageDao.Exists(imageId))
@@ -38,8 +38,23 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
                 comment.date = DateTime.Now;
                 CommentDao.Create(comment);
             }
-                return comment;
-            
+            else
+            {
+                throw new InstanceNotFoundException("User",
+                        typeof(UserAccount).FullName);
+            }
+            /*else if (!userDao.Exists(userId))
+            {
+                throw new InstanceNotFoundException("User",
+                        typeof(UserAccount).FullName);
+            }
+            else if (!ImageDao.Exists(imageId))
+            {
+                throw new InstanceNotFoundException("Image",
+                        typeof(Image).FullName);
+            }*/
+            return comment.commentId;
+
         }
 
         public bool RemoveComment(long userId, long imageId, long commentId)
@@ -48,7 +63,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
             Comment comment = CommentDao.Find(commentId);
             Image image = ImageDao.Find(imageId);
 
-            if (CommentDao.Exists(commentId) && 
+            if (CommentDao.Exists(commentId) &&
                 user.userId == comment.userId &&
                 image.imageId == comment.imageId)
             {
@@ -57,20 +72,21 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
             }
 
             return false;
-            
+
         }
 
-        public void UpdateComment(long userId, long imageId, Comment comment)
+        public void UpdateComment(long userId, long imageId, long comment, string description)
         {
             UserAccount user = userDao.Find(userId);
-            Comment comment1 = CommentDao.Find(comment.commentId);
+            Comment comment1 = CommentDao.Find(comment);
             Image image = ImageDao.Find(imageId);
 
             if (CommentDao.Exists(comment1.commentId) &&
-                user.userId == comment.userId &&
-                image.imageId == comment.imageId)
+                user.userId == comment1.userId &&
+                image.imageId == comment1.imageId)
             {
-                CommentDao.Update(comment);
+                comment1.comment1 = description;
+                CommentDao.Update(comment1);
             }
 
         }

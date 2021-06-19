@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.Photogram.Test
     /// Unit Tests
     /// </summary>
     [TestClass]
-    public class IUsuarioServiceTest
+    public class AIUsuarioServiceTest
     {
         // Variables used in several tests are initialized here
         private const string loginName = "loginNameTest";

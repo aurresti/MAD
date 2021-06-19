@@ -158,7 +158,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             {
                 Image imagenProfile = ImageDao.FindByTitle(title);
                 List<Comment> comentarios = ImageDao.FindComments(imagenProfile.imageId);
-                return null;
+                return comentarios;
             }
             catch (InstanceNotFoundException)
             {

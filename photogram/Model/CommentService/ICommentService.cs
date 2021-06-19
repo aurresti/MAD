@@ -19,11 +19,11 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
         [Inject]
         IUserDao userDao { set; }
 
-        Comment AddComment(long userId, long imageId, string description);
+        long AddComment(long userId, long imageId, string description);
 
-        bool RemoveComment(long userId, long imageId , long commentId);
+        bool RemoveComment(long userId, long imageId, long commentId);
 
-        void UpdateComment(long userId, long imageId, Comment comment);
+        void UpdateComment(long userId, long imageId, long comment, string description);
 
     }
 }
