@@ -117,10 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Contenido de la Página Principal de Photogram</value>
+  <data name="btnUpdate.Text" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="lclCountry.Text" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="lclEmail.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lclFirstName.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lclLanguage.Text" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Información del usuario</value>
+  </data>
+  <data name="lclSurname.Text" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="lnkChangePassword.Text" xml:space="preserve">
+    <value>Cambiar contraseña</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Página Principal</value>
+    <value>Photogram - Actualizar información de usuario</value>
+  </data>
+  <data name="revEmail.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis de email incorrecta</value>
   </data>
 </root>
