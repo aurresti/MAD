@@ -117,8 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bChangePassword.Text" xml:space="preserve">
+    <value>Cambiar Contrasinal</value>
+  </data>
+  <data name="bFollow.Text" xml:space="preserve">
+    <value>Seguir</value>
+  </data>
+  <data name="bFollowed.Text" xml:space="preserve">
+    <value>Seguidos</value>
+  </data>
+  <data name="bFollowers.Text" xml:space="preserve">
+    <value>Seguidores</value>
+  </data>
+  <data name="bUpgrade.Text" xml:space="preserve">
+    <value>Actualizar Perfil</value>
+  </data>
+  <data name="hlImage.Text" xml:space="preserve">
+    <value>Detalles Imagen</value>
+  </data>
   <data name="lclContent.Text" xml:space="preserve">
     <value>Contido da Páxina Principal de Photogram</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Perfil do Usuario</value>
+  </data>
+  <data name="lnkExit.Text" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="lnkHome.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="lnkMyProfile.Text" xml:space="preserve">
+    <value>Meu Perfil</value>
+  </data>
+  <data name="lProfile.Text" xml:space="preserve">
+    <value>Perfil</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
     <value>Photogram - Páxina Principal</value>

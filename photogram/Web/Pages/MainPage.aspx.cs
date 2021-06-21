@@ -13,5 +13,10 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
 
         }
+
+        protected void bChangePassword_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

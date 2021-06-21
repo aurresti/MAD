@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.User
                         txtPassword.Text, userProfileDetailsVO);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                        ApplyAppPathModifier("~/Pages/HomePage.aspx"));
                     lblLoginError.Visible = true;
                 }
                 catch (DuplicateInstanceException)
