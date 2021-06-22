@@ -117,43 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bChangePassword.Text" xml:space="preserve">
-    <value>Cambiar Contraseña</value>
+  <data name="lblWelcome.Hello.Text" xml:space="preserve">
+    <value>Hola</value>
   </data>
-  <data name="bFollow.Text" xml:space="preserve">
-    <value>Seguir</value>
+  <data name="lblWelcome.Text" xml:space="preserve">
+    <value>Benvido a Photogram</value>
   </data>
-  <data name="bFollowed.Text" xml:space="preserve">
-    <value>Seguidos</value>
+  <data name="lclFooter.Text" xml:space="preserve">
+    <value>Copyright &amp;copy; Departamento Ciencias de la Computación y Tecnologías de la Información - Universidade da Coruña</value>
   </data>
-  <data name="bFollowers.Text" xml:space="preserve">
-    <value>Seguidores</value>
+  <data name="lclPageTitle.Text" xml:space="preserve">
+    <value>Photogram: Exemplo dunha Aplicación Web MVC con .NET</value>
   </data>
-  <data name="bUpgrade.Text" xml:space="preserve">
-    <value>Actualizar Perfil</value>
+  <data name="lnkAuthenticate.Text" xml:space="preserve">
+    <value>Autenticación</value>
   </data>
-  <data name="hlImage.Text" xml:space="preserve">
-    <value>Detalles Imagen</value>
+  <data name="lnkLogout.Text" xml:space="preserve">
+    <value>Saír</value>
   </data>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Contenido de la Página Principal de Photogram</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Perfil de Usuario</value>
-  </data>
-  <data name="lnkExit.Text" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="lnkHome.Text" xml:space="preserve">
-    <value>Inicio</value>
-  </data>
-  <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Mi Perfil</value>
-  </data>
-  <data name="lProfile.Text" xml:space="preserve">
-    <value>Perfil</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Página Principal</value>
+  <data name="lnkUpdate.Text" xml:space="preserve">
+    <value>Actualizar información de usuario</value>
   </data>
 </root>

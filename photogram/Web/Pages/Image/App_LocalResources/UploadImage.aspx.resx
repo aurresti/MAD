@@ -117,43 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bChangePassword.Text" xml:space="preserve">
-    <value>Cambiar Contraseña</value>
+  <data name="btnUpload.Text" xml:space="preserve">
+    <value>Upload</value>
   </data>
-  <data name="bFollow.Text" xml:space="preserve">
-    <value>Seguir</value>
+  <data name="lCategory.Text" xml:space="preserve">
+    <value>Category</value>
   </data>
-  <data name="bFollowed.Text" xml:space="preserve">
-    <value>Seguidos</value>
+  <data name="lDescription.Text" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="bFollowers.Text" xml:space="preserve">
-    <value>Seguidores</value>
+  <data name="lDiaphragm.Text" xml:space="preserve">
+    <value>Diaphragm</value>
   </data>
-  <data name="bUpgrade.Text" xml:space="preserve">
-    <value>Actualizar Perfil</value>
+  <data name="lDistance.Text" xml:space="preserve">
+    <value>Distance</value>
   </data>
-  <data name="hlImage.Text" xml:space="preserve">
-    <value>Detalles Imagen</value>
-  </data>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Contenido de la Página Principal de Photogram</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Perfil de Usuario</value>
+  <data name="lExposition.Text" xml:space="preserve">
+    <value>Exposition</value>
   </data>
   <data name="lnkExit.Text" xml:space="preserve">
-    <value>Salir</value>
+    <value>Exit</value>
   </data>
   <data name="lnkHome.Text" xml:space="preserve">
-    <value>Inicio</value>
+    <value>Home</value>
   </data>
   <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Mi Perfil</value>
+    <value>My Profile</value>
   </data>
-  <data name="lProfile.Text" xml:space="preserve">
-    <value>Perfil</value>
+  <data name="lSensibility.Text" xml:space="preserve">
+    <value>Sensibility</value>
   </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Página Principal</value>
+  <data name="lTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lTitleUpload.Text" xml:space="preserve">
+    <value>Upload Image</value>
   </data>
 </root>
