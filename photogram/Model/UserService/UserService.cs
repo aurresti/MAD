@@ -40,11 +40,12 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
 
         public bool UserFollowExists(string loginName, string loginNameFollow)
         {
-
+            ///Fachada no generica
             try
             {
-                UserAccount userProfile = UserDao.FindByLoginName(loginName);
-                UserAccount userProfileFollow = UserDao.FindByLoginName(loginNameFollow);
+                ///UserAccount userProfile = UserDao.FindByLoginName(loginName);
+                ///UserAccount userProfileFollow = UserDao.FindByLoginName(loginNameFollow);
+                UserDao.FollowExists(loginName, loginNameFollow);
                 //Follow follow = UsuarioDao.FindFollowers(userProfile.Id, userProfileFollow.Id);
             }
             catch (InstanceNotFoundException e)

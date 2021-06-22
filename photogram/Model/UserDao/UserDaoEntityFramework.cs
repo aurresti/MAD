@@ -161,6 +161,34 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
             Context.SaveChanges();
         }
 
+
+        public bool FollowExists(string loginName, string loginNameFollow)
+        {
+            UserAccount follow = null;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            try
+            {
+                follow =
+                    (from u in userProfiles
+                     from g in u.UserAccount1
+                     where u.loginName == loginName
+                     where g.loginName == loginNameFollow
+                     select g).Single();
+
+                if (follow != null)
+                    return true;
+            }
+            catch {
+                throw new InstanceNotFoundException(loginNameFollow, typeof(UserAccount).FullName);
+            }
+
+            return false;
+        }
         #endregion IUsuarioDao Members. Specific Operations
+
     }
+
+
 }

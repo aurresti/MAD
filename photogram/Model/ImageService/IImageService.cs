@@ -5,6 +5,7 @@ using System;
 using Ninject;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.UserDao;
+using Castle.Core;
 
 namespace Es.Udc.DotNet.Photogram.Model.ImageService
 {
@@ -38,7 +39,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         /// <param name="title"> String of search. </param>
         /// <param name="category"> Search for categoty or not. </param>
         /// <returns> List of Image</returns>
-        List<Image> FindImages(String texto, String category, Boolean categoryB);
+        List<Pair<Image, Category>> FindImages(String texto, String category, Boolean categoryB);
 
         /// <summary>
         /// See profile of a valid user.
