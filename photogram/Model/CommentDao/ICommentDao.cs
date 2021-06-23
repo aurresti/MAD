@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Castle.Core;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 
@@ -17,7 +18,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
         /// <param name="id">id</param>
         /// <returns>The ImagenProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Comment> FindComments(int id);
+        List<Pair<Comment, UserAccount>> FindComments(long id);
 
         /// <summary>
         /// Finds a ImagenProfile by id

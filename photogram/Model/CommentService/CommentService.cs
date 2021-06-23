@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.ImageDao;
 using Es.Udc.DotNet.Photogram.Model.UserDao;
+using Castle.Core;
 
 namespace Es.Udc.DotNet.Photogram.Model.CommentService
 {
@@ -89,6 +90,21 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
                 CommentDao.Update(comment1);
             }
 
+        }
+
+        public List<Pair<Comment, UserAccount>> GetComments(long imageId) 
+        {
+            List<Pair<Comment, UserAccount>> list = new List<Pair<Comment, UserAccount>>();
+            try
+            {
+                list = CommentDao.FindComments(imageId);
+            }
+            catch (Exception e) /// sin commentarios
+            {
+                return list;
+            }
+
+            return list;
         }
 
         #endregion ICommentService Members

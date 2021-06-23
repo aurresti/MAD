@@ -13,6 +13,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
 using System.Transactions;
+using Castle.Core;
+using System.Collections.Generic;
+using Es.Udc.DotNet.Photogram.Model;
+using System.Linq;
 
 namespace Es.Udc.DotNet.Photogram.Test
 {
@@ -261,6 +265,42 @@ namespace Es.Udc.DotNet.Photogram.Test
             }
         }
 
+        /// <summary>
+        /// A test for FindUserProfileDetails
+        /// </summary>
+        [TestMethod]
+        public void SeeAllCommentsImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                List<Pair<Comment, UserAccount>> list = new List<Pair<Comment, UserAccount>>();
+
+                var userId =
+                    userService.CreateUser(loginName, clearPassword,
+                        new UserProfile(firstName, lastName, email, language, country));
+
+                var categoryId = categoryService.CreateCategory("sofa");
+
+                var image =
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+
+                var imageId = imageService.CreateImage("titulo", image);
+
+                var commentId = commentService.AddComment(userId, imageId, "text");
+
+                var commentId2 = commentService.AddComment(userId, imageId, "jajajajajaj ");
+
+                var obtained = commentService.GetComments(imageId);
+
+                list.Add(new Pair<Comment, UserAccount>(commentProfileDao.Find(commentId), userProfileDao.Find(userId)));
+                list.Add(new Pair<Comment, UserAccount>(commentProfileDao.Find(commentId2), userProfileDao.Find(userId)));
+
+                // Check data, same size? same elements?
+                Assert.IsTrue(list.Count == obtained.Count && !list.Except(obtained).Any());
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class

@@ -123,14 +123,15 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             categoryList = result2.ToList();
 
             #endregion Option 1: Using Linq.
-            for (int i = 0; i < imageList.Count; i++)
-                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
 
             ///Como accedemos a la categoria? excepcion carga perezosa, paginacion
 
             if (imageProfile == null)
                 throw new InstanceNotFoundException(texto,
                     typeof(Image).FullName);
+
+            for (int i = 0; i < imageList.Count; i++)
+                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
 
             return imageProfile;
         }
@@ -175,14 +176,15 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             categoryList = result2.ToList();
 
             #endregion Option 1: Using Linq.
-            for (int i = 0; i < imageList.Count; i++)
-                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
 
             ///Como accedemos a la categoria? excepcion carga perezosa, paginacion
 
             if (imageProfile == null)
                 throw new InstanceNotFoundException(texto,
                     typeof(Image).FullName);
+
+            for (int i = 0; i < imageList.Count; i++)
+                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
 
             return imageProfile;
         }

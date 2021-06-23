@@ -6,6 +6,7 @@ using Ninject;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.ImageDao;
 using Es.Udc.DotNet.Photogram.Model.UserDao;
+using Castle.Core;
 
 namespace Es.Udc.DotNet.Photogram.Model.CommentService
 {
@@ -24,6 +25,8 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
         bool RemoveComment(long userId, long imageId, long commentId);
 
         void UpdateComment(long userId, long imageId, long comment, string description);
+
+        List<Pair<Comment, UserAccount>> GetComments(long imageId);
 
     }
 }

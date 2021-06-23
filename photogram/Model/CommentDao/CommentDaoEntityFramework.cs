@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
+﻿using Castle.Core;
+using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,19 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public List<Comment> FindComments(int imageId)
+        public List<Pair<Comment, UserAccount>> FindComments(long imageId)
         {
-            List<Comment> comentarioProfile = null;
+            List<Pair<Comment, UserAccount>> commentList = new List<Pair<Comment, UserAccount>>();
+
+            List<Comment> comentarios = null;
+
+            List<UserAccount> usuarios = null;
 
             #region Option 1: Using Linq.
 
             DbSet<Comment> comentarioProfiles = Context.Set<Comment>();
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
 
             var result =
                 (from u in comentarioProfiles
@@ -43,16 +50,27 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
                  orderby u.date
                  select u);
 
-            comentarioProfile = result.ToList();
+            comentarios = result.ToList();
+
+            var result2 =
+                (from u in comentarioProfiles
+                 from a in userProfiles
+                 where u.imageId == imageId && a.userId == u.userId
+                 orderby u.date
+                 select a);
+
+            usuarios = result2.ToList();
 
             #endregion Option 1: Using Linq.
 
-
-            if (comentarioProfile == null)
+            if (comentarios == null)
                 throw new InstanceNotFoundException(imageId,
                     typeof(Image).FullName);
 
-            return comentarioProfile;
+            for (int i = 0; i < comentarios.Count; i++)
+                commentList.Add(new Pair<Comment, UserAccount>(comentarios[i], usuarios[i]));
+
+            return commentList;
         }
 
         /// <summary>
