@@ -103,7 +103,8 @@
     <Content Include="Pages\HomePage.aspx" />
     <Content Include="Pages\Image\ImageProfile.aspx" />
     <Content Include="Pages\Image\UploadImage.aspx" />
-    <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\OtherProfilePage.aspx" />
+    <Content Include="Pages\ProfilePage.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
@@ -169,12 +170,19 @@
     <Compile Include="Pages\Image\UploadImage.aspx.designer.cs">
       <DependentUpon>UploadImage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainPage.aspx.cs">
-      <DependentUpon>MainPage.aspx</DependentUpon>
+    <Compile Include="Pages\OtherProfilePage.aspx.cs">
+      <DependentUpon>OtherProfilePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\MainPage.aspx.designer.cs">
-      <DependentUpon>MainPage.aspx</DependentUpon>
+    <Compile Include="Pages\OtherProfilePage.aspx.designer.cs">
+      <DependentUpon>OtherProfilePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProfilePage.aspx.cs">
+      <DependentUpon>ProfilePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProfilePage.aspx.designer.cs">
+      <DependentUpon>ProfilePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
@@ -272,9 +280,9 @@
     <Content Include="App_LocalResources\Miniportal.Master.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\App_LocalResources\MainPage.aspx.es.resx" />
-    <Content Include="Pages\App_LocalResources\MainPage.aspx.gl.resx" />
-    <Content Include="Pages\App_LocalResources\MainPage.aspx.resx" />
+    <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.es.resx" />
+    <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.gl.resx" />
+    <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Error\App_LocalResources\InternalError.aspx.es.resx" />
@@ -330,6 +338,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Photogram.Master.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProfilePage.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProfilePage.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProfilePage.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

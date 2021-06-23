@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
 
 
-    public partial class MainPage
+    public partial class ProfilePage
     {
 
         /// <summary>
@@ -132,30 +132,30 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected global::System.Web.UI.WebControls.Image Image3;
 
         /// <summary>
-        /// Control hlImage1.
+        /// Control bImage1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlImage1;
+        protected global::System.Web.UI.WebControls.Button bImage1;
 
         /// <summary>
-        /// Control hlImage2.
+        /// Control bImage2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlImage2;
+        protected global::System.Web.UI.WebControls.Button bImage2;
 
         /// <summary>
-        /// Control hlImage3.
+        /// Control bImage3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlImage3;
+        protected global::System.Web.UI.WebControls.Button bImage3;
     }
 }

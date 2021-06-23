@@ -6,6 +6,8 @@ namespace Es.Udc.DotNet.Photogram.Web
 {
     public partial class Photogram : System.Web.UI.MasterPage
     {
+        public static readonly String USER_SESSION_ATTRIBUTE = "userSession";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!SessionManager.IsUserAuthenticated(Context))

@@ -126,11 +126,11 @@
   <data name="lDiaphragm.Text" xml:space="preserve">
     <value>Diafragma</value>
   </data>
-  <data name="lDistance.Text" xml:space="preserve">
-    <value>Distancia</value>
-  </data>
   <data name="lExposition.Text" xml:space="preserve">
     <value>Exposicion</value>
+  </data>
+  <data name="lISO.Text" xml:space="preserve">
+    <value>ISO</value>
   </data>
   <data name="lnkExit.Text" xml:space="preserve">
     <value>Sair</value>
@@ -141,13 +141,13 @@
   <data name="lnkMyProfile.Text" xml:space="preserve">
     <value>Meu Perfil</value>
   </data>
-  <data name="lSensibility.Text" xml:space="preserve">
-    <value>Sensibilidade</value>
-  </data>
   <data name="lTitle.Text" xml:space="preserve">
     <value>Titulo</value>
   </data>
   <data name="lTitleProfile.Text" xml:space="preserve">
     <value>Detalles da Imaxen</value>
+  </data>
+  <data name="lWhite.Text" xml:space="preserve">
+    <value>Balance de brancos</value>
   </data>
 </root>

@@ -96,13 +96,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.HyperLink lnkMyProfile;
 
         /// <summary>
-        /// Control lSensibility.
+        /// Control lISO.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lSensibility;
+        protected global::System.Web.UI.WebControls.Label lISO;
 
         /// <summary>
         /// Control tbSensibility.
@@ -150,13 +150,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.TextBox tbExposition;
 
         /// <summary>
-        /// Control lDistance.
+        /// Control lWhite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lDistance;
+        protected global::System.Web.UI.WebControls.Label lWhite;
 
         /// <summary>
         /// Control tbDistance.

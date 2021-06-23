@@ -13,17 +13,17 @@
     
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/Register.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/HomePage.aspx" meta:resourcekey="lnkHome" />
             <center>
                 <asp:Label ID="lSearch" runat="server" meta:resourcekey="lSearch"></asp:Label>
                 <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server"  meta:resourcekey="btnSearch" />
+                <asp:Button ID="btnSearch" runat="server"  meta:resourcekey="btnSearch" OnClick="btnSearch_Click" />
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/Register.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/ProfileUser.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
-                <asp:Label ID="lCategory" runat="server" meta:resourcekey="lCategory"></asp:Label>
+                <asp:CheckBox ID="cbCategory" runat="server"  meta:resourcekey="cbCategory" OnCheckedChanged="cbCategory_CheckedChanged"/>
                 <asp:DropDownList ID="comboCategory" runat="server" AutoPostBack="True"
                             Width="100px" meta:resourcekey="comboCategoryResource1"
                             OnSelectedIndexChanged="comboCategorySelectedIndexChanged">
@@ -31,9 +31,12 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Register.aspx" meta:resourcekey="lnkExit" />
+            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
-                <asp:Button ID="btnUpload" runat="server" meta:resourcekey="btnUpload" />
+                <asp:Label ID="lblNotFound" runat="server" meta:resourcekey="lblNotFound"></asp:Label>
+            </center>
+            <center>
+                <asp:Button ID="btnUpload" runat="server" meta:resourcekey="btnUpload" OnClick="btnUpload_Click" />
             </center>
         </div>
     </form>

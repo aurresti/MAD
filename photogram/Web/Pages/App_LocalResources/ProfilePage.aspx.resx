@@ -117,20 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lCategory.Text" xml:space="preserve">
-    <value>Category</value>
+  <data name="bChangePassword.Text" xml:space="preserve">
+    <value>Change Password</value>
   </data>
-  <data name="lDescription.Text" xml:space="preserve">
-    <value>Description</value>
+  <data name="bFollowed.Text" xml:space="preserve">
+    <value>Followed</value>
   </data>
-  <data name="lDiaphragm.Text" xml:space="preserve">
-    <value>Diaphragm</value>
+  <data name="bFollowers.Text" xml:space="preserve">
+    <value>Followers</value>
   </data>
-  <data name="lExposition.Text" xml:space="preserve">
-    <value>Exposition</value>
+  <data name="bImage.Text" xml:space="preserve">
+    <value>Image Details</value>
   </data>
-  <data name="lISO.Text" xml:space="preserve">
-    <value>ISO</value>
+  <data name="bUpgrade.Text" xml:space="preserve">
+    <value>Upgrade Profile</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>User Profile</value>
   </data>
   <data name="lnkExit.Text" xml:space="preserve">
     <value>Exit</value>
@@ -141,13 +144,10 @@
   <data name="lnkMyProfile.Text" xml:space="preserve">
     <value>My Profile</value>
   </data>
-  <data name="lTitle.Text" xml:space="preserve">
-    <value>Title</value>
+  <data name="lProfile.Text" xml:space="preserve">
+    <value>Profile</value>
   </data>
-  <data name="lTitleProfile.Text" xml:space="preserve">
-    <value>Profile Image</value>
-  </data>
-  <data name="lWhite.Text" xml:space="preserve">
-    <value>White balance</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Profile User Page</value>
   </data>
 </root>

@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.User
                         txtNewPassword.Text);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                        ApplyAppPathModifier("~/Pages/ProfilePage.aspx"));
 
                 }
                 catch (IncorrectPasswordException)
