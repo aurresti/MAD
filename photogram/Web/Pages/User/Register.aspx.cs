@@ -114,7 +114,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.User
 
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/HomePage.aspx"));
-                    lblLoginError.Visible = true;
                 }
                 catch (DuplicateInstanceException)
                 {

@@ -6,6 +6,8 @@ using Es.Udc.DotNet.ModelUtil.Log;
 using System;
 using System.Globalization;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
+using System.Web.Security;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -13,7 +15,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            lblNotFound.Visible = false;
             if (!IsPostBack)
             {
                 /* Get current language and country from browser */
@@ -23,11 +25,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 /* Combo box initialization */
                 UpdateComboCategory(defaultLanguage, "no");
             }
-        }
-
-        protected void BtnLoginClick(object sender, EventArgs e)
-        {
-
         }
 
         private String GetLanguageFromBrowserPreferences()
@@ -80,6 +77,37 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
             this.UpdateComboCategory(defaultLanguage, comboCategory.SelectedValue);
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/UploadImage.aspx"));
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                try
+                {
+                    /*SessionManager.Login(Context, txtLogin.Text,
+                        txtPassword.Text, cbCategory.Checked);*/
+
+                }
+                catch (InstanceNotFoundException)
+                {
+                    lblNotFound.Visible = true;
+                }
+            }
+        }
+
+        protected void cbCategory_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

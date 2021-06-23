@@ -75,7 +75,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.User
                     userProfileDetails);
 
                 Response.Redirect(
-                    Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                    Response.ApplyAppPathModifier("~/Pages/ProfilePage.aspx"));
 
             }
         }

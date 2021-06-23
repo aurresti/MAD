@@ -51,13 +51,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lTitle;
 
         /// <summary>
-        /// Control tbTitle.
+        /// Control lTitleContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTitle;
+        protected global::System.Web.UI.WebControls.Label lTitleContent;
 
         /// <summary>
         /// Control lCategory.
@@ -69,13 +69,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lCategory;
 
         /// <summary>
-        /// Control tbCategory.
+        /// Control lCategoryContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCategory;
+        protected global::System.Web.UI.WebControls.Label lCategoryContent;
 
         /// <summary>
         /// Control lnkMyProfile.
@@ -87,22 +87,22 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.HyperLink lnkMyProfile;
 
         /// <summary>
-        /// Control lSensibility.
+        /// Control lISO.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lSensibility;
+        protected global::System.Web.UI.WebControls.Label lISO;
 
         /// <summary>
-        /// Control tbSensibility.
+        /// Control lISOContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSensibility;
+        protected global::System.Web.UI.WebControls.Label lISOContent;
 
         /// <summary>
         /// Control lDiaphragm.
@@ -114,13 +114,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lDiaphragm;
 
         /// <summary>
-        /// Control tbDiaphragm.
+        /// Control lDiaphragmContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDiaphragm;
+        protected global::System.Web.UI.WebControls.Label lDiaphragmContent;
 
         /// <summary>
         /// Control lExposition.
@@ -132,31 +132,31 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lExposition;
 
         /// <summary>
-        /// Control tbExposition.
+        /// Control lExpositionContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbExposition;
+        protected global::System.Web.UI.WebControls.Label lExpositionContent;
 
         /// <summary>
-        /// Control lDistance.
+        /// Control lWhite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lDistance;
+        protected global::System.Web.UI.WebControls.Label lWhite;
 
         /// <summary>
-        /// Control tbDistance.
+        /// Control lWhiteContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDistance;
+        protected global::System.Web.UI.WebControls.Label lWhiteContent;
 
         /// <summary>
         /// Control lnkExit.
@@ -177,12 +177,39 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lDescription;
 
         /// <summary>
-        /// Control tbDescription.
+        /// Control lDescriptionContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescription;
+        protected global::System.Web.UI.WebControls.Label lDescriptionContent;
+
+        /// <summary>
+        /// Control bLike.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bLike;
+
+        /// <summary>
+        /// Control lLike.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lLike;
+
+        /// <summary>
+        /// Control bComment.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bComment;
     }
 }

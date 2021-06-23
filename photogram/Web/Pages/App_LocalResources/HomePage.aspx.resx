@@ -123,8 +123,11 @@
   <data name="btnUpload.Text" xml:space="preserve">
     <value>Upload Image</value>
   </data>
-  <data name="lCategory.Text" xml:space="preserve">
-    <value>Category</value>
+  <data name="cbCategory.Text" xml:space="preserve">
+    <value>Search by category</value>
+  </data>
+  <data name="lblNotFound.Text" xml:space="preserve">
+    <value>Images not found</value>
   </data>
   <data name="lnkExit.Text" xml:space="preserve">
     <value>Exit</value>

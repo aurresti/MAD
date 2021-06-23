@@ -31,22 +31,22 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects
         {
             #region set the countries
 
-            categories_es.Add(new ListItem("-", "no"));
+            //categories_es.Add(new ListItem("-", "no"));
             categories_es.Add(new ListItem("Fauna", "an"));
             categories_es.Add(new ListItem("Paisaje", "la"));
             categories_es.Add(new ListItem("Moda", "fa"));
 
-            categories_en.Add(new ListItem("-", "no"));
+            //categories_en.Add(new ListItem("-", "no"));
             categories_en.Add(new ListItem("Animals", "an"));
             categories_en.Add(new ListItem("Fashion", "fa"));
             categories_en.Add(new ListItem("Landscape", "la"));
             
-            categories_gl.Add(new ListItem("-", "no"));
+            //categories_gl.Add(new ListItem("-", "no"));
             categories_gl.Add(new ListItem("Fauna", "an"));
             categories_gl.Add(new ListItem("Paisaxe", "la"));
             categories_gl.Add(new ListItem("Moda", "fa"));
 
-            categoriesCodes.Add("no");
+            //categoriesCodes.Add("no");
             categoriesCodes.Add("an");
             categoriesCodes.Add("la");
             categoriesCodes.Add("fa");

@@ -16,5 +16,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 
         }
 
+        protected void bLike_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void bComment_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

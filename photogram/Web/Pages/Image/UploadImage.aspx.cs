@@ -25,11 +25,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
             }
         }
 
-        protected void BtnLoginClick(object sender, EventArgs e)
-        {
-
-        }
-
         private String GetLanguageFromBrowserPreferences()
         {
             String language;
@@ -80,6 +75,11 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
             String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
             this.UpdateComboCategory(defaultLanguage, comboCategoryU.SelectedValue);
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

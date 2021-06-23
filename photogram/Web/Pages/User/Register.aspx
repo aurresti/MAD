@@ -14,9 +14,7 @@
     <div id="form">
         <form id="RegisterForm" method="post" runat="server">
 
-            <div class="field">
-                <asp:HyperLink ID="lnkUserExists" runat="server" meta:resourcekey="lnkUserExists" NavigateUrl="~/Pages/UserExists.aspx"></asp:HyperLink>
-            </div>
+            
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclUserName" runat="server" meta:resourcekey="lclUserName" />
