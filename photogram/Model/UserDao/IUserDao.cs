@@ -48,5 +48,13 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         /// <returns>The user stop following the user</returns>
         /// <exception cref="InstanceNotFoundException"/>
         void RemoveFollow(long userId, long unFollowById);
+
+        /// <summary>
+        /// Checks if the specified follow exists.
+        /// </summary>
+        /// <param name="loginName"> User loginName. </param>
+        /// <param name="loginNameFollow"> User loginName Follow. </param>
+        /// <returns> Boolean to indicate if the follow exists </returns>
+        bool FollowExists(string loginName, string loginNameFollow);
     }
 }

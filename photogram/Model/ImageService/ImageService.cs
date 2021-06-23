@@ -5,6 +5,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
 using System.Collections.Generic;
+using Castle.Core;
 
 namespace Es.Udc.DotNet.Photogram.Model.ImageService
 {
@@ -70,21 +71,21 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             return image;
         }
 
-        public List<Image> FindImages(String texto, String category, Boolean categoryB)
+        public List<Pair<Image, Category>> FindImages(String texto, String category, Boolean categoryB)
         {
-
             try
             {
-                List<Image> imageProfile = null;
+                
+                List<Pair<Image, Category>> list = null;
                 if (categoryB)
                 {
-                    imageProfile = ImageDao.FindByCategory(texto, category);
+                    list = ImageDao.FindByCategory(texto, category);
                 }
                 else
                 {
-                    imageProfile = ImageDao.FindByText(texto);
+                    list = ImageDao.FindByText(texto);
                 }
-                return imageProfile;
+                return list;
             }
             catch (InstanceNotFoundException e)
             {
