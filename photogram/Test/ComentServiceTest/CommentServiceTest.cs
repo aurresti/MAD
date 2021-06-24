@@ -17,6 +17,7 @@ using Castle.Core;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model;
 using System.Linq;
+using System.Web.UI;
 
 namespace Es.Udc.DotNet.Photogram.Test
 {
@@ -73,7 +74,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var imageId = imageService.CreateImage("titulo",
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0));
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, ""));
 
                 var commentId = commentService.AddComment(userId, imageId, "text");
 
@@ -105,7 +106,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var imageId = imageService.CreateImage("titulo",
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0));
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, ""));
 
                 var commentId = commentService.AddComment(userId, -1, "text");
 
@@ -132,7 +133,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var imageId = imageService.CreateImage("titulo",
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0));
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, ""));
 
                 var commentId = commentService.AddComment(-1, imageId, "text");
 
@@ -158,7 +159,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var expected =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0,"");
 
                 var imageId = imageService.CreateImage("titulo", expected);
 
@@ -186,7 +187,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var expected =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0,"");
 
                 var imageId = imageService.CreateImage("titulo", expected);
 
@@ -219,7 +220,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var expected =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", expected);
 
@@ -254,7 +255,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var expected =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", expected);
 
@@ -282,7 +283,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var image =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", image);
 

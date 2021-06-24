@@ -4,211 +4,209 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.UDC.DotNet.Photogram.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="categoryId" />
-          </Key>
-          <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="commentId" />
-          </Key>
-          <Property Name="commentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="imageId" Type="bigint" Nullable="false" />
-          <Property Name="userId" Type="bigint" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="255" />
-          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Follow">
-          <Key>
-            <PropertyRef Name="userId" />
-            <PropertyRef Name="followerId" />
-          </Key>
-          <Property Name="userId" Type="bigint" Nullable="false" />
-          <Property Name="followerId" Type="bigint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="imageId" />
-          </Key>
-          <Property Name="imageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="exifInfo" Type="varchar" MaxLength="60" />
-          <Property Name="categoryId" Type="bigint" Nullable="false" />
-          <Property Name="userId" Type="bigint" />
-        </EntityType>
-        <EntityType Name="Likes">
-          <Key>
-            <PropertyRef Name="imageId" />
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="imageId" Type="bigint" Nullable="false" />
-          <Property Name="userId" Type="bigint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserAccount">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="loginName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="lastName" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="language" Type="varchar" MaxLength="2" />
-          <Property Name="country" Type="varchar" MaxLength="2" />
-        </EntityType>
-        <Association Name="FK_CommentImageId">
-          <End Role="Image" Type="Self.Image" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Image">
-              <PropertyRef Name="imageId" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="imageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CommentUserId">
-          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAccount">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FollowFollowerId">
-          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
-          <End Role="Follow" Type="Self.Follow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAccount">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Follow">
-              <PropertyRef Name="followerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FollowUserId">
-          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
-          <End Role="Follow" Type="Self.Follow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAccount">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Follow">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ImageCategoryId">
-          <End Role="Category" Type="Self.Category" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Image" Type="Self.Image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="categoryId" />
-            </Principal>
-            <Dependent Role="Image">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ImageUserId">
-          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Image" Type="Self.Image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAccount">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Image">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LikesImageId">
-          <End Role="Image" Type="Self.Image" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Image">
-              <PropertyRef Name="imageId" />
-            </Principal>
-            <Dependent Role="Likes">
-              <PropertyRef Name="imageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LikesUserId">
-          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
-          <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAccount">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Likes">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="EsUDCDotNetPhotogramStoreContainer">
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Follow" EntityType="Self.Follow" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CommentImageId" Association="Self.FK_CommentImageId">
-            <End Role="Image" EntitySet="Image" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CommentUserId" Association="Self.FK_CommentUserId">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FollowFollowerId" Association="Self.FK_FollowFollowerId">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="Follow" EntitySet="Follow" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FollowUserId" Association="Self.FK_FollowUserId">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="Follow" EntitySet="Follow" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImageCategoryId" Association="Self.FK_ImageCategoryId">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Image" EntitySet="Image" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImageUserId" Association="Self.FK_ImageUserId">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="Image" EntitySet="Image" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LikesImageId" Association="Self.FK_LikesImageId">
-            <End Role="Image" EntitySet="Image" />
-            <End Role="Likes" EntitySet="Likes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LikesUserId" Association="Self.FK_LikesUserId">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="Likes" EntitySet="Likes" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="Es.UDC.DotNet.Photogram.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EsUDCDotNetPhotogramStoreContainer">
+    <EntitySet Name="Categories" EntityType="Es.UDC.DotNet.Photogram.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Es.UDC.DotNet.Photogram.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="Es.UDC.DotNet.Photogram.Store.Images" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAccounts" EntityType="Es.UDC.DotNet.Photogram.Store.UserAccounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Follow" EntityType="Es.UDC.DotNet.Photogram.Store.Follow" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Likes" EntityType="Es.UDC.DotNet.Photogram.Store.Likes" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ImageCategoryId" Association="Es.UDC.DotNet.Photogram.Store.FK_ImageCategoryId">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentImageId" Association="Es.UDC.DotNet.Photogram.Store.FK_CommentImageId">
+      <End Role="Image" EntitySet="Images" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentUserId" Association="Es.UDC.DotNet.Photogram.Store.FK_CommentUserId">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageUserId" Association="Es.UDC.DotNet.Photogram.Store.FK_ImageUserId">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Follow_UserAccount" Association="Es.UDC.DotNet.Photogram.Store.FK_Follow_UserAccount">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Follow" EntitySet="Follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Follow_UserAccount1" Association="Es.UDC.DotNet.Photogram.Store.FK_Follow_UserAccount1">
+      <End Role="UserAccount1" EntitySet="UserAccounts" />
+      <End Role="Follow" EntitySet="Follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Likes_Image" Association="Es.UDC.DotNet.Photogram.Store.FK_Likes_Image">
+      <End Role="Image" EntitySet="Images" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Likes_UserAccount" Association="Es.UDC.DotNet.Photogram.Store.FK_Likes_UserAccount">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imageId" Type="bigint" Nullable="false" />
+    <Property Name="userId" Type="bigint" Nullable="false" />
+    <Property Name="comment1" Type="varchar" Nullable="true" MaxLength="255" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="imageId" />
+    </Key>
+    <Property Name="imageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="60" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="60" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="exifInfo" Type="varchar" Nullable="true" MaxLength="60" />
+    <Property Name="categoryId" Type="bigint" Nullable="false" />
+    <Property Name="userId" Type="bigint" Nullable="true" />
+    <Property Name="imageView" Type="varchar" Nullable="false" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="UserAccounts">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="loginName" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="60" />
+    <Property Name="language" Type="varchar" Nullable="true" MaxLength="2" />
+    <Property Name="country" Type="varchar" Nullable="true" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="Follow">
+    <Key>
+      <PropertyRef Name="UserAccounts_userId" />
+      <PropertyRef Name="UserAccount1_userId" />
+    </Key>
+    <Property Name="UserAccounts_userId" Type="bigint" Nullable="false" />
+    <Property Name="UserAccount1_userId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Likes">
+    <Key>
+      <PropertyRef Name="Images1_imageId" />
+      <PropertyRef Name="UserAccounts_userId" />
+    </Key>
+    <Property Name="Images1_imageId" Type="bigint" Nullable="false" />
+    <Property Name="UserAccounts_userId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ImageCategoryId">
+    <End Role="Category" Type="Es.UDC.DotNet.Photogram.Store.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image" Type="Es.UDC.DotNet.Photogram.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentImageId">
+    <End Role="Image" Type="Es.UDC.DotNet.Photogram.Store.Images" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Comment" Type="Es.UDC.DotNet.Photogram.Store.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="imageId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="imageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentUserId">
+    <End Role="UserAccount" Type="Es.UDC.DotNet.Photogram.Store.UserAccounts" Multiplicity="1" />
+    <End Role="Comment" Type="Es.UDC.DotNet.Photogram.Store.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageUserId">
+    <End Role="UserAccount" Type="Es.UDC.DotNet.Photogram.Store.UserAccounts" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image" Type="Es.UDC.DotNet.Photogram.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Follow_UserAccount">
+    <End Role="UserAccount" Type="Es.UDC.DotNet.Photogram.Store.UserAccounts" Multiplicity="1" />
+    <End Role="Follow" Type="Es.UDC.DotNet.Photogram.Store.Follow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Follow">
+        <PropertyRef Name="UserAccounts_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Follow_UserAccount1">
+    <End Role="Follow" Type="Es.UDC.DotNet.Photogram.Store.Follow" Multiplicity="*" />
+    <End Role="UserAccount1" Type="Es.UDC.DotNet.Photogram.Store.UserAccounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount1">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Follow">
+        <PropertyRef Name="UserAccount1_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Likes_Image">
+    <End Role="Image" Type="Es.UDC.DotNet.Photogram.Store.Images" Multiplicity="1" />
+    <End Role="Likes" Type="Es.UDC.DotNet.Photogram.Store.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="imageId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="Images1_imageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Likes_UserAccount">
+    <End Role="Likes" Type="Es.UDC.DotNet.Photogram.Store.Likes" Multiplicity="*" />
+    <End Role="UserAccount" Type="Es.UDC.DotNet.Photogram.Store.UserAccounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="UserAccounts_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.UDC.DotNet.Photogram" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -247,6 +245,7 @@
           <NavigationProperty Name="Comments" Relationship="Self.FK_CommentImageId" FromRole="Image" ToRole="Comment" />
           <NavigationProperty Name="UserAccount" Relationship="Self.FK_ImageUserId" FromRole="Image" ToRole="UserAccount" />
           <NavigationProperty Name="UserAccounts" Relationship="Self.Likes" FromRole="Image" ToRole="UserAccount" />
+          <Property Name="imageView" Type="String" Nullable="false" FixedLength="false" Unicode="false" MaxLength="60" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -362,73 +361,73 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPhotogramStoreContainer" CdmEntityContainer="photogramEntities">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.Comment">
-              <MappingFragment StoreEntitySet="Comment">
-                <ScalarProperty Name="commentId" ColumnName="commentId" />
-                <ScalarProperty Name="imageId" ColumnName="imageId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="comment1" ColumnName="comment" />
-                <ScalarProperty Name="date" ColumnName="date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.Image">
-              <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="imageId" ColumnName="imageId" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="exifInfo" ColumnName="exifInfo" />
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAccounts">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.Photogram.UserAccount">
-              <MappingFragment StoreEntitySet="UserAccount">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="loginName" ColumnName="loginName" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="language" ColumnName="language" />
-                <ScalarProperty Name="country" ColumnName="country" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Follow" TypeName="Es.UDC.DotNet.Photogram.Follow" StoreEntitySet="Follow">
-            <EndProperty Name="UserAccount">
-              <ScalarProperty Name="userId" ColumnName="followerId" />
-            </EndProperty>
-            <EndProperty Name="UserAccount1">
-              <ScalarProperty Name="userId" ColumnName="userId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Likes" TypeName="Es.UDC.DotNet.Photogram.Likes" StoreEntitySet="Likes">
-            <EndProperty Name="Image">
-              <ScalarProperty Name="imageId" ColumnName="imageId" />
-            </EndProperty>
-            <EndProperty Name="UserAccount">
-              <ScalarProperty Name="userId" ColumnName="userId" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPhotogramStoreContainer" CdmEntityContainer="photogramEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(Es.UDC.DotNet.Photogram.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(Es.UDC.DotNet.Photogram.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="commentId" ColumnName="commentId" />
+          <ScalarProperty Name="imageId" ColumnName="imageId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="comment1" ColumnName="comment1" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="IsTypeOf(Es.UDC.DotNet.Photogram.Image)">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="imageId" ColumnName="imageId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="exifInfo" ColumnName="exifInfo" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="imageView" ColumnName="imageView" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(Es.UDC.DotNet.Photogram.UserAccount)">
+        <MappingFragment StoreEntitySet="UserAccounts">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Follow" TypeName="Es.UDC.DotNet.Photogram.Follow" StoreEntitySet="Follow">
+      <EndProperty Name="UserAccount">
+        <ScalarProperty Name="userId" ColumnName="UserAccounts_userId" />
+      </EndProperty>
+      <EndProperty Name="UserAccount1">
+        <ScalarProperty Name="userId" ColumnName="UserAccount1_userId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Likes" TypeName="Es.UDC.DotNet.Photogram.Likes" StoreEntitySet="Likes">
+      <EndProperty Name="Image">
+        <ScalarProperty Name="imageId" ColumnName="Images1_imageId" />
+      </EndProperty>
+      <EndProperty Name="UserAccount">
+        <ScalarProperty Name="userId" ColumnName="UserAccounts_userId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -442,7 +441,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

@@ -33,6 +33,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// <exception cref="InstanceNotFoundException"/>
         List<ImageInfo> FindByText(String texto, int startIndex, int count);
 
+        List<Image> FindByUserId(long userId);
+
         /// <summary>
         /// Finds a ImagenProfile by title,description and category
         /// </summary>

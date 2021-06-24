@@ -141,6 +141,32 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             return imageProfile;
         }
 
+        public List<Image> FindByUserId(long userId)
+        {
+            List<Image> imageProfile = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            var result =
+                (from u in imageProfiles
+                 where u.userId == userId
+                 orderby u.date
+                 select u);
+
+            imageProfile = result.ToList();
+
+            #endregion Option 1: Using Linq.
+
+
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(userId,
+                    typeof(Image).FullName);
+
+            return imageProfile;
+        }
+
         /// <summary>
         /// Finds a Image by his title and description of a category
         /// </summary>
