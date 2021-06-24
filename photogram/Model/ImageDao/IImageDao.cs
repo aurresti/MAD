@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Castle.Core;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.Photogram.Model.ImageService;
 
 namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 {
@@ -30,7 +31,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// <param name="title">title</param>
         /// <returns>The ImagenProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Pair<Image, Category>> FindByText(String texto);
+        List<ImageInfo> FindByText(String texto, int startIndex, int count);
 
         /// <summary>
         /// Finds a ImagenProfile by title,description and category
@@ -39,7 +40,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// <param name="category">category</param>
         /// <returns>The ImagenProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Pair<Image, Category>> FindByCategory(string title, string category);
+        List<ImageInfo> FindByCategory(string title, string category, int startIndex, int count);
 
         void AddCommentDao(UserAccount user, long imageId, string description);
 

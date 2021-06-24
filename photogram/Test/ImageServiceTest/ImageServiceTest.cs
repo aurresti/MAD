@@ -161,23 +161,74 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
 
 
                 ImageProfile info = imageService.FindImageProfileDetails(i.imageId);
-                Assert.IsTrue(info.Likes > 0);
+                Assert.IsTrue(info.Likes == 1);
 
         }
         [TestMethod()]
         public void MultiplelikeUserImage()
         {
+            using (var scope = new TransactionScope())
+            {
+                int count = 10;
+                int startIndex = 0;
+
+                List<ImageInfo> list = new List<ImageInfo>();
+
+                var user = GetValidUser("pepito.p");
+
+                var user2 = GetValidUser("pepito.pp");
+
+                var user3 = GetValidUser("pepito.ppp");
+
                 long cat = GetValidCategory("Nature");
-                Image i = GetValidImage("ImageName", cat);
-                UserAccount user = GetValidUser("pepito.p");
 
-                imageService.AddLike(user.userId, i.imageId);
-                imageService.AddLike(user.userId, i.imageId);
-                imageService.AddLike(user.userId, i.imageId);
+                long cat2 = GetValidCategory("something");
 
-                ImageProfile info = imageService.FindImageProfileDetails(i.imageId);
-                Assert.IsTrue(info.Likes == 1);
-                Assert.IsTrue(info.Likes == 1);
+                var image1 =
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 3);
+
+                var imageId = imageService.CreateImage("titulo", image1);
+
+                var image2 =
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 2);
+
+                var imageId2 = imageService.CreateImage("titulo2", image2);
+
+                var image3 =
+                    new ImageProfile("titulo3", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat2, user.userId, 1);
+
+                var imageId3 = imageService.CreateImage("titulo3", image3);
+
+                imageService.AddLike(user.userId, imageId);
+                imageService.AddLike(user2.userId, imageId);
+                imageService.AddLike(user3.userId, imageId);
+                imageService.AddLike(user.userId, imageId2);
+                imageService.AddLike(user2.userId, imageId2);
+                imageService.AddLike(user3.userId, imageId3);
+
+                var obtained =
+                    imageService.FindImages("titu", "Nature", true, startIndex, count);
+
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 3, user.userId, user.firstName));
+                list.Add(new ImageInfo(imageId, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 2, user.userId, user.firstName));
+                
+                ImageBlock block = new ImageBlock(list, true);
+                // Check data, same size? same elements?
+                Console.WriteLine("Obtained");
+                for (int i = 0; i < obtained.Images.Count; i++)
+                    Console.WriteLine(obtained.Images[i].ToString());
+                Console.WriteLine(obtained.existMoreImages);
+
+                Console.WriteLine("expected");
+                for (int i = 0; i < block.Images.Count; i++)
+                    Console.WriteLine(block.Images[i].ToString());
+                Console.WriteLine(obtained.existMoreImages);
+
+
+                Assert.AreEqual(block, obtained);
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
 
         }
     }

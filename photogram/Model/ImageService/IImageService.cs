@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         /// <param name="title"> String of search. </param>
         /// <param name="category"> Search for categoty or not. </param>
         /// <returns> List of Image</returns>
-        List<Pair<Image, Category>> FindImages(String texto, String category, Boolean categoryB);
+        ImageBlock FindImages(String texto, String category, Boolean categoryB, int startIndex, int count);
 
         /// <summary>
         /// See profile of a valid user.

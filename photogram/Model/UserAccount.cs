@@ -43,5 +43,10 @@ namespace Es.Udc.DotNet.Photogram.Model
         public virtual ICollection<UserAccount> UserAccounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images1 { get; set; }
+
+        public static implicit operator UserAccount(HashSet<UserAccount> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

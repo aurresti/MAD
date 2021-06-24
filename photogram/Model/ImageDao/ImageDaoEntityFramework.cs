@@ -1,6 +1,7 @@
 ﻿using Castle.Core;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.Photogram.Model.ImageService;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -92,60 +93,10 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// <param name="texto"></param>
         /// <returns>imagen con la informacion de su categoria</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public List<Pair<Image, Category>> FindByText(String texto)
+        public List<ImageInfo> FindByText(String texto, int startIndex, int count)
         {
-            List<Pair<Image, Category>> imageProfile = new List<Pair<Image, Category>>();
-
-            List<Image> imageList= null;
-
-            List<Category> categoryList = null;
-
-            #region Option 1: Using Linq.
-
-            DbSet<Image> imageLists = Context.Set<Image>();
-
-            var result =
-                (from u in imageLists
-                 where u.title.Contains(texto) || u.description.Contains(texto)
-                 select u);
-
-            imageList = result.ToList();
-
-            DbSet<Category> CategoryLists = Context.Set<Category>();
-
-            var result2 =
-                (from u in imageLists
-                 from c in CategoryLists
-                 where u.title.Contains(texto) || u.description.Contains(texto)
-                 where u.categoryId == c.categoryId
-                 select c);
-
-            categoryList = result2.ToList();
-
-            #endregion Option 1: Using Linq.
-
-            ///Como accedemos a la categoria? excepcion carga perezosa, paginacion
-
-            if (imageProfile == null)
-                throw new InstanceNotFoundException(texto,
-                    typeof(Image).FullName);
-
-            for (int i = 0; i < imageList.Count; i++)
-                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
-
-            return imageProfile;
-        }
-
-        /// <summary>
-        /// Finds a Image by his title and description of a category
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="category"></param>
-        /// <returns></returns>
-        /// <exception cref="InstanceNotFoundException"></exception>
-        public List<Pair<Image, Category>> FindByCategory(string texto, string category)
-        {
-            List<Pair<Image, Category>> imageProfile = new List<Pair<Image, Category>>();
+            
+            List<ImageInfo> imageProfile = new List<ImageInfo>();
 
             List<Image> imageList = null;
 
@@ -159,21 +110,21 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
             var result =
                 (from u in imageLists
-                 from c in CategoryLists
-                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
-                 where u.categoryId == c.categoryId
+                 where (u.title.Contains(texto) || u.description.Contains(texto))
+                 orderby u.imageId
                  select u);
 
-            imageList = result.ToList();
+            imageList = result.Skip(startIndex).Take(count).ToList();
 
             var result2 =
                 (from u in imageLists
                  from c in CategoryLists
-                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
+                 where (u.title.Contains(texto) || u.description.Contains(texto))
                  where u.categoryId == c.categoryId
+                 orderby u.imageId
                  select c);
 
-            categoryList = result2.ToList();
+            categoryList = result2.Skip(startIndex).Take(count).ToList();
 
             #endregion Option 1: Using Linq.
 
@@ -184,7 +135,61 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
                     typeof(Image).FullName);
 
             for (int i = 0; i < imageList.Count; i++)
-                imageProfile.Add(new Pair<Image, Category>(imageList[i], categoryList[i]));
+                imageProfile.Add(new ImageInfo(imageList[i].imageId, imageList[i].title, imageList[i].description, imageList[i].date,
+                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count, imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName));
+
+            return imageProfile;
+        }
+
+        /// <summary>
+        /// Finds a Image by his title and description of a category
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public List<ImageInfo> FindByCategory(string texto, string category, int startIndex, int count)
+        {
+            List<ImageInfo> imageProfile = new List<ImageInfo>();
+
+            List<Image> imageList = null;
+
+            List<Category> categoryList = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Image> imageLists = Context.Set<Image>();
+
+            DbSet<Category> CategoryLists = Context.Set<Category>();
+
+            imageList =
+                (from u in imageLists
+                 from c in CategoryLists
+                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
+                 where u.categoryId == c.categoryId
+                 orderby u.imageId
+                 select u).Skip(startIndex).Take(count).ToList();
+
+            categoryList =
+                (from u in imageLists
+                 from c in CategoryLists
+                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
+                 where u.categoryId == c.categoryId
+                 orderby u.imageId
+                 select c).Skip(startIndex).Take(count).ToList();
+
+
+            #endregion Option 1: Using Linq.
+
+            ///Como accedemos a la categoria? excepcion carga perezosa, paginacion
+
+            if (imageProfile == null)
+                throw new InstanceNotFoundException(texto,
+                    typeof(Image).FullName);
+
+            for (int i = 0; i < imageList.Count; i++)
+                imageProfile.Add(new ImageInfo(imageList[i].imageId, imageList[i].title, imageList[i].description , imageList[i].date,
+                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count, imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName));
 
             return imageProfile;
         }

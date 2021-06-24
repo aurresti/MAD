@@ -127,7 +127,10 @@ namespace Es.Udc.DotNet.Photogram.Test
         {
             using (var scope = new TransactionScope())
             {
-                List<Pair<Image, Category>> list = new List<Pair<Image, Category>>();
+                int count = 10;
+                int startIndex = 0;
+
+                List<ImageInfo> list = new List<ImageInfo>();
 
                 var userId =
                     userService.CreateUser(loginName, clearPassword,
@@ -151,13 +154,15 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var imageId3 = imageService.CreateImage("lllll", image3);
 
                 var obtained =
-                    imageService.FindImages("titu", "sofa", false);
+                    imageService.FindImages("titu", "sofa", false, startIndex, count);
+                
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
 
-                list.Add(new Pair<Image, Category>(imageProfileDao.Find(imageId), categoryProfileDao.FindById(categoryId)));
-                list.Add(new Pair<Image, Category>(imageProfileDao.Find(imageId2), categoryProfileDao.FindById(categoryId)));
-
+                ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
-                Assert.IsTrue(list.Count == obtained.Count && !list.Except(obtained).Any());
+
+                Assert.IsTrue(block.Images.Count == obtained.Images.Count && !block.Images.Except(obtained.Images).Any());
             }
         }
 
@@ -169,8 +174,10 @@ namespace Es.Udc.DotNet.Photogram.Test
         {
             using (var scope = new TransactionScope())
             {
+                int count = 10;
+                int startIndex = 0;
 
-                List<Pair<Image, Category>> list = new List<Pair<Image, Category>>();
+                List<ImageInfo> list = new List<ImageInfo>();
 
                 var userId =
                     userService.CreateUser(loginName, clearPassword,
@@ -180,7 +187,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
                 var image1 =
                     new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
-                
+
                 var image2 =
                     new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
 
@@ -194,13 +201,15 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var imageId3 = imageService.CreateImage("lllll", image3);
 
                 var obtained =
-                    imageService.FindImages("descripti", "sofa", false);
+                    imageService.FindImages("descripti", "sofa", false, startIndex, count);
 
-                list.Add(new Pair<Image,Category> (imageProfileDao.Find(imageId), categoryProfileDao.FindById(categoryId)));
-                list.Add(new Pair<Image, Category>(imageProfileDao.Find(imageId2), categoryProfileDao.FindById(categoryId)));
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
 
+                ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
-                Assert.IsTrue(list.Count == obtained.Count && !list.Except(obtained).Any());
+
+                Assert.IsTrue(block.Images.Count == obtained.Images.Count && !block.Images.Except(obtained.Images).Any());
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -214,7 +223,10 @@ namespace Es.Udc.DotNet.Photogram.Test
         {
             using (var scope = new TransactionScope())
             {
-                List<Pair<Image, Category>> list = new List<Pair<Image, Category>>();
+                int count = 10;
+                int startIndex = 0;
+
+                List<ImageInfo> list = new List<ImageInfo>();
 
                 var userId =
                     userService.CreateUser(loginName, clearPassword,
@@ -240,12 +252,22 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var imageId3 = imageService.CreateImage("lllll", image3);
 
                 var obtained =
-                    imageService.FindImages("titu", "cena", true);
+                    imageService.FindImages("titu", "cena", true, startIndex, count);
 
-                list.Add(new Pair<Image, Category>(imageProfileDao.Find(imageId2), categoryProfileDao.FindById(categoryId2)));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, "cena", 0, userId, firstName));
 
+                ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
-                Assert.IsTrue(list.Count == obtained.Count && !list.Except(obtained).Any());
+                Console.WriteLine("Obtained");
+                for (int i = 0; i < obtained.Images.Count; i++)
+                    Console.WriteLine(obtained.Images[i].ToString());
+                Console.WriteLine(obtained.existMoreImages);
+
+                Console.WriteLine("expected");
+                for (int i = 0; i < block.Images.Count; i++)
+                    Console.WriteLine(block.Images[i].ToString());
+                Console.WriteLine(obtained.existMoreImages);
+                Assert.IsTrue(block.Images.Count == obtained.Images.Count && !block.Images.Except(obtained.Images).Any());
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }

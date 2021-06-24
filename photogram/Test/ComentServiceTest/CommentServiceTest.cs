@@ -191,7 +191,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var imageId = imageService.CreateImage("titulo", expected);
 
                 var obtained =
-                    imageService.FindImages("titulo", "sofa", false);
+                    imageService.FindImages("titulo", "sofa", false,0,10);
 
                 var commentId = commentService.AddComment(userId, imageId, "text");
                 commentService.UpdateComment(userId, imageId, commentId, "texto");

@@ -60,32 +60,40 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                 ImageDao.Create(imagenProfile);
 
                 return imagenProfile.imageId;
+
+
             }
         }
 
 
-        public Image UploadImage(Image image)
+        public Image UploadImage(Image image) ///MAL
         {
             ImageDao.Create(image);
 
             return image;
         }
 
-        public List<Pair<Image, Category>> FindImages(String texto, String category, Boolean categoryB)
+        public ImageBlock FindImages(String texto, String category, Boolean categoryB, int startIndex, int count)
         {
             try
             {
-                
-                List<Pair<Image, Category>> list = null;
+
+                List<ImageInfo> list = null;
                 if (categoryB)
                 {
-                    list = ImageDao.FindByCategory(texto, category);
+                    list = ImageDao.FindByCategory(texto, category, startIndex, count+1);
                 }
                 else
                 {
-                    list = ImageDao.FindByText(texto);
+                    list = ImageDao.FindByText(texto, startIndex, count+1);
                 }
-                return list;
+                ///check if there are more obj to show
+                bool existMoreAccounts = (list.Count == count + 1);
+
+                if (existMoreAccounts)
+                    list.RemoveAt(count);
+
+                return new ImageBlock(list, existMoreAccounts);
             }
             catch (InstanceNotFoundException e)
             {

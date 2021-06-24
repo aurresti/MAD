@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         public long Category { get; private set; }
 
         public long? User { get; private set; }
-        public long Likes { get; private set; }
+        public long Likes { get;  set; }
 
         #endregion
 
