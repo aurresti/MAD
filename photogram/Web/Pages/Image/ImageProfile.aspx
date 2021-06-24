@@ -12,16 +12,23 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
      <form id="form1" runat="server">
          <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+             <div>
+                 <center>
+                     <asp:Image ID="Image1" runat="server" Width="85px" />
+                 </center>
+             </div>
             <center>
                 <asp:Label ID="lTitle" runat="server" meta:resourcekey="lTitle"></asp:Label>
                 <asp:Label ID="lTitleContent" runat="server" Text="0"></asp:Label>
                 <asp:Label ID="lCategory" runat="server" meta:resourcekey="lCategory"></asp:Label>
                 <asp:Label ID="lCategoryContent" runat="server" Text="0"></asp:Label>
+                <asp:Label ID="lUser" runat="server" meta:resourcekey="lUser"></asp:Label>
+                <asp:HyperLink ID="hlUser" runat="server" NavigateUrl="~/Pages/HomePage.aspx" Text ="User"></asp:HyperLink>
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
                 <asp:Label ID="lISO" runat="server" meta:resourcekey="lISO"></asp:Label>
                 <asp:Label ID="lISOContent" runat="server" Text="0"></asp:Label>
@@ -45,6 +52,7 @@
                 <asp:Button ID="bLike" runat="server" meta:resourcekey="bLike" OnClick="bLike_Click" />
                 <asp:Label ID="lLike" runat="server" Text="0"></asp:Label>
                 <asp:Button ID="bComment" runat="server" meta:resourcekey="bComment" OnClick="bComment_Click" />
+                <asp:Button ID="bSeeComment" runat="server" meta:resourcekey="bSeeComment" OnClick="bSeeComment_Click" />
             </center>
         </div>
      </form>

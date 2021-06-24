@@ -145,12 +145,12 @@
     <value>Home</value>
   </data>
   <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Profile of</value>
+    <value>User Profile</value>
   </data>
   <data name="lProfile.Text" xml:space="preserve">
-    <value>Profile</value>
+    <value>Profile of </value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Photogram Main Page</value>
+    <value>Photogram Profile</value>
   </data>
 </root>

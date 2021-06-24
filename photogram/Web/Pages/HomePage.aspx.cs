@@ -8,6 +8,7 @@ using System.Globalization;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
 using System.Web.Security;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -84,7 +85,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             if (Page.IsValid)
             {
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/UploadImage.aspx"));
+                        ApplyAppPathModifier("~/Pages/Image/UploadImage.aspx"));
             }
         }
 
@@ -94,8 +95,16 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             {
                 try
                 {
-                    /*SessionManager.Login(Context, txtLogin.Text,
-                        txtPassword.Text, cbCategory.Checked);*/
+                   var result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
+                        comboCategory.SelectedValue, cbCategory.Checked);
+
+                    if (result.Count == 1)
+                    {
+                        
+                    }
+                    else {
+                        lblNotFound.Visible = true;
+                    }
 
                 }
                 catch (InstanceNotFoundException)

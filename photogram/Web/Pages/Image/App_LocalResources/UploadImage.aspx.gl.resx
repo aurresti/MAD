@@ -132,6 +132,9 @@
   <data name="lExposition.Text" xml:space="preserve">
     <value>Exposicion</value>
   </data>
+  <data name="lImageView.Text" xml:space="preserve">
+    <value>URL Imaxen</value>
+  </data>
   <data name="lISO.Text" xml:space="preserve">
     <value>ISO</value>
   </data>

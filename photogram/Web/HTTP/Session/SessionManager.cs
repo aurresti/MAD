@@ -1,5 +1,8 @@
 ﻿using Es.Udc.DotNet.Photogram.Model.UserService;
 using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
+using Es.Udc.DotNet.Photogram.Model.ImageService;
+using Es.Udc.DotNet.Photogram.Model.CategoryService;
+using Es.Udc.DotNet.Photogram.Model.CommentService;
 using Es.Udc.DotNet.Photogram.Web.HTTP.Util;
 using Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -7,6 +10,8 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using System;
 using System.Web;
 using System.Web.Security;
+using System.Collections.Generic;
+using Es.Udc.DotNet.Photogram.Model;
 
 namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
 {
@@ -84,10 +89,28 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
                "userSession";
 
         private static IUserService userService;
+        private static IImageService imageService;
+        private static ICategoryService categoryService;
+        private static ICommentService commentService;
 
         public IUserService UserService
         {
             set { userService = value; }
+        }
+
+        public IImageService ImageService
+        {
+            set { imageService = value; }
+        }
+
+        public ICategoryService CategoryService
+        {
+            set { categoryService = value; }
+        }
+
+        public ICommentService CommentService
+        {
+            set { commentService = value; }
         }
 
         static SessionManager()
@@ -96,6 +119,9 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
             userService = iocManager.Resolve<IUserService>();
+            imageService = iocManager.Resolve<IImageService>();
+            categoryService = iocManager.Resolve<ICategoryService>();
+            commentService = iocManager.Resolve<ICommentService>();
         }
 
         /// <summary>
@@ -268,6 +294,15 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return userProfileDetails;
         }
 
+        public static UserProfile FindUserProfileDetailsUser(long id)
+        {
+
+            UserProfile userProfileDetails =
+                userService.FindUserProfileDetails(id);
+
+            return userProfileDetails;
+        }
+
         /// <summary>
         /// Gets the user info stored in the session.
         /// </summary>
@@ -390,6 +425,117 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             { // Incorrect loginName or encryptedPassword
                 return;
             }
+        }
+
+        public static void RegisterImage(HttpContext context,
+            String title, String description, String exif, String category, String imageView)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            ImageProfile imageProfileDetails = new ImageProfile(title, description, DateTime.Now, exif, FindCategoryId(category), userSession.UserProfileId, 0, imageView);
+            /* Create a Image */
+            long imageId = imageService.CreateImage(title, imageProfileDetails);
+
+
+        }
+
+        public static long FindCategoryId(String categoryName)
+        {
+            var category = categoryService.FindCategory(categoryName);
+
+            return category.categoryId;
+        }
+
+        public static String FindCategoryName(long id)
+        {
+            String categoryName = categoryService.FindCategoryName(id);
+
+            return categoryName;
+        }
+
+        public static List<Image> FindImageProfileDetails(String title, String category, bool categoryB)
+        {
+
+            List<Image> imageProfileDetails =
+                imageService.FindImages(title, category, categoryB);
+
+            return imageProfileDetails;
+        }
+
+        public static ImageProfile FindImageProfileDetailsById(long imageId)
+        {
+
+            ImageProfile imageProfileDetails =
+                imageService.FindImageProfileDetails(imageId);
+
+            return imageProfileDetails;
+        }
+
+        public static bool FollowUser(HttpContext context, long followId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool follow = userService.FollowUser(userSession.UserProfileId, followId);
+
+                return follow;
+        }
+
+        public static bool UnFollowUser(HttpContext context, long followId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool follow = userService.UnFollowUser(userSession.UserProfileId, followId);
+
+            return follow;
+        }
+
+        public static List<UserAccount> SeeFollowers( long followId)
+        {
+
+            List<UserAccount> follow = userService.SeeFollowers(followId);
+
+            return follow;
+        }
+
+        public static List<UserAccount> SeeFolloweds( long followId)
+        {
+
+            List<UserAccount> follow = userService.SeeFollow(followId);
+
+            return follow;
+        }
+
+        public static List<UserAccount> SeeFollowersUser(HttpContext context)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            List<UserAccount> follow = userService.SeeFollowers(userSession.UserProfileId);
+
+            return follow;
+        }
+
+        public static List<UserAccount> SeeFollowedsUser(HttpContext context)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            List<UserAccount> follow = userService.SeeFollow(userSession.UserProfileId);
+
+            return follow;
+        }
+
+        public static bool ExistFollow(HttpContext context, String followId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool follow = userService.UserFollowExists(userSession.FirstName, followId);
+
+            return follow;
         }
     }
 }

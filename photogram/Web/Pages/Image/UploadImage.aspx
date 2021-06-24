@@ -12,21 +12,27 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
      <form id="form1" runat="server">
          <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+             
             <center>
-                <asp:Label ID="lTitle" runat="server" meta:resourcekey="lTitle"></asp:Label>
-                <asp:TextBox ID="tbTitle" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvTitle" runat="server"
+                <asp:Image ID="Image1" runat="server" Height="137px" Width="251px" />
+            </center>
+            <div>
+                <center>
+                    <asp:Label ID="lTitle" runat="server" meta:resourcekey="lTitle"></asp:Label>
+                    <asp:TextBox ID="tbTitle" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTitle" runat="server"
                     ControlToValidate="tbTitle" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
-                <asp:Label ID="lCategory" runat="server" meta:resourcekey="lCategory"></asp:Label>
-                <asp:DropDownList ID="comboCategoryU" runat="server" AutoPostBack="True"
+                    <asp:Label ID="lCategory" runat="server" meta:resourcekey="lCategory"></asp:Label>
+                    <asp:DropDownList ID="comboCategoryU" runat="server" AutoPostBack="True"
                             Width="100px" meta:resourcekey="comboCategoryResource1"
                             OnSelectedIndexChanged="comboCategorySelectedIndexChanged">
-                </asp:DropDownList>
-            </center>
+                    </asp:DropDownList>
+                </center>
+            </div>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
                 <asp:Label ID="lISO" runat="server" meta:resourcekey="lISO"></asp:Label>
                 <asp:TextBox ID="tbSensibility" runat="server"></asp:TextBox>
@@ -43,6 +49,8 @@
             <center>
                 <asp:Label ID="lDescription" runat="server" meta:resourcekey="lDescription"></asp:Label>
                 <asp:TextBox ID="tbDescription" runat="server"></asp:TextBox>
+                <asp:Label ID="lImageView" runat="server" meta:resourcekey="lImageView"></asp:Label>
+                <asp:TextBox ID="tbImageView" runat="server"></asp:TextBox>
             </center>
         </div>
         <div>            

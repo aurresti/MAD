@@ -42,6 +42,15 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.HyperLink lnkHome;
 
         /// <summary>
+        /// Control Image1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+
+        /// <summary>
         /// Control lTitle.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,24 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lCategoryContent;
+
+        /// <summary>
+        /// Control lUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lUser;
+
+        /// <summary>
+        /// Control hlUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlUser;
 
         /// <summary>
         /// Control lnkMyProfile.
@@ -211,5 +238,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bComment;
+
+        /// <summary>
+        /// Control bSeeComment.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bSeeComment;
     }
 }

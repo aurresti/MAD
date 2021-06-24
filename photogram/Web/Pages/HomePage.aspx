@@ -13,7 +13,7 @@
     
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
             <center>
                 <asp:Label ID="lSearch" runat="server" meta:resourcekey="lSearch"></asp:Label>
                 <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
@@ -21,7 +21,7 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/ProfileUser.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
                 <asp:CheckBox ID="cbCategory" runat="server"  meta:resourcekey="cbCategory" OnCheckedChanged="cbCategory_CheckedChanged"/>
                 <asp:DropDownList ID="comboCategory" runat="server" AutoPostBack="True"

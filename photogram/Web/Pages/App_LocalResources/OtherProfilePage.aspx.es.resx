@@ -145,12 +145,12 @@
     <value>Inicio</value>
   </data>
   <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Perfil de </value>
+    <value>Perfil Usuario</value>
   </data>
   <data name="lProfile.Text" xml:space="preserve">
-    <value>Perfil</value>
+    <value>Perfil de </value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Página Principal</value>
+    <value>Photogram - Perfil</value>
   </data>
 </root>

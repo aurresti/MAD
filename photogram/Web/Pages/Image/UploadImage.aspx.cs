@@ -1,4 +1,4 @@
-﻿using Es.Udc.DotNet.Photogram.Model.UserService;
+﻿using Es.Udc.DotNet.Photogram.Model.CategoryService;
 using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -21,7 +21,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                     GetLanguageFromBrowserPreferences();
 
                 /* Combo box initialization */
-                UpdateComboCategory(defaultLanguage, "no");
+                UpdateComboCategory(defaultLanguage, "an");
+
             }
         }
 
@@ -79,7 +80,24 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                try
+                {
+                    String exif = tbSensibility.Text + "/" + tbDiaphragm.Text + "/" + tbExposition.Text + "/" + tbDistance.Text;
 
+                    SessionManager.RegisterImage(Context, tbTitle.Text, tbDescription.Text,
+                        exif, comboCategoryU.Text, tbImageView.Text);
+                    Image1.ImageUrl = tbImageView.Text;
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/HomePage.aspx"));
+                }
+                catch (DuplicateInstanceException)
+                {
+                    //lblLoginError.Visible = true;
+                }
+            }
         }
+
     }
 }

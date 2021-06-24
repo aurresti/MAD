@@ -42,6 +42,15 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.HyperLink lnkHome;
 
         /// <summary>
+        /// Control Image1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+
+        /// <summary>
         /// Control lTitle.
         /// </summary>
         /// <remarks>
@@ -193,6 +202,24 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDescription;
+
+        /// <summary>
+        /// Control lImageView.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lImageView;
+
+        /// <summary>
+        /// Control tbImageView.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbImageView;
 
         /// <summary>
         /// Control btnUpload.

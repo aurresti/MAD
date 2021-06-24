@@ -11,7 +11,7 @@
     runat="server">
     <form id="MainForm" method="POST" runat="server">
     <div>
-        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/User/HomePage.aspx" meta:resourcekey="lnkHome" />
+        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
         
             <center>
             <asp:Label ID="lProfile" runat="server" meta:resourcekey="lProfile"></asp:Label>
@@ -21,8 +21,12 @@
             </center>
     </div>
     <div>
-        <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/User/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+        <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
         <center>
+            <asp:GridView ID="gvFollowed" autogeneratecolumns="true" runat="server">
+            </asp:GridView>      
+            <asp:GridView ID="gvFollower" autogeneratecolumns="true" runat="server">
+            </asp:GridView> 
             <asp:Button ID="bUpgrade" runat="server" meta:resourcekey="bUpgrade" OnClick="bUpgrade_Click"  />
             <asp:Button ID="bChangePassword" runat="server" meta:resourcekey="bChangePassword" OnClick="bChangePassword_Click"  />
         </center>
