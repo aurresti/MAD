@@ -23,6 +23,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         public long? User { get; private set; }
         public long Likes { get;  set; }
 
+        public String File { get; private set; }
         #endregion
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         /// <param name="conect">The conection.</param>
         /// <param name="mantener">The save.</param>
         public ImageProfile(String title, String description,
-            DateTime date, String exif, long category, long? user, long likes)
+            DateTime date, String exif, long category, long? user, long likes, String file)
         {
             this.Title = title;
             this.Descripction = description;
@@ -46,6 +47,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             this.Category = category;
             this.User = user;
             this.Likes = likes;
+            this.File = file;
         }
 
         public override bool Equals(object obj)
@@ -58,7 +60,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                   && (this.Date == target.Date)
                   && (this.Exif == target.Exif)
                   && (this.Category == target.Category)
-                  && (this.User == target.User);
+                  && (this.User == target.User)
+                  && (this.File == target.File);
         }
 
         // The GetHashCode method is used in hashing algorithms and data 
@@ -87,7 +90,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                 "date = " + Date + " | " +
                 "exif = " + Exif + " | " +
                 "category = " + Category + " ]" +
-                "user = " + User + " | ";
+                "user = " + User + " | " +
+                "file = " + File + " | ";
 
 
             return strImagenProfileDetails;

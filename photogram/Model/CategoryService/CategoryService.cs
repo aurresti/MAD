@@ -66,5 +66,11 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
 
         }
         #endregion ICategoryService Members
+
+        public String FindCategoryName(long categoryId)
+        {
+            Category categoryProfile = CategoryDao.FindById(categoryId);
+            return categoryProfile.name;
+        }
     }
 }

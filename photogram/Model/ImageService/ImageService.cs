@@ -65,6 +65,20 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             }
         }
 
+        public List<Image> FindImageByUserId(long userId)
+        {
+
+            try
+            {
+                List<Image> imageProfile = ImageDao.FindByUserId(userId);
+                return imageProfile;
+            }
+            catch (InstanceNotFoundException e)
+            {
+                return null;
+            }
+
+        }
 
         public Image UploadImage(Image image) ///MAL
         {
@@ -183,7 +197,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             ImageProfile imageProfileDetails =
                 new ImageProfile(imageProfile.title,
                     imageProfile.description, imageProfile.date,
-                    imageProfile.exifInfo, imageProfile.categoryId, imageProfile.userId, imageProfile.UserAccounts.Count);
+                    imageProfile.exifInfo, imageProfile.categoryId, imageProfile.userId, imageProfile.UserAccounts.Count, imageProfile.imageView);
 
             return imageProfileDetails;
         }

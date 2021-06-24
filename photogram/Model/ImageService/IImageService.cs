@@ -32,6 +32,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         /// <returns> Boolean to indicate if the imagen is upload </returns>
         long CreateImage(string loginName, ImageProfile imageProfileDetails);
 
+        List<Image> FindImageByUserId(long userId);
+
         Image UploadImage(Image image);
 
         /// Search a Imagen for word key.

@@ -185,17 +185,17 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
                 long cat2 = GetValidCategory("something");
 
                 var image1 =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 3);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 3, "");
 
                 var imageId = imageService.CreateImage("titulo", image1);
 
                 var image2 =
-                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 2);
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 2, "");
 
                 var imageId2 = imageService.CreateImage("titulo2", image2);
 
                 var image3 =
-                    new ImageProfile("titulo3", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat2, user.userId, 1);
+                    new ImageProfile("titulo3", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat2, user.userId, 1, "");
 
                 var imageId3 = imageService.CreateImage("titulo3", image3);
 

@@ -28,6 +28,7 @@ namespace Es.Udc.DotNet.Photogram.Model
         public string exifInfo { get; set; }
         public long categoryId { get; set; }
         public Nullable<long> userId { get; set; }
+        public string imageView { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

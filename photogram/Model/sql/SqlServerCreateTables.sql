@@ -118,6 +118,7 @@ CREATE TABLE Image(
 	description varchar(60) NOT NULL,
 	date datetime2 NOT NULL,
 	exifInfo varchar(60),
+	imageView varchar(60) NOT NULL,
 	categoryId bigint NOT NULL,
 	userId bigint,
 

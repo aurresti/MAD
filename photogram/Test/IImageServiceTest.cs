@@ -73,7 +73,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var imageId = imageService.CreateImage("titulo",
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId , 0));
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId , 0,""));
 
                 var imageProfile = imageProfileDao.Find(imageId);
 
@@ -105,7 +105,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var expected =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", expected);
 
@@ -114,6 +114,35 @@ namespace Es.Udc.DotNet.Photogram.Test
 
                 // Check data
                 Assert.AreEqual(expected, obtained);
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        /// A test for FindUserProfileDetails
+        /// </summary>
+        [TestMethod]
+        public void FindImageByUserIdTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var userId =
+                    userService.CreateUser(loginName, clearPassword,
+                        new UserProfile(firstName, lastName, email, language, country));
+
+                var categoryId = categoryService.CreateCategory("sofa");
+
+                var expected =
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
+
+                var imageId = imageService.CreateImage("titulo", expected);
+
+                var obtained =
+                    imageService.FindImageByUserId(userId);
+
+                // Check data
+                Assert.AreEqual(imageId, obtained[0].imageId);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -139,13 +168,13 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var image1 =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image2 =
-                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image3 =
-                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", image1);
 
@@ -186,13 +215,13 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var image1 =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image2 =
-                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image3 =
-                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", image1);
 
@@ -237,13 +266,13 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId2 = categoryService.CreateCategory("cena");
 
                 var image1 =
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image2 =
-                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, userId, 0);
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, userId, 0, "");
 
                 var image3 =
-                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0);
+                    new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var imageId = imageService.CreateImage("titulo", image1);
 
@@ -304,7 +333,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var categoryId = categoryService.CreateCategory("sofa");
 
                 var imageId = imageService.CreateImage("titulo",
-                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0));
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, ""));
 
                 bool imageExists = imageService.ImageExists(imageId);
 

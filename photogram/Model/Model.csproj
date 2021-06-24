@@ -180,6 +180,7 @@
       <DependentUpon>Photogram.edmx</DependentUpon>
       <LastGenOutput>Photogram.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Photogram.edmx.sql" />
     <Content Include="Photogram.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Photogram.edmx</DependentUpon>
