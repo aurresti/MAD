@@ -266,7 +266,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         }
 
         /// <summary>
-        /// A test for FindUserProfileDetails
+        /// A test for GetComments
         /// </summary>
         [TestMethod]
         public void SeeAllCommentsImageTest()

@@ -177,6 +177,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
                      where g.loginName == loginNameFollow
                      select g).Single();
 
+                Console.WriteLine(follow.loginName);
                 if (follow != null)
                     return true;
             }

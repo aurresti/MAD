@@ -514,6 +514,43 @@ namespace Es.Udc.DotNet.Photogram.Test
             }
         }
 
+        /// <summary>
+        ///A test for UserFollowExists
+        ///</summary>
+        [TestMethod()]
+        public void UserFollowExistsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                List<UserAccount> follow = new List<UserAccount>();
+
+                UserAccount user1 = GetValidUser("user1");
+
+                UserAccount user2 = GetValidUser("user2");
+
+                UserAccount user3 = GetValidUser("user3");
+
+                follow.Add(user2);
+                follow.Add(user3);
+                try
+                {
+
+                    userService.FollowUser(user2.userId, user1.userId);
+                    userService.FollowUser(user3.userId, user1.userId);
+
+                    bool followBD = userService.UserFollowExists("user2","user1");
+
+                    Assert.IsTrue(followBD);
+
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail(e.Message);
+                }
+
+            }
+        }
+
 
         #region Additional test attributes
 
