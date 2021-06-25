@@ -24,9 +24,18 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                     hlUser.Text = user.FirstName;
                     UserSession userSession =
                         (UserSession)Context.Session["userSession"];
-                    if ((long)imageShow.User == userSession.UserProfileId) {
-                        hlUser.NavigateUrl = "~/Pages/ProfilePage.aspx";
-                    } else {
+                    if (SessionManager.IsUserAuthenticated(Context))
+                    {
+                        if ((long)imageShow.User == userSession.UserProfileId)
+                        {
+                            hlUser.NavigateUrl = "~/Pages/ProfilePage.aspx";
+                        }
+                        else
+                        {
+                            hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
+                        }
+                    }
+                    else {
                         hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
                     }
                     String exif = imageShow.Exif;
@@ -54,7 +63,10 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 
         protected void bComment_Click(object sender, EventArgs e)
         {
-
+            string valor = Request.QueryString["imageId"];
+            long id = (long)Convert.ToDouble(valor);
+            Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/Comment/AddComment.aspx?imageId=" + id));
         }
 
         protected void bSeeComment_Click(object sender, EventArgs e)

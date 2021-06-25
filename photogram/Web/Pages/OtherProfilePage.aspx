@@ -22,14 +22,25 @@
     </div>
     <div>
         <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-            <Columns>
-                <asp:BoundField DataField="loginName" HeaderText="loginName" SortExpression="loginName" />
-                <asp:HyperLinkField />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:photogramConnectionString %>" SelectCommand="SELECT [loginName] FROM [UserAccounts] ORDER BY [loginName]"></asp:SqlDataSource>
         <center>
+            <asp:gridview id="gvFollowed" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                </Columns>
+            </asp:gridview>
+            <asp:gridview id="gvFollower" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                </Columns>
+            </asp:gridview>
             <asp:Button ID="bFollow" runat="server" meta:resourcekey="bFollow" OnClick="bFollow_Click"  />
             <asp:Label ID="lIsFollow" runat="server" meta:resourcekey="lIsFollow"></asp:Label>
         </center>
