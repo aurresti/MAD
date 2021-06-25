@@ -64,7 +64,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
-            TestManager.ClearNInjectKernel(kernel);
+            //TestManager.ClearNInjectKernel(kernel);
         }
 
         //Use TestInitialize to run code before running each test

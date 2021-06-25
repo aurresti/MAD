@@ -136,7 +136,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
             for (int i = 0; i < imageList.Count; i++)
                 imageProfile.Add(new ImageInfo(imageList[i].imageId, imageList[i].title, imageList[i].description, imageList[i].date,
-                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count, imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName));
+                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count, 
+                    imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName, imageList[i].imageView));
 
             return imageProfile;
         }
@@ -215,7 +216,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
             for (int i = 0; i < imageList.Count; i++)
                 imageProfile.Add(new ImageInfo(imageList[i].imageId, imageList[i].title, imageList[i].description , imageList[i].date,
-                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count, imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName));
+                    imageList[i].exifInfo, categoryList[i].categoryId, categoryList[i].name, imageList[i].UserAccounts.Count,
+                    imageList[i].UserAccount.userId, imageList[i].UserAccount.firstName, imageList[i].imageView));
 
             return imageProfile;
         }
@@ -287,19 +289,43 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         }
 
 
-        public void AddLikeDao(UserAccount user, long imageId)
+        public void AddLikeDao(long userId, long imageId)
         {
-            Image c = Find(imageId);
-            if (c != null && user != null)
+            UserAccount userAccount;
+            Image image;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            try
             {
-                /*Like comment = new Comment();
-                comment.userId = user.userId;
-                comment.imageId = imageId;*/
-                //Comment.Add(comment);
-                String query = "INSERT INTO Like(imageId, userId)" +
-                     "VALUES(" + imageId + ", " + user.userId + ")";
+                userAccount =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
             }
-            Update(c);
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                image =
+                     (from u in imageProfiles
+                      where u.imageId == imageId
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(imageId, typeof(UserAccount).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
+
+            image.UserAccounts.Add(userAccount);
+
+            Context.SaveChanges();
         }
         #endregion IImagenDao Members
     }

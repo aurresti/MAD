@@ -86,7 +86,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         [TestCleanup()]
         public void MyTestCleanup()
         {
-            //transaction.Dispose();
+            transaction.Dispose();
         }
 
         #endregion Additional test attributes

@@ -40,8 +40,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
             try
             {
-                ImageDao.FindByTitle(title);
-
+                var a = ImageDao.FindByTitle(title);
+                Console.WriteLine(a.title);
                 throw new DuplicateInstanceException(title,
                     typeof(Image).FullName);
             }
@@ -56,6 +56,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                 imagenProfile.exifInfo = imageProfileDetails.Exif;
                 imagenProfile.categoryId = imageProfileDetails.Category;
                 imagenProfile.userId = imageProfileDetails.User;
+                imagenProfile.imageView = imageProfileDetails.File;
 
                 ImageDao.Create(imagenProfile);
 
@@ -158,20 +159,16 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
         public bool AddLike(long userId, long imageId)
         {
-            UserAccount userProfile = UserDao.Find(userId);
-            Image img = ImageDao.Find(imageId);
-            if (userProfile != null && img != null)
+            try
             {
-                if (!userProfile.Images1.Contains(img) && !img.UserAccounts.Contains(userProfile) )
-                {
-                    //añade la imagen a la coleccion de imagenes que le dio like 
-                    userProfile.Images1.Add(img);
-                    //añade el usuario a la coleccion de usuarios que le dieron like
-                    img.UserAccounts.Add(userProfile);
-                    return true;
-                }
+                ImageDao.AddLikeDao(userId, imageId);
+
+                return true;
             }
-            return false;
+            catch (InstanceNotFoundException e)
+            {
+                return false;
+            }
         }
 
         public List<Comment> SeeComments(String title)

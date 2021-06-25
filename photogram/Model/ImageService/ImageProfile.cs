@@ -89,9 +89,9 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                 "description = " + Descripction + " | " +
                 "date = " + Date + " | " +
                 "exif = " + Exif + " | " +
-                "category = " + Category + " ]" +
+                "category = " + Category + " | " +
                 "user = " + User + " | " +
-                "file = " + File + " | ";
+                "file = " + File + " ]";
 
 
             return strImagenProfileDetails;

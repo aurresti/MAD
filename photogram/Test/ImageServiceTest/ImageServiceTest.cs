@@ -17,7 +17,7 @@ using System.Transactions;
 using static System.Net.Mime.MediaTypeNames;
 using Image = Es.Udc.DotNet.Photogram.Model.Image;
 
-namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
+namespace Es.Udc.DotNet.Photogram.Test
 {
     [TestClass()]
     public class ImageServiceTest
@@ -101,11 +101,10 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
 
         private long GetValidCategory(String name)
         {
-            Category c = new Category();
-            c.name = name;
-            categoryDao.Create(c);
+           
+            var a = categoryService.CreateCategory(name);
 
-            return c.categoryId;
+            return a;
         }
 
         private Image GetValidImage(String name)
@@ -114,7 +113,7 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
             e.title = name;
             e.description = "DescriptionImage";
             e.date = DateTime.Now;
-            e.categoryId = GetValidCategory("Sport");
+            e.categoryId = categoryService.CreateCategory("Sport");
             imageService.UploadImage(e);
 
             return e;
@@ -152,23 +151,26 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
         [TestMethod()]
         public void SimpleLikeImage()
         {
-
                 long cat = GetValidCategory("Nature");
-                Image i = GetValidImage("ImageName", cat);
+
                 UserAccount user = GetValidUser("pepito.p");
 
-                imageService.AddLike(user.userId, i.imageId);
+                var image1 =
+                       new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 0, "");
+
+                var imageId = imageService.CreateImage("titulo", image1);
+
+                imageService.AddLike(user.userId, imageId);
 
 
-                ImageProfile info = imageService.FindImageProfileDetails(i.imageId);
+                ImageProfile info = imageService.FindImageProfileDetails(imageId);
                 Assert.IsTrue(info.Likes == 1);
-
+           
         }
         [TestMethod()]
         public void MultiplelikeUserImage()
         {
-            using (var scope = new TransactionScope())
-            {
+
                 int count = 10;
                 int startIndex = 0;
 
@@ -209,8 +211,8 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
                 var obtained =
                     imageService.FindImages("titu", "Nature", true, startIndex, count);
 
-                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 3, user.userId, user.firstName));
-                list.Add(new ImageInfo(imageId, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 2, user.userId, user.firstName));
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 3, user.userId, user.firstName,""));
+                list.Add(new ImageInfo(imageId, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, "Nature", 2, user.userId, user.firstName,""));
                 
                 ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
@@ -228,7 +230,7 @@ namespace Es.Udc.DotNet.Photogram.Test.ImageServiceTest
                 Assert.AreEqual(block, obtained);
 
                 // transaction.Complete() is not called, so Rollback is executed.
-            }
+            
 
         }
     }

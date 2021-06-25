@@ -48,7 +48,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
         void RemoveCommentDao(UserAccount user, long imageId);
 
-        void AddLikeDao(UserAccount user, long imageId);
+        void AddLikeDao(long userId, long imageId);
 
         /// <summary>
         /// Finds a ImagenProfile by id

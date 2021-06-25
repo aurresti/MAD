@@ -185,8 +185,8 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var obtained =
                     imageService.FindImages("titu", "sofa", false, startIndex, count);
                 
-                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
-                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName,""));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName,""));
 
                 ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
@@ -232,8 +232,8 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var obtained =
                     imageService.FindImages("descripti", "sofa", false, startIndex, count);
 
-                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
-                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName));
+                list.Add(new ImageInfo(imageId, "titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName,""));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, "sofa", 0, userId, firstName,""));
 
                 ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
@@ -269,7 +269,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                     new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
 
                 var image2 =
-                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, userId, 0, "");
+                    new ImageProfile("titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, userId, 0, "as");
 
                 var image3 =
                     new ImageProfile("lllll", "jajajajajajaj", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
@@ -283,7 +283,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 var obtained =
                     imageService.FindImages("titu", "cena", true, startIndex, count);
 
-                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, "cena", 0, userId, firstName));
+                list.Add(new ImageInfo(imageId2, "titulo2", "descriptioooooon", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId2, "cena", 0, userId, firstName,"as"));
 
                 ImageBlock block = new ImageBlock(list, true);
                 // Check data, same size? same elements?
@@ -372,12 +372,14 @@ namespace Es.Udc.DotNet.Photogram.Test
         [TestInitialize]
         public void MyTestInitialize()
         {
+            transaction = new TransactionScope();
         }
 
         //Use TestCleanup to run code after each test has run
         [TestCleanup]
         public void MyTestCleanup()
         {
+            transaction.Dispose();
         }
 
         #endregion Additional test attributes

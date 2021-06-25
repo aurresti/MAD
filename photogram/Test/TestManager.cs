@@ -76,7 +76,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
         public static void ClearNInjectKernel(IKernel kernel)
         {
-            kernel.Dispose();
+           kernel.Dispose();
         }
     }
 }

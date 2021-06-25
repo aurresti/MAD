@@ -4,7 +4,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 {
     public class ImageInfo
     {
-        public ImageInfo(long imageId, string title, string description, DateTime date,string exifInfo, long categoryId, string categoryName, int numLikes, long userId, string name)
+        public ImageInfo(long imageId, string title, string description, DateTime date,string exifInfo, long categoryId, string categoryName, int numLikes, long userId, string name, string url)
         {
             this.imageId = imageId;
             this.title = title;
@@ -16,6 +16,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             this.numLikes = numLikes;
             this.userId = userId;
             this.name = name;
+            this.url = url;
         }
 
         public long imageId { get; set; }
@@ -28,6 +29,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         public int numLikes { get; set; }
         public long userId { get; private set; }
         public string name { get; private set; }
+        public string url { get; private set; }
 
         public override String ToString()
         {
@@ -43,7 +45,8 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
                 "category = " + categoryName + " | " +
                 "numLikes = " + numLikes + " | " +
                 "userId = " + userId + " | " +
-                "name = " + name + " ]";
+                "name = " + name + " | " +
+                "url = " + url + " ]";
 
 
             return strImagenProfileDetails;

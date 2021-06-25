@@ -69,8 +69,16 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
 
         public String FindCategoryName(long categoryId)
         {
-            Category categoryProfile = CategoryDao.FindById(categoryId);
-            return categoryProfile.name;
+            try
+            {
+                Category categoryProfile = CategoryDao.FindById(categoryId);
+                return categoryProfile.name;
+            }
+            catch (Exception e){
+                return "";
+            }
+
+            
         }
     }
 }
