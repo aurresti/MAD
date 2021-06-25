@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hello</value>
+  <data name="bComment.Text" xml:space="preserve">
+    <value>Comment</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Welcome to Miniportal</value>
+  <data name="lnkExit.Text" xml:space="preserve">
+    <value>Exit</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; Departamento Ciencias de la Computación y Tecnologías de la Información - Universidade da Coruña</value>
+  <data name="lnkHome.Text" xml:space="preserve">
+    <value>Home</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>MiniPortal: A Sample MVC Web Application with .NET</value>
+  <data name="lnkMyProfile.Text" xml:space="preserve">
+    <value>My Profile</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Authentication</value>
+  <data name="lSeeComment.Text" xml:space="preserve">
+    <value>Comments</value>
   </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Logout</value>
+  <data name="lTitleProfile.Text" xml:space="preserve">
+    <value>See Comments</value>
   </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update Profile</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>See Comments</value>
   </data>
 </root>

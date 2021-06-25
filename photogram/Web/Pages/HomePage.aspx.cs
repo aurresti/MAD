@@ -10,6 +10,7 @@ using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
 using System.Web.Security;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.ImageService;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -20,12 +21,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             lblNotFound.Visible = false;
             if (!IsPostBack)
             {
+                btnAfter.Visible = false;
+                btnBefore.Visible = false;
                 /* Get current language and country from browser */
                 String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
 
                 /* Combo box initialization */
-                UpdateComboCategory(defaultLanguage, "no");
+                UpdateComboCategory(defaultLanguage, "Fauna");
             }
         }
 
@@ -96,20 +99,41 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             {
                 try
                 {
-                   var result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked);
-                    List<ImageProfile> images = new List<ImageProfile>();
+                    string valor = Request.QueryString["index"];
+                    int id = (int)Convert.ToDouble(valor);
+                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
+                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                    /*List<ImageProfile> images = new List<ImageProfile>();
                     for (int i = 0; i < result.Count; i++)
                     {
                         images.Add(SessionManager.FindImageProfileDetailsById(result[i].imageId));
-                    }
-                    if (result.Count == 1)
+                    }*/
+                    if (result.Images.Count == 1)
                     {
-                        gvImage.DataSource = images;
+                        gvImage.DataSource = result.Images;
                         gvImage.DataBind();
                     }
                     else {
                         lblNotFound.Visible = true;
+                    }
+
+                    if (result.existMoreImages)
+                    {
+                        btnAfter.Visible = true;
+                    }
+                    else
+                    {
+                        btnAfter.Visible = false;
+                    }
+
+                    if (result.Images.Count <= 5)
+                    {
+                        btnAfter.Visible = false;
+                        btnBefore.Visible = false;
+                    }
+                    else
+                    {
+                        btnBefore.Visible = true;
                     }
 
                 }
@@ -120,7 +144,34 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             }
         }
 
+        void GridView1_RowCommand(Object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Like")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvImage.Rows[index];
+                TableCell cell = row.Cells[0];
+                long imageId = (long)Convert.ToDouble(cell.Text);
+                SessionManager.CreateLike(Context, imageId);
+            }
+        }
+
         protected void cbCategory_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvImage_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBefore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAfter_Click(object sender, EventArgs e)
         {
 
         }

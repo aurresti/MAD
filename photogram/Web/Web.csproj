@@ -296,11 +296,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Miniportal.Master.es.resx" />
-    <Content Include="App_LocalResources\Miniportal.Master.gl.resx" />
-    <Content Include="App_LocalResources\Miniportal.Master.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.es.resx" />
     <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.gl.resx" />
     <Content Include="Pages\App_LocalResources\OtherProfilePage.aspx.resx" />
@@ -368,6 +363,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\App_LocalResources\ProfilePage.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\AddComment.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\AddComment.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\AddComment.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\SeeComments.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\SeeComments.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\SeeComments.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

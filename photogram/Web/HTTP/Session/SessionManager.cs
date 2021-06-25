@@ -454,11 +454,10 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return categoryName;
         }
 
-        public static List<Image> FindImageProfileDetails(String title, String category, bool categoryB)
+        public static ImageBlock FindImageProfileDetails(String title, String category, bool categoryB, int cont)
         {
 
-            List<Image> imageProfileDetails = null;
-                //imageService.FindImages(title, category, categoryB);
+            ImageBlock imageProfileDetails = imageService.FindImages(title, category, categoryB, cont, 5);
 
             return imageProfileDetails;
         }
@@ -558,6 +557,14 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return follow;
         }
 
+        public static void CreateLike(HttpContext context, long imageId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool commentId = imageService.AddLike(userSession.UserProfileId, imageId);
+        }
+
         public static void CreateComment(HttpContext context, long imageId, String description)
         {
             UserSession userSession =
@@ -580,6 +587,12 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
             commentService.RemoveComment(userSession.UserProfileId, imageId, commentId);
+        }
+
+        public static List<Castle.Core.Pair<Comment, UserAccount>> SeeComment(long imageId)
+        {
+            List<Castle.Core.Pair<Comment,UserAccount>> comments = commentService.GetComments(imageId);
+            return comments;
         }
     }
 }

@@ -9,11 +9,11 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <form id="form1" runat="server">
          <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
             
             <center>
                 
-                <asp:Label ID="lSeeComment" runat="server" meta:resourcekey="lBeginComment"></asp:Label>
+                <asp:Label ID="lSeeComment" runat="server" meta:resourcekey="lSeeComment"></asp:Label>
                 
             </center>
         </div>
@@ -31,7 +31,6 @@
         <div>                
             <center>
                 <asp:Button ID="bComment" runat="server" meta:resourcekey="bComment" OnClick="bComment_Click" />
-                <asp:Button ID="bTurn" runat="server" meta:resourcekey="bTurn" OnClick="bTurn_Click" />
             </center>
         </div>
      </form>

@@ -19,9 +19,5 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
 
         }
 
-        protected void bTurn_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
