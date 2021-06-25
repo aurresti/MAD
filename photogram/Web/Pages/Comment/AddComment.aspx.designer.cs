@@ -7,21 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.Photogram.Web.Pages
+namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
 {
 
 
-    public partial class HomePage
+    public partial class AddComment
     {
 
         /// <summary>
-        /// Control lTitleHome.
+        /// Control lTitleProfile.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lTitleHome;
+        protected global::System.Web.UI.WebControls.Label lTitleProfile;
 
         /// <summary>
         /// Control form1.
@@ -42,31 +42,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected global::System.Web.UI.WebControls.HyperLink lnkHome;
 
         /// <summary>
-        /// Control lSearch.
+        /// Control lBeginComment.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lSearch;
-
-        /// <summary>
-        /// Control tbSearch.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSearch;
-
-        /// <summary>
-        /// Control btnSearch.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lBeginComment;
 
         /// <summary>
         /// Control lnkMyProfile.
@@ -78,22 +60,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected global::System.Web.UI.WebControls.HyperLink lnkMyProfile;
 
         /// <summary>
-        /// Control cbCategory.
+        /// Control tbComment.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCategory;
-
-        /// <summary>
-        /// Control comboCategory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList comboCategory;
+        protected global::System.Web.UI.WebControls.TextBox tbComment;
 
         /// <summary>
         /// Control lnkExit.
@@ -105,30 +78,12 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected global::System.Web.UI.WebControls.HyperLink lnkExit;
 
         /// <summary>
-        /// Control gvImage.
+        /// Control bComment.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvImage;
-
-        /// <summary>
-        /// Control lblNotFound.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNotFound;
-
-        /// <summary>
-        /// Control btnUpload.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
+        protected global::System.Web.UI.WebControls.Button bComment;
     }
 }

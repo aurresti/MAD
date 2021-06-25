@@ -23,10 +23,24 @@
     <div>
         <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
         <center>
-            <asp:GridView ID="gvFollowed" autogeneratecolumns="true" runat="server">
-            </asp:GridView>      
-            <asp:GridView ID="gvFollower" autogeneratecolumns="true" runat="server">
-            </asp:GridView> 
+            <asp:gridview id="gvFollowed" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                </Columns>
+            </asp:gridview>
+            <asp:gridview id="gvFollower" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                </Columns>
+            </asp:gridview>
             <asp:Button ID="bUpgrade" runat="server" meta:resourcekey="bUpgrade" OnClick="bUpgrade_Click"  />
             <asp:Button ID="bChangePassword" runat="server" meta:resourcekey="bChangePassword" OnClick="bChangePassword_Click"  />
         </center>

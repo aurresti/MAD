@@ -9,6 +9,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
 using System.Web.Security;
 using System.Collections.Generic;
+using Es.Udc.DotNet.Photogram.Model.ImageService;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -97,10 +98,15 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 {
                    var result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
                         comboCategory.SelectedValue, cbCategory.Checked);
-
+                    List<ImageProfile> images = new List<ImageProfile>();
+                    for (int i = 0; i < result.Count; i++)
+                    {
+                        images.Add(SessionManager.FindImageProfileDetailsById(result[i].imageId));
+                    }
                     if (result.Count == 1)
                     {
-                        
+                        gvImage.DataSource = images;
+                        gvImage.DataBind();
                     }
                     else {
                         lblNotFound.Visible = true;

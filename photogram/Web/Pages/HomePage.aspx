@@ -33,6 +33,20 @@
         <div>
             <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
+                <asp:gridview id="gvImage" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server">
+                <Columns>
+                    <asp:BoundField DataField="Title" HeaderText="Titulo"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="User" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="User" NavigateUrl="OtherProfilePage.aspx" HeaderText="Autor"/>
+                    <asp:BoundField DataField="Date" HeaderText="Fecha"/>
+                    <asp:BoundField DataField="Descripction" HeaderText="Descripcion"/>
+                    <asp:BoundField DataField="Exif" HeaderText="Exif"/>
+                    <asp:BoundField DataField="Likes" HeaderText="Likes"/>
+                </Columns>
+            </asp:gridview>
                 <asp:Label ID="lblNotFound" runat="server" meta:resourcekey="lblNotFound"></asp:Label>
             </center>
             <center>

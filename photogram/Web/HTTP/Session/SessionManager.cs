@@ -457,10 +457,10 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
         public static List<Image> FindImageProfileDetails(String title, String category, bool categoryB)
         {
 
-            //List<Image> imageProfileDetails =
-                //imageService.FindImages(title, category, categoryB);
+            List<Image> imageProfileDetails =
+                imageService.FindImages(title, category, categoryB);
 
-            return null;
+            return imageProfileDetails;
         }
 
         public static ImageProfile FindImageProfileDetailsById(long imageId)
@@ -468,6 +468,26 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
 
             ImageProfile imageProfileDetails =
                 imageService.FindImageProfileDetails(imageId);
+
+            return imageProfileDetails;
+        }
+
+        public static List<Image> FindImageProfileDetailsByUserId(HttpContext context)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            List<Image> imageProfileDetails =
+                imageService.FindImageByUserId(userSession.UserProfileId);
+
+            return imageProfileDetails;
+        }
+
+        public static List<Image> FindImageProfileDetailsByUserIdUser(long userId)
+        {
+
+            List<Image> imageProfileDetails =
+                imageService.FindImageByUserId(userId);
 
             return imageProfileDetails;
         }
@@ -536,6 +556,30 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             bool follow = userService.UserFollowExists(userSession.FirstName, followId);
 
             return follow;
+        }
+
+        public static void CreateComment(HttpContext context, long imageId, String description)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            long commentId = commentService.AddComment(userSession.UserProfileId,imageId,description);
+        }
+
+        public static void UpdateComment(HttpContext context, long imageId,long commentId, String description)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            commentService.UpdateComment(userSession.UserProfileId,imageId, commentId, description);
+        }
+
+        public static void RemoveComment(HttpContext context, long imageId, long commentId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            commentService.RemoveComment(userSession.UserProfileId, imageId, commentId);
         }
     }
 }
