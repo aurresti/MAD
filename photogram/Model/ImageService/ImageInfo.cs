@@ -27,9 +27,9 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         public long categoryId { get; set; }
         public string categoryName { get; set; }
         public int numLikes { get; set; }
-        public long userId { get; private set; }
-        public string name { get; private set; }
-        public string url { get; private set; }
+        public long userId { get; set; }
+        public string name { get; set; }
+        public string url { get; set; }
 
         public override String ToString()
         {

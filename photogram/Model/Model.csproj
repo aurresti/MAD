@@ -186,6 +186,7 @@
       <DependentUpon>Photogram.edmx</DependentUpon>
       <LastGenOutput>Photogram.cs</LastGenOutput>
     </Content>
+    <Content Include="sql\datos.sql" />
     <Content Include="sql\SqlServerCreateDatabase.sql" />
     <Content Include="sql\SqlServerCreateTables.sql" />
   </ItemGroup>

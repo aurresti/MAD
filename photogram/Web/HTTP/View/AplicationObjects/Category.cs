@@ -32,24 +32,24 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects
             #region set the countries
 
             //categories_es.Add(new ListItem("-", "no"));
-            categories_es.Add(new ListItem("Fauna", "an"));
-            categories_es.Add(new ListItem("Paisaje", "la"));
-            categories_es.Add(new ListItem("Moda", "fa"));
+            categories_es.Add(new ListItem("Fauna", "Fauna"));
+            categories_es.Add(new ListItem("Paisaje", "Paisaje"));
+            categories_es.Add(new ListItem("Moda", "Moda"));
 
             //categories_en.Add(new ListItem("-", "no"));
-            categories_en.Add(new ListItem("Animals", "an"));
-            categories_en.Add(new ListItem("Fashion", "fa"));
-            categories_en.Add(new ListItem("Landscape", "la"));
+            categories_en.Add(new ListItem("Animals", "Fauna"));
+            categories_en.Add(new ListItem("Fashion", "Paisaje"));
+            categories_en.Add(new ListItem("Landscape", "Moda"));
             
             //categories_gl.Add(new ListItem("-", "no"));
-            categories_gl.Add(new ListItem("Fauna", "an"));
-            categories_gl.Add(new ListItem("Paisaxe", "la"));
-            categories_gl.Add(new ListItem("Moda", "fa"));
+            categories_gl.Add(new ListItem("Fauna", "Fauna"));
+            categories_gl.Add(new ListItem("Paisaxe", "Paisaje"));
+            categories_gl.Add(new ListItem("Moda", "Moda"));
 
             //categoriesCodes.Add("no");
-            categoriesCodes.Add("an");
-            categoriesCodes.Add("la");
-            categoriesCodes.Add("fa");
+            categoriesCodes.Add("Fauna");
+            categoriesCodes.Add("Paisaje");
+            categoriesCodes.Add("Moda");
 
             categories.Add("es", categories_es);
             categories.Add("en", categories_en);
