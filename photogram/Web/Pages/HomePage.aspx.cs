@@ -13,6 +13,8 @@ using Es.Udc.DotNet.Photogram.Model.ImageService;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.Photogram.Model;
 using Category = Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects.Category;
+using System.Web;
+using Es.Udc.DotNet.Photogram.Model.CategoryService;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -73,20 +75,18 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         private void UpdateComboCategory(String selectedLanguage, String selectedCategory)
         {
-            
-            if (SessionManager.IsUserAuthenticated(Context))
-            {
-                Locale locale = SessionManager.GetLocale(Context);
-                this.comboCategory.DataSource = Category.GetCategories(locale.Language);
-            }
-            else
-            {
-                this.comboCategory.DataSource = Category.GetCategories(selectedLanguage);
-            }
-            this.comboCategory.DataTextField = "text";
-            this.comboCategory.DataValueField = "value";
-            this.comboCategory.DataBind();
-            this.comboCategory.SelectedValue = selectedCategory;
+            /* Get the Service */
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            ICategoryService categoryService = iocManager.Resolve<ICategoryService>();
+
+            /* Get Accounts Info */
+            List<Model.Category> list =
+                categoryService.FindCategories();
+            this.categoryU.DataSource = list;
+            this.categoryU.DataTextField = "name";
+            this.categoryU.DataValueField = "categoryId";
+            this.categoryU.DataBind();
+            this.categoryU.SelectedValue = selectedCategory;
         }
 
         protected void comboCategorySelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             //Cambiar defaultLanguage por donde se almacena la informacion del idioma
             String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
-            this.UpdateComboCategory(defaultLanguage, comboCategory.SelectedValue);
+            this.UpdateComboCategory(defaultLanguage, categoryU.SelectedValue);
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -114,8 +114,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 {
                     string valor = Request.QueryString["index"];
                     int id = (int)Convert.ToDouble(valor);
-                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text,
+                        categoryU.SelectedValue, cbCategory.Checked, id);
                     if (result.Images.Count >= 1)
                     {
                         gridMembersList.DataSource = result.Images;
