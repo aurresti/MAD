@@ -40,7 +40,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects
             categories_en.Add(new ListItem("Animals", "Fauna"));
             categories_en.Add(new ListItem("Fashion", "Paisaje"));
             categories_en.Add(new ListItem("Landscape", "Moda"));
-            
+
             //categories_gl.Add(new ListItem("-", "no"));
             categories_gl.Add(new ListItem("Fauna", "Fauna"));
             categories_gl.Add(new ListItem("Paisaxe", "Paisaje"));

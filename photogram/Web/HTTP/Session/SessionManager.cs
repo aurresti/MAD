@@ -428,12 +428,12 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
         }
 
         public static void RegisterImage(HttpContext context,
-            String title, String description, String exif, String category, String imageView)
+            String title, String description, String exif, long category, String imageView)
         {
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            ImageProfile imageProfileDetails = new ImageProfile(title, description, DateTime.Now, exif, FindCategoryId(category), userSession.UserProfileId, 0, imageView);
+            ImageProfile imageProfileDetails = new ImageProfile(title, description, DateTime.Now, exif, category, userSession.UserProfileId, 0, imageView);
             /* Create a Image */
             long imageId = imageService.CreateImage(title, imageProfileDetails);
 

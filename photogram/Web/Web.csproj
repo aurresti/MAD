@@ -101,6 +101,7 @@
     <Content Include="Pages\Error\InternalError.aspx" />
     <Content Include="Pages\HomePage.aspx" />
     <Content Include="Pages\Image\ImageProfile.aspx" />
+    <Content Include="Pages\Image\SuccessfulUploadImage.aspx" />
     <Content Include="Pages\Image\UploadImage.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\OtherProfilePage.aspx" />
@@ -176,6 +177,13 @@
     </Compile>
     <Compile Include="Pages\Image\ImageProfile.aspx.designer.cs">
       <DependentUpon>ImageProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Image\SuccessfulUploadImage.aspx.cs">
+      <DependentUpon>SuccessfulUploadImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Image\SuccessfulUploadImage.aspx.designer.cs">
+      <DependentUpon>SuccessfulUploadImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Image\UploadImage.aspx.cs">
       <DependentUpon>UploadImage.aspx</DependentUpon>
@@ -381,6 +389,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Comment\App_LocalResources\SeeComments.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Image\App_LocalResources\SuccessfulUploadImage.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Image\App_LocalResources\SuccessfulUploadImage.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Image\App_LocalResources\SuccessfulUploadImage.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

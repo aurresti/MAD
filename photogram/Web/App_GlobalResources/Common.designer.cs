@@ -61,11 +61,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a categoryId.
+        /// </summary>
+        internal static string categoryId {
+            get {
+                return ResourceManager.GetString("categoryId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mandatory Field.
         /// </summary>
         internal static string mandatoryField {
             get {
                 return ResourceManager.GetString("mandatoryField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a name.
+        /// </summary>
+        internal static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
             }
         }
         

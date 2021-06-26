@@ -105,13 +105,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lCategory;
 
         /// <summary>
-        /// Control comboCategoryU.
+        /// Control categoryU.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList comboCategoryU;
+        protected global::System.Web.UI.WebControls.DropDownList categoryU;
 
         /// <summary>
         /// Control lISO.
@@ -213,13 +213,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
         protected global::System.Web.UI.WebControls.Label lImageView;
 
         /// <summary>
-        /// Control tbImageView.
+        /// Control FileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbImageView;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
         /// Control btnUpload.
