@@ -112,8 +112,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 {
                     string valor = Request.QueryString["index"];
                     int id = (int)Convert.ToDouble(valor);
-                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text,
+                        categoryU.SelectedValue, cbCategory.Checked, id);
                     if (result.Images.Count >= 1)
                     {
                         gridMembersList.DataSource = result.Images;
@@ -156,11 +156,11 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     long imageId = (long)Convert.ToDouble(cell.Text);
                     if (!SessionManager.ExistsLike(Context, imageId)) {
                         SessionManager.CreateLike(Context, imageId);
-                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) + 1).ToString();
-                    } else {
+                        row.Cells[10].Text = ((int)Convert.ToDouble(row.Cells[10].Text) + 1).ToString();
+                    } /*else {
                         SessionManager.DeleteLike(Context, imageId);
-                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) - 1).ToString();
-                    }
+                        row.Cells[10].Text = ((int)Convert.ToDouble(row.Cells[10].Text) - 1).ToString();
+                    }*/
                 } else {
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
@@ -170,7 +170,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         protected void gridMembersList_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType != DataControlRowType.DataRow)
+            /*if (e.Row.RowType != DataControlRowType.DataRow)
                 return;
 
             //se recupera la entidad que genera la row
@@ -179,7 +179,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             long imageId = (long)Convert.ToDouble(e.Row.Cells[0].Text);
             List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
             if (comments.Count == 0)
-                e.Row.Cells[8].Controls.Clear();
+                e.Row.Cells[9].Controls.Clear();*/
         }
 
         protected void cbCategory_CheckedChanged(object sender, EventArgs e)
