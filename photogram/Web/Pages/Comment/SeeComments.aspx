@@ -22,12 +22,13 @@
             <center>
                 <asp:gridview id="gvComment" 
                 autogeneratecolumns="false"
-                allowpaging="true"
+                allowpaging="false"
                 runat="server" OnSelectedIndexChanged="gvImage_SelectedIndexChanged1">
                 <Columns>
-                    <asp:BoundField DataField="userId" HeaderText="ImageId"/>
-                    <asp:BoundField DataField="Date" HeaderText="Titulo"/>
-                    <asp:BoundField DataField="Description" HeaderText="Exif"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="~/Pages/OtherProfilePage.aspx?userId={0}"
+                    DataTextField="Login" NavigateUrl="~/Pages/OtherProfilePage.aspx" HeaderText="Autor"/>
+                    <asp:BoundField DataField="Date" HeaderText="Fecha"/>
+                    <asp:BoundField DataField="Description" HeaderText="Descripcion"/>
                 </Columns>
             </asp:gridview>
             </center>
