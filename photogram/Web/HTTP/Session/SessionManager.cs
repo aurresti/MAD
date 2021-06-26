@@ -552,7 +552,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            bool follow = userService.UserFollowExists(userSession.FirstName, followId);
+            bool follow = userService.UserFollowExists(followId, userSession.FirstName);
 
             return follow;
         }

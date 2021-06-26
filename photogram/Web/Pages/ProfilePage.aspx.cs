@@ -85,7 +85,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected void bFollowed_Click(object sender, EventArgs e)
         {
             
-            var followed = SessionManager.SeeFollowedsUser(Context);
+            var followed = SessionManager.SeeFollowersUser(Context);
             gvFollowed.DataSource = followed;
             gvFollowed.DataBind();
             if (gvFollowed.Visible) {
@@ -97,7 +97,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         protected void bFollowers_Click(object sender, EventArgs e)
         {
-            var follower = SessionManager.SeeFollowersUser(Context);
+            var follower = SessionManager.SeeFollowedsUser(Context);
             gvFollower.DataSource = follower;
             gvFollower.DataBind();
             if (gvFollower.Visible)

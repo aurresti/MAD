@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
             string valor = Request.QueryString["userId"];
             long id = (long)Convert.ToDouble(valor);
-            var followed = SessionManager.SeeFolloweds(id);
+            var followed = SessionManager.SeeFollowers(id);
             gvFollowed.DataSource = followed;
             gvFollowed.DataBind();
             if (gvFollowed.Visible)
@@ -110,7 +110,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
             string valor = Request.QueryString["userId"];
             long id = (long)Convert.ToDouble(valor);
-            var follower = SessionManager.SeeFollowers(id);
+            var follower = SessionManager.SeeFolloweds(id);
             gvFollower.DataSource = follower;
             gvFollower.DataBind();
             if (gvFollower.Visible)
@@ -147,7 +147,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     }
                     else {
                         Response.Redirect(Response.
-                            ApplyAppPathModifier("~/Pages/Authentication.aspx"));
+                            ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
                     }
 
                 }
