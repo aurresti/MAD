@@ -52,7 +52,12 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
                         ApplyAppPathModifier("~/Pages/Comment/AddComment.aspx?imageId=" + id));
         }
 
-        protected void gvImage_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void gvComment_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvComment.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvComment_SelectedIndexChanged1(object sender, EventArgs e)
         {
 
         }

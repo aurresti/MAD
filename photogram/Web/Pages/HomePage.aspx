@@ -36,6 +36,8 @@
 AutoGenerateColumns="False" 
             onrowdatabound="gridMembersList_RowDataBound"
             runat="server"  
+            allowpaging="true"
+            OnPageIndexChanging ="gridMembersList_PageIndexChanging"
             onrowcommand="gridMembersList_RowCommand" OnSelectedIndexChanged="gridMembersList_SelectedIndexChanged">
         <Columns>
             <asp:BoundField DataField="ImageId" HeaderText="ImageId"/>
@@ -62,8 +64,6 @@ AutoGenerateColumns="False"
         </Columns>
         </asp:GridView>  
                 <asp:Label ID="lblNotFound" runat="server" meta:resourcekey="lblNotFound"></asp:Label>
-                <asp:Button ID="btnBefore" runat="server" meta:resourcekey="btnBefore" OnClick="btnBefore_Click" />
-                <asp:Button ID="btnAfter" runat="server" meta:resourcekey="btnAfter" OnClick="btnAfter_Click" />
             </center>
             <center>
                 <asp:Button ID="btnUpload" runat="server" meta:resourcekey="btnUpload" OnClick="btnUpload_Click" />

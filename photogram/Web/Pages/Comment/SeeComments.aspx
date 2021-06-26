@@ -24,8 +24,10 @@
             <center>
                 <asp:gridview id="gvComment" 
                 autogeneratecolumns="false"
-                allowpaging="false"
-                runat="server" OnSelectedIndexChanged="gvImage_SelectedIndexChanged1">
+                allowpaging="true"
+                OnPageIndexChanging ="gvComment_PageIndexChanging"
+                runat="server" OnSelectedIndexChanged="gvComment_SelectedIndexChanged1">
+                    
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="~/Pages/OtherProfilePage.aspx?userId={0}"
                     DataTextField="Login" NavigateUrl="~/Pages/OtherProfilePage.aspx" HeaderText="Autor"/>
