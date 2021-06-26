@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 categoryService.FindCategories();
             this.categoryU.DataSource = list;
             this.categoryU.DataTextField = "name";
-            this.categoryU.DataValueField = "categoryId";
+            this.categoryU.DataValueField = "name";
             this.categoryU.DataBind();
             this.categoryU.SelectedValue = selectedCategory;
         }
@@ -112,8 +112,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 {
                     string valor = Request.QueryString["index"];
                     int id = (int)Convert.ToDouble(valor);
-                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text,
+                        categoryU.SelectedValue, cbCategory.Checked, id);
                     if (result.Images.Count >= 1)
                     {
                         gridMembersList.DataSource = result.Images;
