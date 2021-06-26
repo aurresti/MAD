@@ -15,7 +15,7 @@
             <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
              
             <center>
-                <asp:Image ID="Image1" runat="server" Height="137px" Width="251px" />
+                <asp:Image ID="Image1" Visible = "false" runat="server" Height="137px" Width="251px" />
             </center>
             <div>
                 <center>
@@ -24,10 +24,10 @@
                     <asp:RequiredFieldValidator ID="rfvTitle" runat="server"
                     ControlToValidate="tbTitle" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
                     <asp:Label ID="lCategory" runat="server" meta:resourcekey="lCategory"></asp:Label>
-                    <asp:DropDownList ID="comboCategoryU" runat="server" AutoPostBack="True"
-                            Width="100px" meta:resourcekey="comboCategoryResource1"
-                            OnSelectedIndexChanged="comboCategorySelectedIndexChanged">
+                    <asp:DropDownList ID="categoryU" runat="server" Width="100px"
+                        OnSelectedIndexChanged="comboCategorySelectedIndexChanged">                       
                     </asp:DropDownList>
+
                 </center>
             </div>
         </div>
@@ -50,7 +50,10 @@
                 <asp:Label ID="lDescription" runat="server" meta:resourcekey="lDescription"></asp:Label>
                 <asp:TextBox ID="tbDescription" runat="server"></asp:TextBox>
                 <asp:Label ID="lImageView" runat="server" meta:resourcekey="lImageView"></asp:Label>
-                <asp:TextBox ID="tbImageView" runat="server"></asp:TextBox>
+                <asp:FileUpload ID="FileUpload1" runat="server"/>
+
+                
+                
             </center>
         </div>
         <div>            
@@ -59,4 +62,5 @@
             </center>
         </div>
      </form>
+    
 </asp:Content>

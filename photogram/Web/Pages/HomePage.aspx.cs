@@ -69,11 +69,11 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         private void UpdateComboCategory(String selectedLanguage, String selectedCategory)
         {
-            this.comboCategory.DataSource = Category.GetCategories(selectedLanguage);
-            this.comboCategory.DataTextField = "text";
-            this.comboCategory.DataValueField = "value";
-            this.comboCategory.DataBind();
-            this.comboCategory.SelectedValue = selectedCategory;
+            //this.comboCategory.DataSource = Category.GetCategories(selectedLanguage);
+            //this.comboCategory.DataTextField = "text";
+            //this.comboCategory.DataValueField = "value";
+            //this.comboCategory.DataBind();
+            //this.comboCategory.SelectedValue = selectedCategory;
         }
 
         protected void comboCategorySelectedIndexChanged(object sender, EventArgs e)

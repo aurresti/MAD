@@ -6,6 +6,9 @@ using Es.Udc.DotNet.ModelUtil.Log;
 using System;
 using System.Globalization;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using System.Web;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 {
@@ -13,7 +16,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             if (!IsPostBack)
             {
                 /* Get current language and country from browser */
@@ -63,11 +66,18 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 
         private void UpdateComboCategory(String selectedLanguage, String selectedCategory)
         {
-            this.comboCategoryU.DataSource = Category.GetCategories(selectedLanguage);
-            this.comboCategoryU.DataTextField = "text";
-            this.comboCategoryU.DataValueField = "value";
-            this.comboCategoryU.DataBind();
-            this.comboCategoryU.SelectedValue = selectedCategory;
+            /* Get the Service */
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            ICategoryService categoryService = iocManager.Resolve<ICategoryService>();
+
+            /* Get Accounts Info */
+            List<Model.Category> list =
+                categoryService.FindCategories();
+            this.categoryU.DataSource = list;
+            this.categoryU.DataTextField = "name";
+            this.categoryU.DataValueField = "categoryId";
+            this.categoryU.DataBind();
+            this.categoryU.SelectedValue = selectedCategory;
         }
 
         protected void comboCategorySelectedIndexChanged(object sender, EventArgs e)
@@ -75,7 +85,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
             //Cambiar defaultLanguage por donde se almacena la informacion del idioma
             String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
-            this.UpdateComboCategory(defaultLanguage, comboCategoryU.SelectedValue);
+            this.UpdateComboCategory(defaultLanguage, categoryU.SelectedValue);
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -84,13 +94,33 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
             {
                 try
                 {
+                    //Save image
+
+                    string folderPath = Server.MapPath("~/img/");
+
+                    FileInfo fi = new FileInfo(FileUpload1.FileName);
+
+                    //Check whether Directory (Folder) exists.
+                    if (!Directory.Exists(folderPath))
+                    {
+                        //If Directory (Folder) does not exists Create it.
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    String url = "~/img/" + Path.GetFileName(tbTitle.Text + fi.Extension);
+
                     String exif = tbSensibility.Text + "/" + tbDiaphragm.Text + "/" + tbExposition.Text + "/" + tbDistance.Text;
 
                     SessionManager.RegisterImage(Context, tbTitle.Text, tbDescription.Text,
-                        exif, comboCategoryU.Text, tbImageView.Text);
-                    Image1.ImageUrl = tbImageView.Text;
+                        exif, Convert.ToInt32(categoryU.SelectedValue), url);
+
+                    //Save the File to the Directory (Folder).
+                    
+                    FileUpload1.SaveAs(folderPath + Path.GetFileName(tbTitle.Text + fi.Extension));
+
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/HomePage.aspx?index=0"));
+                        ApplyAppPathModifier("~/Pages/Image/SuccessfulUploadImage.aspx?imgUrl=" + url));
+
                 }
                 catch (DuplicateInstanceException)
                 {
@@ -98,6 +128,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                 }
             }
         }
-
+            
     }
 }

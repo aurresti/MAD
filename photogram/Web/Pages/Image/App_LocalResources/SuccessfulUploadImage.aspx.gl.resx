@@ -120,46 +120,7 @@
   <data name="btnPreview.Text" xml:space="preserve">
     <value>Vista previa</value>
   </data>
-  <data name="btnUpload.Text" xml:space="preserve">
-    <value>Subir</value>
-  </data>
-  <data name="lCategory.Text" xml:space="preserve">
-    <value>Categoria</value>
-  </data>
-  <data name="lDescription.Text" xml:space="preserve">
-    <value>Descripcion</value>
-  </data>
-  <data name="lDiaphragm.Text" xml:space="preserve">
-    <value>Diafragma</value>
-  </data>
-  <data name="lExposition.Text" xml:space="preserve">
-    <value>Exposicion</value>
-  </data>
-  <data name="lImageView.Text" xml:space="preserve">
-    <value>URL Imaxen</value>
-  </data>
-  <data name="lISO.Text" xml:space="preserve">
-    <value>ISO</value>
-  </data>
-  <data name="lnkExit.Text" xml:space="preserve">
-    <value>Sair</value>
-  </data>
-  <data name="lnkHome.Text" xml:space="preserve">
-    <value>Inicio</value>
-  </data>
-  <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Meu Perfil</value>
-  </data>
-  <data name="lTitle.Text" xml:space="preserve">
-    <value>Titulo</value>
-  </data>
-  <data name="lTitleUpload.Text" xml:space="preserve">
-    <value>Subida de Imaxen</value>
-  </data>
-  <data name="lWhite.Text" xml:space="preserve">
-    <value>Balance de brancos</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Subida de Imaxen</value>
+  <data name="UplSuccess.Text" xml:space="preserve">
+    <value>Imaxen subida corretamente</value>
   </data>
 </root>
