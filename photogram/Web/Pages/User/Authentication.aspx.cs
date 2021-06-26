@@ -6,7 +6,7 @@ using System.Web.Security;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.User
 {
-    public partial class Authentication : System.Web.UI.Page
+    public partial class Authentication : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

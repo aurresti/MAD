@@ -9,7 +9,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 {
-    public partial class UploadImage : System.Web.UI.Page
+    public partial class UploadImage : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 {
-    public partial class ImageProfile : System.Web.UI.Page
+    public partial class ImageProfile : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,16 +34,24 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                         {
                             hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
                         }
+                        if ((long)imageShow.User == userSession.UserProfileId)
+                        {
+                            bDelete.Visible = true;
+                        }
+                        else
+                        {
+                            bDelete.Visible = false;
+                        }
                     }
                     else {
                         hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
+                        bDelete.Visible = false;
                     }
                     String exif = imageShow.Exif;
                     String[] info = exif.Split('/');
                     lTitleContent.Text = imageShow.Title;
                     lCategoryContent.Text = SessionManager.FindCategoryName(imageShow.Category);
                     lDescriptionContent.Text = imageShow.Descripction;
-                    lLike.Text = imageShow.Likes.ToString();
                     lISOContent.Text = info[0];
                     lDiaphragmContent.Text = info[1];
                     lExpositionContent.Text = info[2];
@@ -56,22 +64,9 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
             }
         }
 
-        protected void bLike_Click(object sender, EventArgs e)
+        protected void bDelete_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void bComment_Click(object sender, EventArgs e)
-        {
-            string valor = Request.QueryString["imageId"];
-            long id = (long)Convert.ToDouble(valor);
-            Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/Comment/AddComment.aspx?imageId=" + id));
-        }
-
-        protected void bSeeComment_Click(object sender, EventArgs e)
-        {
-
+            
         }
     }
 }

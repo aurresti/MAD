@@ -10,7 +10,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
 {
-    public partial class AddComment : System.Web.UI.Page
+    public partial class AddComment : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

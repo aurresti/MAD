@@ -117,14 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bComment.Text" xml:space="preserve">
-    <value>Comentar</value>
-  </data>
-  <data name="bLike.Text" xml:space="preserve">
-    <value>Me Gusta</value>
-  </data>
-  <data name="bSeeComment.Text" xml:space="preserve">
-    <value>Ver Comentarios</value>
+  <data name="bDelete.Text" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
   <data name="lCategory.Text" xml:space="preserve">
     <value>Categoria</value>

@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
-    public partial class HomePage : System.Web.UI.Page
+    public partial class HomePage : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +26,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 /* Get current language and country from browser */
                 String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
+                String defaultCountry =
+                    GetCountryFromBrowserPreferences();
 
                 /* Combo box initialization */
                 UpdateComboCategory(defaultLanguage, "Fauna");
@@ -69,7 +71,16 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         private void UpdateComboCategory(String selectedLanguage, String selectedCategory)
         {
-            this.comboCategory.DataSource = Category.GetCategories(selectedLanguage);
+            
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                Locale locale = SessionManager.GetLocale(Context);
+                this.comboCategory.DataSource = Category.GetCategories(locale.Language);
+            }
+            else
+            {
+                this.comboCategory.DataSource = Category.GetCategories(selectedLanguage);
+            }
             this.comboCategory.DataTextField = "text";
             this.comboCategory.DataValueField = "value";
             this.comboCategory.DataBind();

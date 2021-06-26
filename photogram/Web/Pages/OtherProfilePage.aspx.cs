@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
-    public partial class OtherProfilePage : System.Web.UI.Page
+    public partial class OtherProfilePage : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

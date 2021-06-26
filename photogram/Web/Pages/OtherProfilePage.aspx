@@ -6,12 +6,14 @@
     <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
-</asp:Content>
+        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
+        <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+        <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
+        </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <form id="MainForm" method="POST" runat="server">
     <div>
-        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
         
             <center>
             <asp:Label ID="lProfile" runat="server" meta:resourcekey="lProfile"></asp:Label>
@@ -21,7 +23,6 @@
             </center>
     </div>
     <div>
-        <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
         <center>
             <asp:gridview id="gvFollowed" 
                 autogeneratecolumns="false"
@@ -46,7 +47,6 @@
         </center>
     </div>
     <div>
-        <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
         <center>
             <asp:Image ID="Image1" runat="server" Height="16px" />
             <asp:Image ID="Image2" runat="server" />
