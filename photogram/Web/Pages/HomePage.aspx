@@ -24,11 +24,10 @@
         </div>
         <div>
             <center>
-                <asp:CheckBox ID="cbCategory" runat="server"  meta:resourcekey="cbCategory" OnCheckedChanged="cbCategory_CheckedChanged"/>
-                <asp:DropDownList ID="comboCategory" runat="server" AutoPostBack="True"
-                            Width="100px" meta:resourcekey="comboCategoryResource1"
-                            OnSelectedIndexChanged="comboCategorySelectedIndexChanged">
-                </asp:DropDownList>
+                 <asp:CheckBox ID="cbCategory" runat="server"  meta:resourcekey="cbCategory" OnCheckedChanged="cbCategory_CheckedChanged"/>
+                <asp:DropDownList ID="categoryU" runat="server" Width="100px"
+                        OnSelectedIndexChanged="comboCategorySelectedIndexChanged">                       
+                    </asp:DropDownList>
             </center>
         </div>
         <div>
