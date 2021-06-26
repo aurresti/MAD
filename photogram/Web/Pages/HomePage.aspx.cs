@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 categoryService.FindCategories();
             this.categoryU.DataSource = list;
             this.categoryU.DataTextField = "name";
-            this.categoryU.DataValueField = "categoryId";
+            this.categoryU.DataValueField = "name";
             this.categoryU.DataBind();
             this.categoryU.SelectedValue = selectedCategory;
         }

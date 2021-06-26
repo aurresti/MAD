@@ -92,6 +92,8 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.jpg
+*.png
 
 # Chutzpah Test files
 _Chutzpah*
@@ -349,4 +351,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-.photogram/Web/img/
+photogram/Web/img/
