@@ -23,8 +23,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             lblNotFound.Visible = false;
             if (!IsPostBack)
             {
-                btnAfter.Visible = false;
-                btnBefore.Visible = false;
                 /* Get current language and country from browser */
                 String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
@@ -112,10 +110,8 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             {
                 try
                 {
-                    string valor = Request.QueryString["index"];
-                    int id = (int)Convert.ToDouble(valor);
                     ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                        comboCategory.SelectedValue, cbCategory.Checked, 0);
                     if (result.Images.Count >= 1)
                     {
                         gridMembersList.DataSource = result.Images;
@@ -127,26 +123,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                         gridMembersList.Visible = false;
                         lblNotFound.Visible = true;
                     }
-
-                    if (result.existMoreImages)
-                    {
-                        btnAfter.Visible = true;
-                    }
-                    else
-                    {
-                        btnAfter.Visible = false;
-                    }
-
-                    if (result.Images.Count <= 5)
-                    {
-                        btnAfter.Visible = false;
-                        btnBefore.Visible = false;
-                    }
-                    else
-                    {
-                        btnBefore.Visible = true;
-                    }
-
                 }
                 catch (InstanceNotFoundException)
                 {
@@ -200,8 +176,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
             long imageId = (long)Convert.ToDouble(e.Row.Cells[0].Text);
             List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
-            //se valida que el stock esta en cero 
-            //para remover el link de la primer columna
             if (comments.Count == 0)
                 e.Row.Cells[8].Controls.Clear();
         }
@@ -211,14 +185,9 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         }
 
-        protected void btnBefore_Click(object sender, EventArgs e)
+        protected void gridMembersList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
-        }
-
-        protected void btnAfter_Click(object sender, EventArgs e)
-        {
-
+            gridMembersList.PageIndex = e.NewPageIndex;
         }
 
         protected void gridMembersList_SelectedIndexChanged(object sender, EventArgs e)

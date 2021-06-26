@@ -457,7 +457,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
         public static ImageBlock FindImageProfileDetails(String title, String category, bool categoryB, int cont)
         {
 
-            ImageBlock imageProfileDetails = imageService.FindImages(title, category, categoryB, cont, 5);
+            ImageBlock imageProfileDetails = imageService.FindImages(title, category, categoryB, cont, 100);
 
             return imageProfileDetails;
         }
