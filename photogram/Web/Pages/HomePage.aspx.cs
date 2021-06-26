@@ -11,6 +11,8 @@ using System.Web.Security;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.ImageService;
 using System.Web.UI.WebControls;
+using Es.Udc.DotNet.Photogram.Model;
+using Category = Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects.Category;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -119,6 +121,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                         gridMembersList.DataSource = result.Images;
                         gridMembersList.DataBind();
                         gridMembersList.Visible = true;
+                        gridMembersList.Columns[0].Visible = false;
                     }
                     else {
                         gridMembersList.Visible = false;
@@ -152,6 +155,17 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             }
         }
 
+        protected Boolean NoComment(long imageId)
+        {
+            List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
+            if (comments.Count == 0)
+            {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         protected void gridMembersList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -174,6 +188,22 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                         ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
                 }
             }
+        }
+
+        protected void gridMembersList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType != DataControlRowType.DataRow)
+                return;
+
+            //se recupera la entidad que genera la row
+            ImageBlock image = e.Row.DataItem as ImageBlock;
+
+            long imageId = (long)Convert.ToDouble(e.Row.Cells[0].Text);
+            List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
+            //se valida que el stock esta en cero 
+            //para remover el link de la primer columna
+            if (comments.Count == 0)
+                e.Row.Cells[8].Controls.Clear();
         }
 
         protected void cbCategory_CheckedChanged(object sender, EventArgs e)

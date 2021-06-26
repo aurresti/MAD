@@ -35,6 +35,7 @@
             <center>
                 <asp:GridView ID="gridMembersList" 
 AutoGenerateColumns="False" 
+            onrowdatabound="gridMembersList_RowDataBound"
             runat="server"  
             onrowcommand="gridMembersList_RowCommand" OnSelectedIndexChanged="gridMembersList_SelectedIndexChanged">
         <Columns>
