@@ -16,7 +16,7 @@ using Es.Udc.DotNet.Photogram.Model;
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
 {
 
-    public partial class SeeComments : System.Web.UI.Page
+    public partial class SeeComments : SpecificCulturePage
     {
         protected struct Info{
             public String Login { get; set; }

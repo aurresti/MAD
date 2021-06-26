@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
-    public partial class ProfilePage : System.Web.UI.Page
+    public partial class ProfilePage : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

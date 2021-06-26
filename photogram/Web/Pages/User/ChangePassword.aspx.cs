@@ -5,7 +5,7 @@ using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.User
 {
-    public partial class ChangePassword : System.Web.UI.Page
+    public partial class ChangePassword : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

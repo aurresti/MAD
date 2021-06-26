@@ -8,11 +8,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
-</asp:Content>
+        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
+    <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
+            </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
      <form id="form1" runat="server">
          <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
              <div>
                  <center>
                      <asp:Image ID="Image1" runat="server" Width="85px" />
@@ -28,7 +30,6 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
                 <asp:Label ID="lISO" runat="server" meta:resourcekey="lISO"></asp:Label>
                 <asp:Label ID="lISOContent" runat="server" Text="0"></asp:Label>
@@ -41,7 +42,6 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
                 <asp:Label ID="lDescription" runat="server" meta:resourcekey="lDescription"></asp:Label>
                 <asp:Label ID="lDescriptionContent" runat="server" Text="0"></asp:Label>
@@ -49,10 +49,7 @@
         </div>
         <div>                
             <center>
-                <asp:Button ID="bLike" runat="server" meta:resourcekey="bLike" OnClick="bLike_Click" />
-                <asp:Label ID="lLike" runat="server" Text="0"></asp:Label>
-                <asp:Button ID="bComment" runat="server" meta:resourcekey="bComment" OnClick="bComment_Click" />
-                <asp:Button ID="bSeeComment" runat="server" meta:resourcekey="bSeeComment" OnClick="bSeeComment_Click" />
+                <asp:Button ID="bDelete" runat="server" meta:resourcekey="bDelete" OnClick="bDelete_Click" OnClientClick="return confirm('desea realziar esta operacion?');"/>
             </center>
         </div>
      </form>

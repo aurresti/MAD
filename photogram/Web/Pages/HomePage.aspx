@@ -8,12 +8,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
-</asp:Content>
+        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
+    <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
+            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
+            </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
             <center>
                 <asp:Label ID="lSearch" runat="server" meta:resourcekey="lSearch"></asp:Label>
                 <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
@@ -21,7 +23,6 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
                 <asp:CheckBox ID="cbCategory" runat="server"  meta:resourcekey="cbCategory" OnCheckedChanged="cbCategory_CheckedChanged"/>
                 <asp:DropDownList ID="comboCategory" runat="server" AutoPostBack="True"
@@ -31,10 +32,10 @@
             </center>
         </div>
         <div>
-            <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
                 <asp:GridView ID="gridMembersList" 
-AutoGenerateColumns="False" GridLines="None" 
+AutoGenerateColumns="False" 
+            onrowdatabound="gridMembersList_RowDataBound"
             runat="server"  
             onrowcommand="gridMembersList_RowCommand" OnSelectedIndexChanged="gridMembersList_SelectedIndexChanged">
         <Columns>
@@ -52,7 +53,7 @@ AutoGenerateColumns="False" GridLines="None"
                     Text="Ver Comentarios" NavigateUrl="OtherProfilePage.aspx" HeaderText="Ver Comentarios"/>
                     <asp:BoundField DataField="numLikes" HeaderText="Likes"/>
         
-        <asp:TemplateField HeaderText="View More">
+        <asp:TemplateField HeaderText="Dar Like">
         <ItemTemplate>
             <asp:Button ID="btnViewmore"  
             CommandArgument="<%# ((GridViewRow) Container).RowIndex %>

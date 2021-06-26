@@ -5,7 +5,7 @@ using Es.Udc.DotNet.Photogram.Model.UserService;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.User
 {
-    public partial class UpdateUserProfile : System.Web.UI.Page
+    public partial class UpdateUserProfile : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
