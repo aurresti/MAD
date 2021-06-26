@@ -466,6 +466,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
                     List<UserAccount> followersBD = userService.SeeFollowers(user1.userId);
                     Console.WriteLine(followersBD[0].loginName);
+
                     Assert.AreEqual(1, followersBD.Count);
 
                 }
@@ -540,7 +541,6 @@ namespace Es.Udc.DotNet.Photogram.Test
 
                     bool followBD = userService.UserFollowExists("user1","user2");
 
-                    Console.WriteLine("pene");
                     Assert.IsTrue(followBD);
 
                 }
