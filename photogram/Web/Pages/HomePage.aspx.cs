@@ -108,12 +108,16 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     {
                         images.Add(SessionManager.FindImageProfileDetailsById(result[i].imageId));
                     }*/
-                    if (result.Images.Count == 1)
+                    if (result.Images.Count >= 1)
                     {
+                        /*gvImage.Visible = true;
                         gvImage.DataSource = result.Images;
-                        gvImage.DataBind();
+                        gvImage.DataBind();*/
+                        gridMembersList.DataSource = result.Images;
+                        gridMembersList.DataBind();
                     }
                     else {
+                        //gvImage.Visible = false;
                         lblNotFound.Visible = true;
                     }
 
@@ -144,15 +148,44 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             }
         }
 
-        void GridView1_RowCommand(Object sender, GridViewCommandEventArgs e)
+        void gvImage_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
+            int index = 0;
+            GridViewRow row;
+            GridView grid = sender as GridView;
             if (e.CommandName == "Like")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvImage.Rows[index];
-                TableCell cell = row.Cells[0];
-                long imageId = (long)Convert.ToDouble(cell.Text);
-                SessionManager.CreateLike(Context, imageId);
+                //first find the button that got clicked
+                var clickedButton = e.CommandSource as Button;
+                //find the row of the button
+                var clickedRow = clickedButton.NamingContainer as GridViewRow;
+                //now as the UserName is in the BoundField, access it using the cell index.
+                var clickedUserName = clickedRow.Cells[0].Text;
+                Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/Image/UploadImage.aspx"));
+            } 
+        }
+
+        protected void gridMembersList_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "More")
+            {
+                if (SessionManager.IsUserAuthenticated(Context)) {
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gridMembersList.Rows[index];
+                    TableCell cell = row.Cells[0];
+                    long imageId = (long)Convert.ToDouble(cell.Text);
+                    if (!SessionManager.ExistsLike(Context, imageId)) {
+                        SessionManager.CreateLike(Context, imageId);
+                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) + 1).ToString();
+                    } else {
+                        SessionManager.DeleteLike(Context, imageId);
+                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) - 1).ToString();
+                    }
+                } else {
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
+                }
             }
         }
 
@@ -172,6 +205,11 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         }
 
         protected void btnAfter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gridMembersList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

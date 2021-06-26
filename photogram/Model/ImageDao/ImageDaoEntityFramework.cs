@@ -153,7 +153,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             var result =
                 (from u in imageProfiles
                  where u.userId == userId
-                 orderby u.date
+                 orderby u.date descending
                  select u);
 
             imageProfile = result.ToList();
@@ -326,6 +326,89 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             image.UserAccounts.Add(userAccount);
 
             Context.SaveChanges();
+        }
+
+        public void RemoveLikeDao(long userId, long imageId)
+        {
+            UserAccount userAccount;
+            Image image;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            try
+            {
+                userAccount =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                image =
+                     (from u in imageProfiles
+                      where u.UserAccounts.Contains(userAccount)
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(imageId, typeof(UserAccount).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
+
+            image.UserAccounts.Remove(userAccount);
+
+            Context.SaveChanges();
+        }
+
+        public bool FindLikeDao(long userId, long imageId)
+        {
+            UserAccount userAccount;
+            Image image;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            DbSet<Image> imageProfiles = Context.Set<Image>();
+
+            try
+            {
+                userAccount =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                image =
+                     (from u in imageProfiles
+                      where u.UserAccounts.Contains(userAccount)
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(imageId, typeof(UserAccount).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
+
+            if (image.UserAccounts.Count >= 1)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+
         }
         #endregion IImagenDao Members
     }

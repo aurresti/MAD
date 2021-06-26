@@ -562,7 +562,25 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            bool commentId = imageService.AddLike(userSession.UserProfileId, imageId);
+            bool likeId = imageService.AddLike(userSession.UserProfileId, imageId);
+        }
+
+        public static void DeleteLike(HttpContext context, long imageId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool likeId = imageService.RemoveLike(userSession.UserProfileId, imageId);
+        }
+
+        public static bool ExistsLike(HttpContext context, long imageId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool likeExists = imageService.FindLike(userSession.UserProfileId, imageId);
+
+            return likeExists;
         }
 
         public static void CreateComment(HttpContext context, long imageId, String description)

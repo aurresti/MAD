@@ -20,8 +20,16 @@
         <div>
             <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
-                <asp:GridView ID="GridView1" runat="server">
-                </asp:GridView>
+                <asp:gridview id="gvComment" 
+                autogeneratecolumns="false"
+                allowpaging="true"
+                runat="server" OnSelectedIndexChanged="gvImage_SelectedIndexChanged1">
+                <Columns>
+                    <asp:BoundField DataField="userId" HeaderText="ImageId"/>
+                    <asp:BoundField DataField="Date" HeaderText="Titulo"/>
+                    <asp:BoundField DataField="Description" HeaderText="Exif"/>
+                </Columns>
+            </asp:gridview>
             </center>
         </div>
         <div>

@@ -60,13 +60,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
         protected global::System.Web.UI.WebControls.HyperLink lnkMyProfile;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control gvComment.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvComment;
 
         /// <summary>
         /// Control lnkExit.

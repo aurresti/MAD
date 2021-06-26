@@ -56,6 +56,10 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
         bool AddLike(long userId, long imageId);
 
+        bool RemoveLike(long userId, long imageId);
+
+        bool FindLike(long userId, long imageId);
+
         /// See comments of an Image.
         /// </summary>
         /// <param name="title"> String of search Image. </param>
