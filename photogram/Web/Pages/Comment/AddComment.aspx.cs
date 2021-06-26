@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
             long id = (long)Convert.ToDouble(valor);
             SessionManager.CreateComment(Context, id, tbComment.Text);
             Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/HomePage.aspx"));
+                        ApplyAppPathModifier("~/Pages/HomePage.aspx?index=0"));
         }
     }
 }

@@ -171,6 +171,32 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
             }
         }
 
+        public bool RemoveLike(long userId, long imageId)
+        {
+            try
+            {
+                ImageDao.RemoveLikeDao(userId, imageId);
+
+                return true;
+            }
+            catch (InstanceNotFoundException e)
+            {
+                return false;
+            }
+        }
+
+        public bool FindLike(long userId, long imageId)
+        {
+            try
+            {
+                return ImageDao.FindLikeDao(userId, imageId);
+            }
+            catch (InstanceNotFoundException e)
+            {
+                return false;
+            }
+        }
+
         public List<Comment> SeeComments(String title)
         {
 

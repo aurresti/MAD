@@ -10,6 +10,7 @@ using Es.Udc.DotNet.Photogram.Model.UserService.Exceptions;
 using System.Web.Security;
 using System.Collections.Generic;
 using Es.Udc.DotNet.Photogram.Model.ImageService;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages
 {
@@ -20,12 +21,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             lblNotFound.Visible = false;
             if (!IsPostBack)
             {
+                btnAfter.Visible = false;
+                btnBefore.Visible = false;
                 /* Get current language and country from browser */
                 String defaultLanguage =
                     GetLanguageFromBrowserPreferences();
 
                 /* Combo box initialization */
-                UpdateComboCategory(defaultLanguage, "no");
+                UpdateComboCategory(defaultLanguage, "Fauna");
             }
         }
 
@@ -96,20 +99,38 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             {
                 try
                 {
-                   var result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
-                        comboCategory.SelectedValue, cbCategory.Checked);
-                    List<ImageProfile> images = new List<ImageProfile>();
-                    for (int i = 0; i < result.Count; i++)
+                    string valor = Request.QueryString["index"];
+                    int id = (int)Convert.ToDouble(valor);
+                    ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
+                        comboCategory.SelectedValue, cbCategory.Checked, id);
+                    if (result.Images.Count >= 1)
                     {
-                        images.Add(SessionManager.FindImageProfileDetailsById(result[i].imageId));
-                    }
-                    if (result.Count == 1)
-                    {
-                        gvImage.DataSource = images;
-                        gvImage.DataBind();
+                        gridMembersList.DataSource = result.Images;
+                        gridMembersList.DataBind();
+                        gridMembersList.Visible = true;
                     }
                     else {
+                        gridMembersList.Visible = false;
                         lblNotFound.Visible = true;
+                    }
+
+                    if (result.existMoreImages)
+                    {
+                        btnAfter.Visible = true;
+                    }
+                    else
+                    {
+                        btnAfter.Visible = false;
+                    }
+
+                    if (result.Images.Count <= 5)
+                    {
+                        btnAfter.Visible = false;
+                        btnBefore.Visible = false;
+                    }
+                    else
+                    {
+                        btnBefore.Visible = true;
                     }
 
                 }
@@ -120,7 +141,46 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             }
         }
 
+
+        protected void gridMembersList_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "More")
+            {
+                if (SessionManager.IsUserAuthenticated(Context)) {
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gridMembersList.Rows[index];
+                    TableCell cell = row.Cells[0];
+                    long imageId = (long)Convert.ToDouble(cell.Text);
+                    if (!SessionManager.ExistsLike(Context, imageId)) {
+                        SessionManager.CreateLike(Context, imageId);
+                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) + 1).ToString();
+                    } else {
+                        SessionManager.DeleteLike(Context, imageId);
+                        row.Cells[9].Text = ((int)Convert.ToDouble(row.Cells[9].Text) - 1).ToString();
+                    }
+                } else {
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
+                }
+            }
+        }
+
         protected void cbCategory_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBefore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAfter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gridMembersList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -90,7 +90,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                         exif, comboCategoryU.Text, tbImageView.Text);
                     Image1.ImageUrl = tbImageView.Text;
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/HomePage.aspx"));
+                        ApplyAppPathModifier("~/Pages/HomePage.aspx?index=0"));
                 }
                 catch (DuplicateInstanceException)
                 {

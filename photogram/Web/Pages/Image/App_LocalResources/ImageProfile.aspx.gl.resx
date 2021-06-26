@@ -162,4 +162,7 @@
   <data name="lWhite.Text" xml:space="preserve">
     <value>Balance de brancos</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Photogram - Detalles Imaxe</value>
+  </data>
 </root>

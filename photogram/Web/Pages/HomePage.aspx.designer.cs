@@ -105,13 +105,13 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         protected global::System.Web.UI.WebControls.HyperLink lnkExit;
 
         /// <summary>
-        /// Control gvImage.
+        /// Control gridMembersList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvImage;
+        protected global::System.Web.UI.WebControls.GridView gridMembersList;
 
         /// <summary>
         /// Control lblNotFound.
@@ -121,6 +121,24 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNotFound;
+
+        /// <summary>
+        /// Control btnBefore.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBefore;
+
+        /// <summary>
+        /// Control btnAfter.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAfter;
 
         /// <summary>
         /// Control btnUpload.

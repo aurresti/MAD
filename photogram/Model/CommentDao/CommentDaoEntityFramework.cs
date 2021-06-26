@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             var result =
                 (from u in comentarioProfiles
                  where u.imageId == imageId
-                 orderby u.date
+                 orderby u.date descending
                  select u);
 
             comentarios = result.ToList();
@@ -56,7 +56,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
                 (from u in comentarioProfiles
                  from a in userProfiles
                  where u.imageId == imageId && a.userId == u.userId
-                 orderby u.date
+                 orderby u.date descending
                  select a);
 
             usuarios = result2.ToList();
@@ -90,7 +90,7 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             var result =
                 (from u in comentarioProfiles
                  where u.imageId == imageId && u.userId == userId
-                 orderby u.date
+                 orderby u.date descending
                  select u);
 
             comentarioProfile = result.FirstOrDefault();

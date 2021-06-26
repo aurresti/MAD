@@ -154,6 +154,9 @@
     <value>Subida de Imagen</value>
   </data>
   <data name="lWhite.Text" xml:space="preserve">
-    <value>balance de blancos</value>
+    <value>Balance de blancos</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Photogram - Subida de Imagen</value>
   </data>
 </root>

@@ -156,4 +156,7 @@
   <data name="lWhite.Text" xml:space="preserve">
     <value>White balance</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Photogram - Upload image</value>
+  </data>
 </root>

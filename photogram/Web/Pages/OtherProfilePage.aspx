@@ -11,7 +11,7 @@
     runat="server">
     <form id="MainForm" method="POST" runat="server">
     <div>
-        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
         
             <center>
             <asp:Label ID="lProfile" runat="server" meta:resourcekey="lProfile"></asp:Label>
@@ -29,7 +29,7 @@
                 runat="server">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                    DataTextField="LoginName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
                 </Columns>
             </asp:gridview>
             <asp:gridview id="gvFollower" 
@@ -38,7 +38,7 @@
                 runat="server">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                    DataTextField="LoginName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
                 </Columns>
             </asp:gridview>
             <asp:Button ID="bFollow" runat="server" meta:resourcekey="bFollow" OnClick="bFollow_Click"  />

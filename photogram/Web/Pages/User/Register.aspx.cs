@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.User
                         txtPassword.Text, userProfileDetailsVO);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/HomePage.aspx"));
+                        ApplyAppPathModifier("~/Pages/HomePage.aspx?index=0"));
                 }
                 catch (DuplicateInstanceException)
                 {

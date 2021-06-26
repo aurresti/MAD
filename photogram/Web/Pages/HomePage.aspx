@@ -13,7 +13,7 @@
     
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
             <center>
                 <asp:Label ID="lSearch" runat="server" meta:resourcekey="lSearch"></asp:Label>
                 <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
@@ -33,21 +33,37 @@
         <div>
             <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
-                <asp:gridview id="gvImage" 
-                autogeneratecolumns="false"
-                allowpaging="true"
-                runat="server">
-                <Columns>
+                <asp:GridView ID="gridMembersList" 
+AutoGenerateColumns="False" GridLines="None" 
+            runat="server"  
+            onrowcommand="gridMembersList_RowCommand" OnSelectedIndexChanged="gridMembersList_SelectedIndexChanged">
+        <Columns>
+            <asp:BoundField DataField="ImageId" HeaderText="ImageId"/>
                     <asp:BoundField DataField="Title" HeaderText="Titulo"/>
-                    <asp:HyperLinkField DataNavigateUrlFields="User" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="User" NavigateUrl="OtherProfilePage.aspx" HeaderText="Autor"/>
+                    <asp:BoundField DataField="ExifInfo" HeaderText="Exif"/>
+                    <asp:BoundField DataField="CategoryName" HeaderText="Categoria"/>
                     <asp:BoundField DataField="Date" HeaderText="Fecha"/>
-                    <asp:BoundField DataField="Descripction" HeaderText="Descripcion"/>
-                    <asp:BoundField DataField="Exif" HeaderText="Exif"/>
-                    <asp:BoundField DataField="Likes" HeaderText="Likes"/>
-                </Columns>
-            </asp:gridview>
+                    <asp:BoundField DataField="Description" HeaderText="Descripcion"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                    DataTextField="Name" NavigateUrl="OtherProfilePage.aspx" HeaderText="Autor"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="imageId" DataNavigateUrlFormatString="~/Pages/Comment/AddComment.aspx?imageId={0}"
+                    Text="Comentar" NavigateUrl="OtherProfilePage.aspx" HeaderText="Añadir Comentarios"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="imageId" DataNavigateUrlFormatString="~/Pages/Comment/SeeComments.aspx?imageId={0}"
+                    Text="Ver Comentarios" NavigateUrl="OtherProfilePage.aspx" HeaderText="Ver Comentarios"/>
+                    <asp:BoundField DataField="numLikes" HeaderText="Likes"/>
+        
+        <asp:TemplateField HeaderText="View More">
+        <ItemTemplate>
+            <asp:Button ID="btnViewmore"  
+            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>
+            " CommandName="More" runat="server" Text="Like" />
+        </ItemTemplate>
+        </asp:TemplateField> 
+        </Columns>
+        </asp:GridView>  
                 <asp:Label ID="lblNotFound" runat="server" meta:resourcekey="lblNotFound"></asp:Label>
+                <asp:Button ID="btnBefore" runat="server" meta:resourcekey="btnBefore" OnClick="btnBefore_Click" />
+                <asp:Button ID="btnAfter" runat="server" meta:resourcekey="btnAfter" OnClick="btnAfter_Click" />
             </center>
             <center>
                 <asp:Button ID="btnUpload" runat="server" meta:resourcekey="btnUpload" OnClick="btnUpload_Click" />

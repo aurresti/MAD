@@ -9,19 +9,28 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <form id="form1" runat="server">
          <div>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx" meta:resourcekey="lnkHome" />
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Pages/HomePage.aspx?index=0" meta:resourcekey="lnkHome" />
             
             <center>
                 
-                <asp:Label ID="lSeeComment" runat="server" meta:resourcekey="lBeginComment"></asp:Label>
+                <asp:Label ID="lSeeComment" runat="server" meta:resourcekey="lSeeComment"></asp:Label>
                 
             </center>
         </div>
         <div>
             <asp:HyperLink ID="lnkMyProfile" runat="server" NavigateUrl="~/Pages/ProfilePage.aspx" meta:resourcekey="lnkMyProfile" />
             <center>
-                <asp:GridView ID="GridView1" runat="server">
-                </asp:GridView>
+                <asp:gridview id="gvComment" 
+                autogeneratecolumns="false"
+                allowpaging="false"
+                runat="server" OnSelectedIndexChanged="gvImage_SelectedIndexChanged1">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="~/Pages/OtherProfilePage.aspx?userId={0}"
+                    DataTextField="Login" NavigateUrl="~/Pages/OtherProfilePage.aspx" HeaderText="Autor"/>
+                    <asp:BoundField DataField="Date" HeaderText="Fecha"/>
+                    <asp:BoundField DataField="Description" HeaderText="Descripcion"/>
+                </Columns>
+            </asp:gridview>
             </center>
         </div>
         <div>
@@ -31,7 +40,6 @@
         <div>                
             <center>
                 <asp:Button ID="bComment" runat="server" meta:resourcekey="bComment" OnClick="bComment_Click" />
-                <asp:Button ID="bTurn" runat="server" meta:resourcekey="bTurn" OnClick="bTurn_Click" />
             </center>
         </div>
      </form>

@@ -50,6 +50,9 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
         void AddLikeDao(long userId, long imageId);
 
+        void RemoveLikeDao(long userId, long imageId);
+
+        bool FindLikeDao(long userId, long imageId);
         /// <summary>
         /// Finds a ImagenProfile by id
         /// </summary>

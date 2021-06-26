@@ -117,43 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnAfter.Text" xml:space="preserve">
-    <value>Siguiente</value>
+  <data name="bComment.Text" xml:space="preserve">
+    <value>Comentar</value>
   </data>
-  <data name="btnBefore.Text" xml:space="preserve">
-    <value>Anterior</value>
-  </data>
-  <data name="btnSearch.Text" xml:space="preserve">
-    <value>Buscar</value>
-  </data>
-  <data name="btnUpload.Text" xml:space="preserve">
-    <value>Subir Imagen</value>
-  </data>
-  <data name="cbCategory.Text" xml:space="preserve">
-    <value>Buscar por categoria?</value>
-  </data>
-  <data name="lblNotFound.Text" xml:space="preserve">
-    <value>No se encontraron imagenes</value>
+  <data name="lBeginComment.Text" xml:space="preserve">
+    <value>Crear Comentario</value>
   </data>
   <data name="lnkExit.Text" xml:space="preserve">
-    <value>Salir</value>
+    <value>Sair</value>
   </data>
   <data name="lnkHome.Text" xml:space="preserve">
     <value>Inicio</value>
   </data>
   <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Mi Perfil</value>
+    <value>Meu Perfil</value>
   </data>
-  <data name="lProfile.Text" xml:space="preserve">
-    <value>Perfil</value>
-  </data>
-  <data name="lSearch.Text" xml:space="preserve">
-    <value>Buscar Imagenes</value>
-  </data>
-  <data name="lTitleHome.Text" xml:space="preserve">
-    <value>Inicio</value>
+  <data name="lTitleProfile.Text" xml:space="preserve">
+    <value>Subida de Comentarios</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Photogram  - Inicio</value>
+    <value>Subir Comentario</value>
   </data>
 </root>
