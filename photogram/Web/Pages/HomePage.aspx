@@ -42,6 +42,9 @@ AutoGenerateColumns="False"
             onrowcommand="gridMembersList_RowCommand" OnSelectedIndexChanged="gridMembersList_SelectedIndexChanged">
         <Columns>
             <asp:BoundField DataField="ImageId" HeaderText="ImageId"/>
+                    <asp:ImageField DataImageUrlField="Url" DataImageUrlFormatString="~/img/{0}" 
+                        HeaderText ="Imagen"> 
+                    </asp:ImageField>
                     <asp:BoundField DataField="Title" HeaderText="Titulo"/>
                     <asp:BoundField DataField="ExifInfo" HeaderText="Exif"/>
                     <asp:BoundField DataField="CategoryName" HeaderText="Categoria"/>
