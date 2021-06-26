@@ -103,21 +103,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     int id = (int)Convert.ToDouble(valor);
                     ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text, 
                         comboCategory.SelectedValue, cbCategory.Checked, id);
-                    /*List<ImageProfile> images = new List<ImageProfile>();
-                    for (int i = 0; i < result.Count; i++)
-                    {
-                        images.Add(SessionManager.FindImageProfileDetailsById(result[i].imageId));
-                    }*/
                     if (result.Images.Count >= 1)
                     {
-                        /*gvImage.Visible = true;
-                        gvImage.DataSource = result.Images;
-                        gvImage.DataBind();*/
                         gridMembersList.DataSource = result.Images;
                         gridMembersList.DataBind();
+                        gridMembersList.Visible = true;
                     }
                     else {
-                        //gvImage.Visible = false;
+                        gridMembersList.Visible = false;
                         lblNotFound.Visible = true;
                     }
 
@@ -148,23 +141,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
             }
         }
 
-        void gvImage_RowCommand(Object sender, GridViewCommandEventArgs e)
-        {
-            int index = 0;
-            GridViewRow row;
-            GridView grid = sender as GridView;
-            if (e.CommandName == "Like")
-            {
-                //first find the button that got clicked
-                var clickedButton = e.CommandSource as Button;
-                //find the row of the button
-                var clickedRow = clickedButton.NamingContainer as GridViewRow;
-                //now as the UserName is in the BoundField, access it using the cell index.
-                var clickedUserName = clickedRow.Cells[0].Text;
-                Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/Image/UploadImage.aspx"));
-            } 
-        }
 
         protected void gridMembersList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -190,11 +166,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         }
 
         protected void cbCategory_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvImage_SelectedIndexChanged1(object sender, EventArgs e)
         {
 
         }

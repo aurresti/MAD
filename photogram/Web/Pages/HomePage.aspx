@@ -33,33 +33,6 @@
         <div>
             <asp:HyperLink ID="lnkExit" runat="server" NavigateUrl="~/Pages/User/Logout.aspx" meta:resourcekey="lnkExit" />
             <center>
-                <asp:gridview id="gvImage" 
-                autogeneratecolumns="false"
-                allowpaging="true"
-                runat="server" OnSelectedIndexChanged="gvImage_SelectedIndexChanged1"
-                >
-                <Columns>
-                    <asp:BoundField DataField="ImageId" HeaderText="ImageId" Visible = "false"/>
-                    <asp:BoundField DataField="Title" HeaderText="Titulo"/>
-                    <asp:BoundField DataField="ExifInfo" HeaderText="Exif"/>
-                    <asp:BoundField DataField="CategoryName" HeaderText="Categoria"/>
-                    <asp:BoundField DataField="Date" HeaderText="Fecha"/>
-                    <asp:BoundField DataField="Description" HeaderText="Descripcion"/>
-                    <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="Name" NavigateUrl="OtherProfilePage.aspx" HeaderText="Autor"/>
-                    <asp:HyperLinkField DataNavigateUrlFields="imageId" DataNavigateUrlFormatString="~/Pages/Comment/AddComment.aspx?imageId={0}"
-                    Text="Comentar" NavigateUrl="OtherProfilePage.aspx" HeaderText="Añadir Comentarios"/>
-                    <asp:HyperLinkField DataNavigateUrlFields="imageId" DataNavigateUrlFormatString="~/Pages/Comment/SeeComments.aspx?imageId={0}"
-                    Text="Ver Comentarios" NavigateUrl="OtherProfilePage.aspx" HeaderText="Ver Comentarios"/>
-                    <asp:BoundField DataField="numLikes" HeaderText="Likes"/>
-                    <asp:ButtonField ButtonType="Button" CommandName="Liket" Text="Liket" HeaderText="Me gustas"/>
-                    <asp:TemplateField ShowHeader="False">
-                <ItemTemplate>
-                   <asp:Button ID="btnedit" runat="server" Text="Edit" CommandName="Like"/>
-                </ItemTemplate>          
-             </asp:TemplateField> 
-                </Columns>
-            </asp:gridview>
                 <asp:GridView ID="gridMembersList" 
 AutoGenerateColumns="False" GridLines="None" 
             runat="server"  

@@ -29,7 +29,7 @@
                 runat="server">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                    DataTextField="LoginName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
                 </Columns>
             </asp:gridview>
             <asp:gridview id="gvFollower" 
@@ -38,7 +38,7 @@
                 runat="server">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
-                    DataTextField="firstName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
+                    DataTextField="LoginName" NavigateUrl="OtherProfilePage.aspx" HeaderText="Usuarios"/>
                 </Columns>
             </asp:gridview>
             <asp:Button ID="bUpgrade" runat="server" meta:resourcekey="bUpgrade" OnClick="bUpgrade_Click"  />
