@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
 using System.Transactions;
+using System.Collections.Generic;
+using Es.Udc.DotNet.Photogram.Model;
+using System.Linq;
 
 namespace Es.Udc.DotNet.Photogram.Test
 {
@@ -145,6 +148,44 @@ namespace Es.Udc.DotNet.Photogram.Test
                 bool categoryExists = categoryService.CategoryExists(categoryId);
 
                 Assert.IsTrue(categoryExists);
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        /// A test to check all Categories
+        /// </summary>
+        [TestMethod]
+        public void FindAllCategoriesTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                List<Category> list = new List<Category>();
+                Category a = new Category();
+                Category b = new Category();
+                Category c = new Category();
+
+                var categoryId =
+                    categoryService.CreateCategory("Nature");
+                a.categoryId = categoryId;
+                a.name = "Nature";
+
+                var categoryId2 =
+                    categoryService.CreateCategory("alga");
+                b.categoryId = categoryId2;
+                b.name = "alga";
+
+                var categoryId3 =
+                    categoryService.CreateCategory("Noche");
+                c.categoryId = categoryId3;
+                c.name = "Noche";
+
+                var obtained = categoryService.FindCategories();
+
+                list.Add(a); list.Add(b); list.Add(c);
+
+                Assert.AreEqual(obtained[2].name,list[2].name);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }

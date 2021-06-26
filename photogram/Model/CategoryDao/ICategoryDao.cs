@@ -22,5 +22,13 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryDao
         /// <returns>The ImagenProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
         Category FindByName(String name);
+
+        /// <summary>
+        /// Finds all categories
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>The ImagenProfile</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        List<Category> FindAll();
     }
 }

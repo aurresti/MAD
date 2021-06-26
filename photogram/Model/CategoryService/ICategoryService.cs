@@ -39,5 +39,10 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
         /// <param name="category"> Id category. </param>
         /// <returns> Name Category</returns>
         String FindCategoryName(long categoryId);
+
+        /// Returns all Categories
+        /// </summary>
+        /// <returns> Name Category</returns>
+        List<Category> FindCategories();
     }
 }

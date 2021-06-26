@@ -80,5 +80,11 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
 
             
         }
+
+        public List<Category> FindCategories()
+        {
+            return CategoryDao.FindAll();
+
+        }
     }
 }
