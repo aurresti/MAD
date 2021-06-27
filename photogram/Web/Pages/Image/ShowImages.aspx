@@ -49,4 +49,14 @@
                 </center>
             </div>
         </form>
+        <br />
+        <!-- "Previous" and "Next" links. -->
+        <div class="previousNextLinks">
+            <span class="previousLink">
+                <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
+                    Visible="False"></asp:HyperLink>
+            </span><span class="nextLink">
+                <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
+            </span>
+        </div>
 </asp:Content>

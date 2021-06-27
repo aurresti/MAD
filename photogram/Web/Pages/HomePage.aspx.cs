@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     string valor = Request.QueryString["index"];
                     int id = (int)Convert.ToDouble(valor);
                     ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text,
-                        categoryU.SelectedValue, cbCategory.Checked, id);
+                        categoryU.SelectedValue, cbCategory.Checked, id, 2);
 
                     if (result.Images.Count >= 1)
                     {

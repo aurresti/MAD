@@ -454,10 +454,10 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return categoryName;
         }
 
-        public static ImageBlock FindImageProfileDetails(String title, String category, bool categoryB, int cont)
+        public static ImageBlock FindImageProfileDetails(String title, String category, bool categoryB, int startIndex, int count)
         {
 
-            ImageBlock imageProfileDetails = imageService.FindImages(title, category, categoryB, cont, 100);
+            ImageBlock imageProfileDetails = imageService.FindImages(title, category, categoryB, startIndex, count);
 
             return imageProfileDetails;
         }

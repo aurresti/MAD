@@ -117,22 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="categoryId" xml:space="preserve">
-    <value>categoryId</value>
-  </data>
-  <data name="mandatoryField" xml:space="preserve">
-    <value>Campo obligatorio</value>
-  </data>
-  <data name="name" xml:space="preserve">
-    <value>name</value>
-  </data>
-  <data name="Next" xml:space="preserve">
+  <data name="btnAfter.Text" xml:space="preserve">
     <value>Siguiente</value>
   </data>
-  <data name="Previous" xml:space="preserve">
+  <data name="btnBefore.Text" xml:space="preserve">
     <value>Anterior</value>
   </data>
-  <data name="searchButton" xml:space="preserve">
+  <data name="btnSearch.Text" xml:space="preserve">
     <value>Buscar</value>
+  </data>
+  <data name="btnUpload.Text" xml:space="preserve">
+    <value>Subir Imagen</value>
+  </data>
+  <data name="categoryName.Text" xml:space="preserve">
+    <value>Nombre de la categoria</value>
+  </data>
+  <data name="cbCategory.Text" xml:space="preserve">
+    <value>Buscar por categoria?</value>
+  </data>
+  <data name="date.Text" xml:space="preserve">
+    <value>fecha</value>
+  </data>
+  <data name="description.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="exifInfo.Text" xml:space="preserve">
+    <value>ExifInfo</value>
+  </data>
+  <data name="imageId.Text" xml:space="preserve">
+    <value>Id de la imagen</value>
+  </data>
+  <data name="lblNotFound.Text" xml:space="preserve">
+    <value>No se encontraron imagenes</value>
+  </data>
+  <data name="lnkExit.Text" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="lnkHome.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="lnkMyProfile.Text" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="lProfile.Text" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="lSearch.Text" xml:space="preserve">
+    <value>Buscar Imagenes</value>
+  </data>
+  <data name="lTitleHome.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="name.Text" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="numLikes.Text" xml:space="preserve">
+    <value>Número de "me gusta"</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Photogram  - Inicio</value>
+  </data>
+  <data name="title.Text" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="url.Text" xml:space="preserve">
+    <value>url</value>
   </data>
 </root>
