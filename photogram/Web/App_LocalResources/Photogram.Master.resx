@@ -135,6 +135,9 @@
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Authentication</value>
   </data>
+  <data name="lnkExit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="lnkHome.Text" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -146,9 +149,6 @@
   </data>
   <data name="lnkRegister.Text" xml:space="preserve">
     <value>Register</value>
-  </data>
-  <data name="lnkSearchImage.Text" xml:space="preserve">
-    <value>Search image</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>

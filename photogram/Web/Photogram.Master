@@ -59,7 +59,7 @@
 
                     <li>
                         <asp:HyperLink ID="lnkHome" runat="server"
-                            meta:resourcekey="lnkHome" NavigateUrl="~/Pages/HomePage.aspx" /></li>
+                            meta:resourcekey="lnkHome" NavigateUrl="~/Pages/Image/SearchImage.aspx" /></li>
                     <li>
                         <asp:HyperLink ID="lnkAuth" runat="server"
                             meta:resourcekey="lnkAuth" NavigateUrl="~/Pages/User/Authentication.aspx" />
@@ -76,12 +76,11 @@
                     </li>
 
                     <li>
-                        <asp:HyperLink ID="lnkSearchImage" runat="server"
-                            meta:resourcekey="lnkSearchImage" NavigateUrl="~/Pages/Image/SearchImage.aspx" /></li>
-
-                    <li>
                         <asp:HyperLink ID="lnkUploadImage" runat="server"
                             meta:resourcekey="lnkUploadImage" NavigateUrl="~/Pages/Image/UploadImage.aspx" /></li>
+                    <li>
+                        <asp:HyperLink ID="lnkExit" runat="server"
+                            meta:resourcekey="lnkExit" NavigateUrl="~/Pages/User/Logout.aspx" /></li>
                 </ul>
             </div>
 

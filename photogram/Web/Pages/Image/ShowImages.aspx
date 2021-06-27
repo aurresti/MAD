@@ -18,6 +18,7 @@
                 runat="server"  
                 allowpaging="true"
                 onrowcommand="gridImageList_RowCommand"
+                onrowdata="gridImageList_RowDataBound"
                 AutoPostBack="True"
                >
             <Columns>
@@ -33,7 +34,7 @@
                         <asp:BoundField DataField="CategoryName" HeaderText="Categoria"/>
                         <asp:BoundField DataField="Date" HeaderText="Fecha"/>
                         <asp:BoundField DataField="Description" HeaderText="Descripcion"/>
-                        <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="OtherProfilePage.aspx?userId={0}"
+                        <asp:HyperLinkField DataNavigateUrlFields="userId" DataNavigateUrlFormatString="~/Pages/OtherProfilePage.aspx?userId={0}"
                         DataTextField="Name" NavigateUrl="OtherProfilePage.aspx" HeaderText="Autor"/>
                         <asp:HyperLinkField DataNavigateUrlFields="imageId" DataNavigateUrlFormatString="~/Pages/Comment/AddComment.aspx?imageId={0}"
                         Text="Comentar" NavigateUrl="OtherProfilePage.aspx" HeaderText="Añadir Comentarios"/>
