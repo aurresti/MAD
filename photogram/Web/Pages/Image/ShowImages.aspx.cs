@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Castle.Core;
 using Es.Udc.DotNet.Photogram.Model.ImageService;
 using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using Es.Udc.DotNet.Photogram.Web.Properties;
@@ -56,10 +57,16 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 
                 foreach (GridViewRow row in this.gridImageList.Rows)
                 {
+                    long imageId = Convert.ToInt32(row.Cells[0].Text);
+                    List<Pair<Model.Comment, Model.UserAccount>> comment = SessionManager.SeeComment(imageId);
+                    if(comment.Count == 0){
+                        row.Cells[9].Controls.Clear();
+                    }
+
                     if (SessionManager.IsUserAuthenticated(Context))
                     {
 
-                        long imageId = Convert.ToInt32(row.Cells[0].Text);
+                        
                         if (SessionManager.ExistsLike(Context, imageId))
                         {
                             //row.Cells[11].Visible = false;
