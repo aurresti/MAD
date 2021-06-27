@@ -159,15 +159,6 @@ namespace Es.Udc.DotNet.Photogram.Web
         protected global::System.Web.UI.WebControls.HyperLink lnkProfile;
 
         /// <summary>
-        /// Control lnkSearchImage.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSearchImage;
-
-        /// <summary>
         /// Control lnkUploadImage.
         /// </summary>
         /// <remarks>
@@ -175,6 +166,15 @@ namespace Es.Udc.DotNet.Photogram.Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkUploadImage;
+
+        /// <summary>
+        /// Control lnkExit.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkExit;
 
         /// <summary>
         /// Control ContentPlaceHolder_BodyContent.

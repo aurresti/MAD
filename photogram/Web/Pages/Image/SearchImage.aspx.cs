@@ -13,7 +13,7 @@ using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
 {
-    public partial class SearchImage : System.Web.UI.Page
+    public partial class SearchImage : SpecificCulturePage
     {
         //protected void Page_Load(object sender, EventArgs e)
         //{
@@ -112,6 +112,15 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                 String url = String.Format("./ShowImages.aspx?text={0}&category={1}&filter={2}", tbSearch.Text, this.categoryU.SelectedValue, cbCategory.Checked);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
                 
+            }
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Response.Redirect(Response.
+                    ApplyAppPathModifier("~/Pages/Image/UploadImage.aspx"));
             }
         }
 

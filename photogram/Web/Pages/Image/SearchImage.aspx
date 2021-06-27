@@ -26,5 +26,8 @@
                     </asp:DropDownList>
             </center>
         </div>
+        <center>
+            <asp:Button ID="btnUpload" runat="server" meta:resourcekey="btnUpload" OnClick="btnUpload_Click" />
+        </center>
     </form>
 </asp:Content>
