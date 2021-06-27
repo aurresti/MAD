@@ -47,10 +47,5 @@
                 <asp:Label ID="lDescriptionContent" runat="server" Text="0"></asp:Label>
             </center>
         </div>
-        <div>                
-            <center>
-                <asp:Button ID="bDelete" runat="server" meta:resourcekey="bDelete" OnClick="bDelete_Click" OnClientClick="return confirm('desea realziar esta operacion?');"/>
-            </center>
-        </div>
      </form>
 </asp:Content>
