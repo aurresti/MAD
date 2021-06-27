@@ -22,13 +22,13 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
 
         #endregion Public Constructors
 
-        #region IImagenDao Members. Specific Operations
+        #region ICommentDao Members. Specific Operations
 
         /// <summary>
-        /// Finds a Image by his id
+        /// Finds a List of Comment by his ImageId
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="imageId"></param>
+        /// <returns>List of Comment and their users</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
         public List<Pair<Comment, UserAccount>> FindComments(long imageId)
         {
@@ -74,9 +74,10 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
         }
 
         /// <summary>
-        /// Finds a Image by his id
+        /// Finds a Comment by his ImageId and UserId
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
         public Comment FindComment(long userId, long imageId)
@@ -105,6 +106,14 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             return comentarioProfile;
         }
 
+        /// <summary>
+        /// Add a Comment 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <param name="description"></param>
+        /// <returns>Added Comment to database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void AddCommentDao(long userId, long imageId, String description)
         {
             Comment c = FindComment(userId,imageId);
@@ -122,6 +131,12 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             Update(c);
         }
 
+        /// <summary>
+        /// Remove a Comment 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <returns>Removed Comment to database</returns>
         public void RemoveCommentDao(long userId, long imageId)
         {
             Comment c = FindComment(userId, imageId);
@@ -138,6 +153,6 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             Update(c);
         }
 
-        #endregion IImagenDao Members
+        #endregion ICommentDao Members
     }
 }

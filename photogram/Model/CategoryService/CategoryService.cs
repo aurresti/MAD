@@ -15,7 +15,6 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
 
         #region ICategoryService Members
 
-        /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
 
@@ -50,7 +49,6 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
                 Category categoryProfile = new Category();
 
                 categoryProfile.name = name;
-                //categoryProfile.categoryId = 1;
 
                 CategoryDao.Create(categoryProfile);
 

@@ -27,16 +27,17 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserProfileDetails"/>
+        /// Initializes a new instance of the <see cref="ImageProfileDetails"/>
         /// class.
         /// </summary>
-        /// <param name="firstName">The user's first name.</param>
-        /// <param name="lastName">The user's last name.</param>
-        /// <param name="email">The user's email.</param>
-        /// <param name="language">The language.</param>
-        /// <param name="country">The country.</param>
-        /// <param name="conect">The conection.</param>
-        /// <param name="mantener">The save.</param>
+        /// <param name="title">The image's title.</param>
+        /// <param name="description">The image's description.</param>
+        /// <param name="date">The date of when image was uploaded.</param>
+        /// <param name="exif">Optional info about image.</param>
+        /// <param name="category">The category name.</param>
+        /// <param name="user">The user id who upload the image.</param>
+        /// <param name="likes">The likes of image.</param>
+        /// <param name="file">The url of image.</param>
         public ImageProfile(String title, String description,
             DateTime date, String exif, long category, long? user, long likes, String file)
         {
@@ -66,7 +67,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
         // The GetHashCode method is used in hashing algorithms and data 
         // structures such as a hash table. In order to ensure that it works 
-        // properly, we suppose that the FirstName does not change.        
+        // properly, we suppose that the Title does not change.        
         public override int GetHashCode()
         {
             return this.Title.GetHashCode();

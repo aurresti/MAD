@@ -24,11 +24,11 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryDao
         #region ICategoryDao Members. Specific Operations
 
         /// <summary>
-        /// Finds a Image by his title
+        /// Finds a Category by Id
         /// </summary>
-        /// <param name="loginName"></param>
-        /// <returns></returns>
-        /// <exception cref="InstanceNotFoundException"></exception>
+        /// <param name="id">id</param>
+        /// <returns>The Category</returns>
+        /// <exception cref="InstanceNotFoundException"/>
         public Category FindById(long id)
         {
             Category categoryProfile = null;
@@ -54,11 +54,11 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryDao
         }
 
         /// <summary>
-        /// Finds a Image by his title
+        /// Finds a Category by name
         /// </summary>
-        /// <param name="title"></param>
-        /// <returns></returns>
-        /// <exception cref="InstanceNotFoundException"></exception>
+        /// <param name="name">Category name</param>
+        /// <returns>The Category</returns>
+        /// <exception cref="InstanceNotFoundException"/>
         public Category FindByName(String name)
         {
             Category categoryProfile = null;
@@ -85,11 +85,10 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryDao
         }
 
         /// <summary>
-        /// Finds a Image by his title
+        /// Finds all categories
         /// </summary>
-        /// <param name="loginName"></param>
-        /// <returns></returns>
-        /// <exception cref="InstanceNotFoundException"></exception>
+        /// <returns>List of Category</returns>
+        /// <exception cref="InstanceNotFoundException"/>
         public List<Category> FindAll()
         {
             List<Category> categoryProfile = null;

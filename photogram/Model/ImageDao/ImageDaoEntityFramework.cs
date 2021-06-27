@@ -26,10 +26,10 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         #region IImagenDao Members. Specific Operations
 
         /// <summary>
-        /// Finds a Image by his title
+        /// Finds a Image by id
         /// </summary>
-        /// <param name="loginName"></param>
-        /// <returns></returns>
+        /// <param name="id"></param>
+        /// <returns>Image</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
         public Image FindById(long id)
         {
@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// Finds a Image by his title
         /// </summary>
         /// <param name="title"></param>
-        /// <returns></returns>
+        /// <returns>Image</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
         public Image FindByTitle(String title)
         {
@@ -91,7 +91,9 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         /// Finds a Image by text
         /// </summary>
         /// <param name="texto"></param>
-        /// <returns>imagen con la informacion de su categoria</returns>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns>Image list with text contain in title or description</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
         public List<ImageInfo> FindByText(String texto, int startIndex, int count)
         {
@@ -142,6 +144,12 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             return imageProfile;
         }
 
+        /// <summary>
+        /// Finds Images by his userId
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>List of Images</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public List<Image> FindByUserId(long userId)
         {
             List<Image> imageProfile = null;
@@ -169,13 +177,15 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         }
 
         /// <summary>
-        /// Finds a Image by his title and description of a category
+        /// Finds a Image by his title or description of a category
         /// </summary>
-        /// <param name="title"></param>
+        /// <param name="text"></param>
         /// <param name="category"></param>
-        /// <returns></returns>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns>List of Images</returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public List<ImageInfo> FindByCategory(string texto, string category, int startIndex, int count)
+        public List<ImageInfo> FindByCategory(string text, string category, int startIndex, int count)
         {
             List<ImageInfo> imageProfile = new List<ImageInfo>();
 
@@ -192,7 +202,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             imageList =
                 (from u in imageLists
                  from c in CategoryLists
-                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
+                 where (u.title.Contains(text) || u.description.Contains(text)) && c.name == category
                  where u.categoryId == c.categoryId
                  orderby u.imageId
                  select u).Skip(startIndex).Take(count).ToList();
@@ -200,7 +210,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             categoryList =
                 (from u in imageLists
                  from c in CategoryLists
-                 where (u.title.Contains(texto) || u.description.Contains(texto)) && c.name == category
+                 where (u.title.Contains(text) || u.description.Contains(text)) && c.name == category
                  where u.categoryId == c.categoryId
                  orderby u.imageId
                  select c).Skip(startIndex).Take(count).ToList();
@@ -211,7 +221,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             ///Como accedemos a la categoria? excepcion carga perezosa, paginacion
 
             if (imageProfile == null)
-                throw new InstanceNotFoundException(texto,
+                throw new InstanceNotFoundException(text,
                     typeof(Image).FullName);
 
             for (int i = 0; i < imageList.Count; i++)
@@ -223,12 +233,12 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
         }
 
         /// <summary>
-        /// Finds a Image by his id
+        /// Finds Comments by his imageId
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="imageId"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public List<Comment> FindComments(long id)
+        public List<Comment> FindComments(long imageId)
         {
             List<Comment> comentarioProfile = null;
 
@@ -238,7 +248,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
             var result =
                 (from u in comentarioProfiles
-                 where u.imageId == id orderby u.date
+                 where u.imageId == imageId orderby u.date
                  select u);
 
             comentarioProfile = result.ToList();
@@ -247,7 +257,7 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
 
             if (comentarioProfile == null)
-                throw new InstanceNotFoundException(id,
+                throw new InstanceNotFoundException(imageId,
                     typeof(Image).FullName);
 
             ///Como accedemos al nombre? excepcion carga perezosa
@@ -255,6 +265,14 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             return comentarioProfile;
         }
 
+        /// <summary>
+        /// Add a Comment
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <param name="description"></param>
+        /// <returns>Comment added to database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void AddCommentDao(UserAccount user, long imageId, String description)
         {
             Image c = Find(imageId);
@@ -272,6 +290,13 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             Update(c);
         }
 
+        /// <summary>
+        /// Remove a Comment
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <returns>Comment removed to database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void RemoveCommentDao(UserAccount user, long imageId)
         {
             Image c = Find(imageId);
@@ -288,7 +313,13 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             Update(c);
         }
 
-
+        /// <summary>
+        /// Add a Like
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <returns>Like added to database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void AddLikeDao(long userId, long imageId)
         {
             UserAccount userAccount;
@@ -328,6 +359,13 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Remove a Like
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <returns>Like removed to database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void RemoveLikeDao(long userId, long imageId)
         {
             UserAccount userAccount;
@@ -367,6 +405,13 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Find a Like
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="imageId"></param>
+        /// <returns>Bool about find like in the database</returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
         public bool FindLikeDao(long userId, long imageId)
         {
             UserAccount userAccount;

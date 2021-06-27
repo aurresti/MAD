@@ -20,12 +20,40 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
         [Inject]
         IUserDao userDao { set; }
 
+        /// <summary>
+        /// Add a Comment to Image
+        /// </summary>
+        /// <param name="userId">UserId to comment</param>
+        /// <param name="imageId">ImageId to comment</param>
+        /// <param name="description">contents of comment</param>
+        /// <returns>Added Comment to database</returns>
         long AddComment(long userId, long imageId, string description);
 
+        /// <summary>
+        /// Remove a Comment to Image
+        /// </summary>
+        /// <param name="userId">User to comment</param>
+        /// <param name="imageId">ImageId to comment</param>
+        /// <param name="commentId">CommentId to comment</param>
+        /// <returns>Removed Comment to database</returns>
+        /// <exception cref="InstanceNotFoundException"/>
         bool RemoveComment(long userId, long imageId, long commentId);
 
+        /// <summary>
+        /// Update a Comment to Image
+        /// </summary>
+        /// <param name="userId">User to comment</param>
+        /// <param name="imageId">ImageId to comment</param>
+        /// <param name="comment">CommentId to comment</param>
+        /// <param name="description">contents of comment</param>
+        /// <returns>Updated Comment to database</returns>
         void UpdateComment(long userId, long imageId, long comment, string description);
 
+        /// <summary>
+        /// Finds Comments and their Users by imageId
+        /// </summary>
+        /// <param name="imageId">imageId</param>
+        /// <returns>List comments of Image</returns>
         List<Pair<Comment, UserAccount>> GetComments(long imageId);
 
     }

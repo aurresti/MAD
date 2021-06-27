@@ -13,36 +13,37 @@ namespace Es.Udc.DotNet.Photogram.Model.CategoryService
         ICategoryDao CategoryDao { set; }
 
         /// <summary>
-        /// Checks if the specified Imagen exists.
+        /// Checks if the specified Category exists.
         /// </summary>
-        /// <param name="id"> Id Imagen. </param>
-        /// <returns> Boolean to indicate if the imagen exists </returns>
+        /// <param name="id"> Id Category. </param>
+        /// <returns> Boolean to indicate if the category exists </returns>
         bool CategoryExists(long id);
 
         /// <summary>
-        /// Upload a valid Imagen.
+        /// Create a valid Category.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="userProfileDetails"> Imagen profile. </param>
-        /// <returns> Boolean to indicate if the imagen is upload </returns>
+        /// <param name="name"> Category name. </param>
+        /// <returns> Id of Category created </returns>
         long CreateCategory(String name);
 
-        /// Search a Imagen for word key.
+        /// <summary>
+        /// Search a Category for name.
         /// </summary>
-        /// <param name="title"> String of search. </param>
-        /// <param name="category"> Search for categoty or not. </param>
-        /// <returns> List of Image</returns>
-        Category FindCategory(String texto);
+        /// <param name="text"> String of search. </param>
+        /// <returns> Category</returns>
+        Category FindCategory(String text);
 
-        /// Search a Category for id.
+        /// <summary>
+        /// Search a Category name for id.
         /// </summary>
-        /// <param name="category"> Id category. </param>
+        /// <param name="categoryId"> Id category. </param>
         /// <returns> Name Category</returns>
         String FindCategoryName(long categoryId);
 
+        /// <summary>
         /// Returns all Categories
         /// </summary>
-        /// <returns> Name Category</returns>
+        /// <returns> List of Category</returns>
         List<Category> FindCategories();
     }
 }

@@ -41,10 +41,9 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// <summary>
         /// Update a valid user.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="password"> User password. </param>
+        /// <param name="userProfileId"> User identification. </param>
         /// <param name="userProfileDetails"> User profile. </param>
-        /// <returns> Boolean to indicate if the user is register </returns>
+        /// <returns> The details of profile user change </returns>
         void UpdateProfile(long userProfileId, UserProfile userProfileDetails);
 
         /// <summary>
@@ -52,22 +51,21 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// </summary>
         /// <param name="loginName"> User loginName. </param>
         /// <param name="password"> User password. </param>
-        /// <param name="manterner"> Stay password. </param>
         /// <param name="passwordIsEncrypted"> Password is encrypte or not. </param>
-        /// <returns> Boolean to indicate if the user is register </returns>
+        /// <returns> Result of Login </returns>
         LoginResult ConectUser(string loginName, string password, bool passwordIsEncrypted);
 
         /// <summary>
         /// Show the followers of the user.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
+        /// <param name="userId"> User Identification. </param>
         /// <returns> List of followers of the user </returns>
         List<UserAccount> SeeFollowers(long userId);
 
         /// <summary>
         /// Show the follows of the user.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
+        /// <param name="userId"> User Identification. </param>
         /// <returns> List of the follows of the user </returns>
         List<UserAccount> SeeFollow(long userId);
 
@@ -81,17 +79,17 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// <summary>
         /// Follow a valid user.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="loginNameFollow"> User loginName to follow. </param>
-        /// <returns> Boolean to indicate if the user follow </returns>
+        /// <param name="userId"> User Identification. </param>
+        /// <param name="followedBy"> User Identification to follow. </param>
+        /// <returns> Boolean to indicate if the user follow the other user </returns>
         bool FollowUser(long userId, long followedBy);
 
         /// <summary>
-        /// Follow a valid user.
+        /// UnFollow a valid user.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="loginNameFollow"> User loginName to follow. </param>
-        /// <returns> Boolean to indicate if the user follow </returns>
+        /// <param name="userId"> User Identification. </param>
+        /// <param name="unFollowedById"> User Identification to follow. </param>
+        /// <returns> Boolean to indicate if the user unfollow the other user</returns>
         bool UnFollowUser(long userId, long unFollowedById);
 
         /// <summary>

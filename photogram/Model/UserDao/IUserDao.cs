@@ -16,18 +16,18 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         UserAccount FindByLoginName(String loginName);
 
         /// <summary>
-        /// Finds a UserProfile by loginName
+        /// Finds Followers by userId
         /// </summary>
-        /// <param name="loginName">loginName</param>
+        /// <param name="userId">userId</param>
         /// <returns>The Followers of user</returns>
         /// <exception cref="InstanceNotFoundException"/>
         List<UserAccount> FindFollowersById(long userid);
 
         /// <summary>
-        /// Finds a UserProfile by loginName
+        /// Finds Followeds by userId
         /// </summary>
-        /// <param name="loginName">loginName</param>
-        /// <returns>Find who Id is following</returns>
+        /// <param name="userId">userId</param>
+        /// <returns>The Followeds of user</returns>
         /// <exception cref="InstanceNotFoundException"/>
         List<UserAccount> FindFollowById(long userId);
 
@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         /// Follow a user
         /// </summary>
         /// <param name="userId">Id of user</param>
-        /// <param name="followId">Id of user follower</param>
+        /// <param name="followById">Id of user follower</param>
         /// <returns>The user following the user</returns>
         /// <exception cref="InstanceNotFoundException"/>
         void AddFollow(long userId, long followById);
@@ -44,7 +44,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         /// Remove a follow of user
         /// </summary>
         /// <param name="userId">Id of user</param>
-        /// <param name="followId">Id of user follower</param>
+        /// <param name="unFollowById">Id of user follower</param>
         /// <returns>The user stop following the user</returns>
         /// <exception cref="InstanceNotFoundException"/>
         void RemoveFollow(long userId, long unFollowById);

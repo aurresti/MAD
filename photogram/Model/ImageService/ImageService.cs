@@ -117,46 +117,6 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageService
 
         }
 
-        /*public bool AddComment(long userId, string title, string description)
-           {
-                try
-                {
-                    Image imageProfile = ImageDao.FindByTitle(title);
-                    UserAccount user = UserDao.Find(userId);
-                    ImageDao.AddCommentDao(user,imageProfile.imageId,description);
-                    return true;
-                }
-                catch (InstanceNotFoundException e)
-                 {
-                    return false;
-                 }
-        }
-
-        public bool RemoveComment(long userId, string title)
-        {
-            try
-            {
-                Image imageProfile = ImageDao.FindByTitle(title);
-                UserAccount user = UserDao.Find(userId);
-                ImageDao.RemoveCommentDao(user, imageProfile.imageId);
-                return true;
-            }
-            catch (InstanceNotFoundException e)
-            {
-                return false;
-            }
-        }
-
-        public void UpdateProfile(long userId, string title, String description, DateTime date)
-        {
-            Comment commentProfile =
-                UserDao.Find(userProfileId);
-
-            commentProfile.comment1 = description;
-            commentProfile.date = date;
-            UserDao.Update(commentProfile);
-        }*/
-
         public bool AddLike(long userId, long imageId)
         {
             try
