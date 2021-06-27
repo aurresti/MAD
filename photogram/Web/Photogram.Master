@@ -59,7 +59,7 @@
 
                     <li>
                         <asp:HyperLink ID="lnkHome" runat="server"
-                            meta:resourcekey="lnkHome" NavigateUrl="~/Pages/MainPage.aspx" /></li>
+                            meta:resourcekey="lnkHome" NavigateUrl="~/Pages/HomePage.aspx" /></li>
                     <li>
                         <asp:HyperLink ID="lnkAuth" runat="server"
                             meta:resourcekey="lnkAuth" NavigateUrl="~/Pages/User/Authentication.aspx" />

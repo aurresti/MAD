@@ -130,30 +130,30 @@
     <value>Photogram: Exemplo dunha Aplicación Web MVC con .NET</value>
   </data>
   <data name="lnkAuth.Text" xml:space="preserve">
-    <value>autentificarse</value>
+    <value>Autentificarse</value>
   </data>
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Autenticación</value>
   </data>
   <data name="lnkHome.Text" xml:space="preserve">
-    <value>inicio</value>
+    <value>Inicio</value>
   </data>
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Saír</value>
   </data>
   <data name="lnkProfile.Text" xml:space="preserve">
-    <value>perfil</value>
+    <value>Perfil</value>
   </data>
   <data name="lnkRegister.Text" xml:space="preserve">
-    <value>rexistrarse</value>
+    <value>Rexistrarse</value>
   </data>
   <data name="lnkSearchImage.Text" xml:space="preserve">
-    <value>buscar imaxes</value>
+    <value>Buscar imaxes</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Actualizar información de usuario</value>
   </data>
   <data name="lnkUploadImage.Text" xml:space="preserve">
-    <value>subir imaxen</value>
+    <value>Subir imaxen</value>
   </data>
 </root>
