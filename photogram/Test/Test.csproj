@@ -115,16 +115,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICategoryServiceTest.cs" />
+    <Compile Include="CategoriServiceTest\ICategoryServiceTest.cs" />
     <Compile Include="ComentServiceTest\CommentServiceTest.cs" />
     <Compile Include="IGenericDaoTest.cs" />
-    <Compile Include="IImageServiceTest.cs" />
+    <Compile Include="ImageServiceTest\IImageServiceTest.cs" />
     <Compile Include="ImageServiceTest\ImageServiceTest.cs" />
-    <Compile Include="IUserProfileDaoTest.cs" />
-    <Compile Include="IUsuarioServiceTest.cs" />
     <Compile Include="NinjectXMLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestManager.cs" />
+    <Compile Include="UserServiceTest\IUserProfileDaoTest.cs" />
+    <Compile Include="UserServiceTest\IUsuarioServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -154,7 +154,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     int index = Convert.ToInt32(e.CommandArgument);
                     GridViewRow row = gridMembersList.Rows[index];
                     TableCell cell = row.Cells[0];
-                    long imageId = (long)Convert.ToDouble(cell.FindControl("imageId"));
+                    long imageId = (long)Convert.ToDouble(cell.Text);
                     if (!SessionManager.ExistsLike(Context, imageId)) {
                         SessionManager.CreateLike(Context, imageId);
                         row.Cells[10].Text = ((int)Convert.ToDouble(row.Cells[10].Text) + 1).ToString();
