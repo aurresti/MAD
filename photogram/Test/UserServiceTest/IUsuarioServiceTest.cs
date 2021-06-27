@@ -220,11 +220,11 @@ namespace Es.Udc.DotNet.Photogram.Test
                 userService.FollowUser(user1.userId, user2.userId);
 
                 List<UserAccount> obtained =
-                    userService.SeeFollowers(user1.userId);
+                    userService.SeeFollowers(user2.userId);
 
 
                 // Check data
-                Assert.AreEqual(user2, obtained[0]);
+                Assert.AreEqual(user1.userId, obtained[0].userId);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -245,11 +245,11 @@ namespace Es.Udc.DotNet.Photogram.Test
                 userService.FollowUser(user1.userId, user2.userId);
 
                 List<UserAccount> obtained =
-                    userService.SeeFollow(user2.userId);
+                    userService.SeeFollow(user1.userId);
 
 
                 // Check data
-                Assert.AreEqual(user1, obtained[0]);
+                Assert.AreEqual(user2.userId, obtained[0].userId);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -425,12 +425,12 @@ namespace Es.Udc.DotNet.Photogram.Test
                 try
                 {
 
-                    userService.FollowUser(user1.userId, user2.userId);
+                    userService.FollowUser(user2.userId, user1.userId);
                     
-                    userService.FollowUser(user1.userId, user3.userId);
+                    userService.FollowUser(user3.userId, user1.userId);
 
                     List<UserAccount> followersBD = userService.SeeFollowers(user1.userId);
-
+                    
                     CollectionAssert.AreEqual(followers, followersBD);
                     
                 }
@@ -459,10 +459,10 @@ namespace Es.Udc.DotNet.Photogram.Test
                 try
                 {
 
-                    userService.FollowUser(user1.userId, user2.userId);
-                    userService.FollowUser(user1.userId, user3.userId);
+                    userService.FollowUser(user2.userId, user1.userId);
+                    userService.FollowUser(user3.userId, user1.userId);
 
-                    userService.UnFollowUser(user1.userId, user2.userId);
+                    userService.UnFollowUser(user2.userId, user1.userId);
 
                     List<UserAccount> followersBD = userService.SeeFollowers(user1.userId);
                     Console.WriteLine(followersBD[0].loginName);
@@ -499,8 +499,8 @@ namespace Es.Udc.DotNet.Photogram.Test
                 try
                 {
 
-                    userService.FollowUser(user2.userId, user1.userId);
-                    userService.FollowUser(user3.userId, user1.userId);
+                    userService.FollowUser(user1.userId, user2.userId);
+                    userService.FollowUser(user1.userId, user3.userId);
 
                     List<UserAccount> followBD = userService.SeeFollow(user1.userId);
 
