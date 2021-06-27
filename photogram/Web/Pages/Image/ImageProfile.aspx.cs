@@ -35,18 +35,9 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                         {
                             hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
                         }
-                        if ((long)imageShow.User == userSession.UserProfileId)
-                        {
-                            bDelete.Visible = true;
-                        }
-                        else
-                        {
-                            bDelete.Visible = false;
-                        }
                     }
                     else {
                         hlUser.NavigateUrl = "~/Pages/OtherProfilePage.aspx?userId=" + (long)imageShow.User;
-                        bDelete.Visible = false;
                     }
                     String exif = imageShow.Exif;
                     String[] info = exif.Split('/');
