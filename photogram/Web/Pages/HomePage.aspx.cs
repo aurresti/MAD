@@ -150,12 +150,14 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
             if (e.CommandName == "More")
             {
-                if (SessionManager.IsUserAuthenticated(Context)) {
+                if (SessionManager.IsUserAuthenticated(Context))
+                {
                     int index = Convert.ToInt32(e.CommandArgument);
                     GridViewRow row = gridMembersList.Rows[index];
                     TableCell cell = row.Cells[0];
                     long imageId = (long)Convert.ToDouble(cell.Text);
-                    if (!SessionManager.ExistsLike(Context, imageId)) {
+                    if (!SessionManager.ExistsLike(Context, imageId))
+                    {
                         SessionManager.CreateLike(Context, imageId);
                         row.Cells[10].Text = ((int)Convert.ToDouble(row.Cells[10].Text) + 1).ToString();
                         //gridMembersList.DataBind();
@@ -163,7 +165,9 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                         SessionManager.DeleteLike(Context, imageId);
                         row.Cells[10].Text = ((int)Convert.ToDouble(row.Cells[10].Text) - 1).ToString();
                     }*/
-                } else {
+                }
+                else
+                {
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
                 }

@@ -150,6 +150,9 @@
   <data name="lblNotFound.Text" xml:space="preserve">
     <value>Images not found</value>
   </data>
+  <data name="like.Text" xml:space="preserve">
+    <value>like</value>
+  </data>
   <data name="lnkExit.Text" xml:space="preserve">
     <value>Exit</value>
   </data>

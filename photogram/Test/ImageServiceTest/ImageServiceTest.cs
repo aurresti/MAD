@@ -233,5 +233,24 @@ namespace Es.Udc.DotNet.Photogram.Test
             
 
         }
+
+        [TestMethod()]
+        public void FindSimpleLikeImage()
+        {
+            long cat = GetValidCategory("Nature");
+
+            UserAccount user = GetValidUser("pepito.p");
+
+            var image1 =
+                   new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", cat, user.userId, 0, "");
+
+            var imageId = imageService.CreateImage("titulo", image1);
+
+            imageService.AddLike(user.userId, imageId);
+
+            Assert.IsTrue(imageService.FindLike(user.userId, imageId));
+
+        }
     }
+
 }

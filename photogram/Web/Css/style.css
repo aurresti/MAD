@@ -169,6 +169,11 @@ table th, td {
     margin-left: 5px;
 }
 
+
+.hidden-field {
+    display: none;
+}
+
 /* Footer. */
 
 #footer {

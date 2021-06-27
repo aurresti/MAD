@@ -436,8 +436,21 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
             {
                 image =
                      (from u in imageProfiles
-                      where u.UserAccounts.Contains(userAccount)
+                      where u.imageId == imageId
                       select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(imageId, typeof(UserAccount).FullName);
+            }
+
+            try 
+            {
+                userAccount =
+                    (from u in userProfiles
+                     from l in u.Images1
+                     where u.userId == userId && l.imageId == imageId
+                     select u).Single();
             }
             catch (Exception e)
             {
@@ -446,13 +459,11 @@ namespace Es.Udc.DotNet.Photogram.Model.ImageDao
 
             //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
 
-            if (image.UserAccounts.Count >= 1)
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
+            if (userAccount == null)
+                throw new InstanceNotFoundException(userId,
+                    typeof(UserAccount).FullName);
+
+            return true;
 
         }
         #endregion IImagenDao Members
