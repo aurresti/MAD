@@ -130,13 +130,13 @@
     <value>Photogram: A Sample MVC Web Application with .NET</value>
   </data>
   <data name="lnkAuth.Text" xml:space="preserve">
-    <value>authenticate</value>
+    <value>Authenticate</value>
   </data>
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Authentication</value>
   </data>
   <data name="lnkHome.Text" xml:space="preserve">
-    <value>home</value>
+    <value>Home</value>
   </data>
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Logout</value>
@@ -148,12 +148,12 @@
     <value>Register</value>
   </data>
   <data name="lnkSearchImage.Text" xml:space="preserve">
-    <value>search image</value>
+    <value>Search image</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>
   </data>
   <data name="lnkUploadImage.Text" xml:space="preserve">
-    <value>upload image</value>
+    <value>Upload image</value>
   </data>
 </root>

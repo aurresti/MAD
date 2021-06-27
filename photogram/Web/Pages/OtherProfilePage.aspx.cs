@@ -91,35 +91,41 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
         protected void bFollowed_Click(object sender, EventArgs e)
         {
-            string valor = Request.QueryString["userId"];
-            long id = (long)Convert.ToDouble(valor);
-            var followed = SessionManager.SeeFolloweds(id);
-            gvFollowed.DataSource = followed;
-            gvFollowed.DataBind();
-            if (gvFollowed.Visible)
+            if (Page.IsValid)
             {
-                gvFollowed.Visible = false;
-            }
-            else
-            {
-                gvFollowed.Visible = true;
+                string valor = Request.QueryString["userId"];
+                long id = (long)Convert.ToDouble(valor);
+                var followed = SessionManager.SeeFolloweds(id);
+                gvFollowed.DataSource = followed;
+                gvFollowed.DataBind();
+                if (gvFollowed.Visible)
+                {
+                    gvFollowed.Visible = false;
+                }
+                else
+                {
+                    gvFollowed.Visible = true;
+                }
             }
         }
 
         protected void bFollowers_Click(object sender, EventArgs e)
         {
-            string valor = Request.QueryString["userId"];
-            long id = (long)Convert.ToDouble(valor);
-            var follower = SessionManager.SeeFollowers(id);
-            gvFollower.DataSource = follower;
-            gvFollower.DataBind();
-            if (gvFollower.Visible)
+            if (Page.IsValid)
             {
-                gvFollower.Visible = false;
-            }
-            else
-            {
-                gvFollower.Visible = true;
+                string valor = Request.QueryString["userId"];
+                long id = (long)Convert.ToDouble(valor);
+                var follower = SessionManager.SeeFollowers(id);
+                gvFollower.DataSource = follower;
+                gvFollower.DataBind();
+                if (gvFollower.Visible)
+                {
+                    gvFollower.Visible = false;
+                }
+                else
+                {
+                    gvFollower.Visible = true;
+                }
             }
         }
 
