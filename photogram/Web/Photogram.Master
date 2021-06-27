@@ -6,23 +6,6 @@
 <head id="Head1" runat="server">
     <title>Photogram</title>
     <link href="~/Css/style.css" rel="stylesheet" type="text/css" runat="server"/>
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function showpreview(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imgpreview').css('visibility', 'visible');
-                    $('#imgpreview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-
-        }
-
-    </script>
 </head>
 <body>
     <!-- Window. -->
@@ -31,8 +14,11 @@
         <div id="pageTitle">
             <asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" />
         </div>
+
         <!-- Menu. -->
+
         <div id="menu">
+
             <span id="menuWelcome">
 
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuWelcome" runat="server">
@@ -64,10 +50,47 @@
             </span>
         </div>
 
-        <!-- Body content. -->
-        <div id="content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
+        <!-- Sidebar -->
+        <div id="pageBody">
+
+            <div id="sidebar">
+
+                <ul>
+
+                    <li>
+                        <asp:HyperLink ID="lnkHome" runat="server"
+                            meta:resourcekey="lnkHome" NavigateUrl="~/Pages/MainPage.aspx" /></li>
+                    <li>
+                        <asp:HyperLink ID="lnkAuth" runat="server"
+                            meta:resourcekey="lnkAuth" NavigateUrl="~/Pages/User/Authentication.aspx" />
+                    </li>
+
+                    <li>
+                        <asp:HyperLink ID="lnkRegister" runat="server"
+                            meta:resourcekey="lnkRegister" NavigateUrl="~/Pages/User/Register.aspx" />
+                    </li>
+
+                    <li>
+                        <asp:HyperLink ID="lnkProfile" runat="server"
+                            meta:resourcekey="lnkProfile" NavigateUrl="~/Pages/ProfilePage.aspx" />
+                    </li>
+
+                    <li>
+                        <asp:HyperLink ID="lnkSearchImage" runat="server"
+                            meta:resourcekey="lnkSearchImage" NavigateUrl="~/Pages/Image/SearchImage.aspx" /></li>
+
+                    <li>
+                        <asp:HyperLink ID="lnkUploadImage" runat="server"
+                            meta:resourcekey="lnkUploadImage" NavigateUrl="~/Pages/Image/UploadImage.aspx" /></li>
+                </ul>
+            </div>
+
+            <!-- Body content. -->
+            <div id="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
+            </div>
         </div>
+
         <!-- Footer. -->
         <div id="footer">
             <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />

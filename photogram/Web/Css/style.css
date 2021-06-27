@@ -28,6 +28,42 @@ a {
     width: 98%;
 }
 
+/* Page body. */
+
+#pageBody {
+    margin-top: 5px;
+    width: 100%;
+}
+
+/* Sidebar. */
+
+#sidebar {
+    float: left;
+    background-color: #097099;
+    width: 20%;
+}
+
+#sidebar a {
+    color: #fffac6;
+}
+
+    #sidebar a:hover {
+        color: #cc0000;
+    }
+
+#sidebar ul {
+    list-style: none;
+    padding-top: 0px;
+    /* Hack for correct indentation (the following three lines). */
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+#sidebar li {
+    padding: 0 0 3px 5px;
+}
+
 /* Page title. */
 
 #pageTitle {
@@ -113,6 +149,16 @@ div.button {
 
 input, select, textarea {
     background-color: #f4f4f4;
+}
+
+/* General properties. */
+
+table th, strong {
+    font-weight: bold;
+}
+
+table th, td {
+    font-size: 12px;
 }
 
 /* Error messages. */
