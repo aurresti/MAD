@@ -114,6 +114,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     int id = (int)Convert.ToDouble(valor);
                     ImageBlock result = SessionManager.FindImageProfileDetails(tbSearch.Text,
                         categoryU.SelectedValue, cbCategory.Checked, id);
+
                     if (result.Images.Count >= 1)
                     {
                         gridMembersList.DataSource = result.Images;
@@ -175,8 +176,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
 
             //se recupera la entidad que genera la row
             ImageBlock image = e.Row.DataItem as ImageBlock;
-
-            long imageId = (long)Convert.ToDouble(e.Row.Cells[0].Text);
+            long imageId = Convert.ToInt32(e.Row.Cells[0].Text);
             List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
             if (comments.Count == 0)
                 e.Row.Cells[8].Controls.Clear();
