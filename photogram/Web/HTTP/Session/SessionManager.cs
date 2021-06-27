@@ -547,12 +547,12 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return follow;
         }
 
-        public static bool ExistFollow(HttpContext context, String followId)
+        public static bool ExistFollow(HttpContext context, long followId)
         {
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            bool follow = userService.UserFollowExists(followId, userSession.FirstName);
+            bool follow = userService.UserFollowExists(followId, userSession.UserProfileId);
 
             return follow;
         }

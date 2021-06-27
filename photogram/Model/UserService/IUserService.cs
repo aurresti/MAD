@@ -24,10 +24,10 @@ namespace Es.Udc.DotNet.Photogram.Model.UserService
         /// <summary>
         /// Checks if the specified follow exists.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="loginNameFollow"> User loginName Follow. </param>
+        /// <param name="loginName"> User id. </param>
+        /// <param name="loginNameFollow"> User id Follow. </param>
         /// <returns> Boolean to indicate if the follow exists </returns>
-        bool UserFollowExists(string loginName, string loginNameFollow);
+        bool UserFollowExists(long userId, long userIdFollow);
 
         /// <summary>
         /// Register a valid user.

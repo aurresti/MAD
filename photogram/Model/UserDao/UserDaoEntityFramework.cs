@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
 
             followers =
                 (from u in userProfiles
-                 from g in u.UserAccounts
+                 from g in u.UserAccount1
                  where u.userId == id
                  orderby g.loginName
                  select g).ToList();
@@ -79,7 +79,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
 
             follow =
                 (from u in userProfiles
-                 from g in u.UserAccount1
+                 from g in u.UserAccounts
                  where u.userId == id
                  orderby g.loginName
                  select g).ToList();
@@ -162,7 +162,7 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         }
 
 
-        public bool FollowExists(string loginName, string loginNameFollow)
+        public bool FollowExists(long userId, long userIdFollow)
         {
             UserAccount follow = null;
 
@@ -173,15 +173,15 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
                 follow =
                     (from u in userProfiles
                      from g in u.UserAccount1
-                     where u.loginName == loginName
-                     where g.loginName == loginNameFollow
+                     where u.userId == userId
+                     where g.userId == userIdFollow
                      select g).Single();
 
                 if (follow != null)
                     return true;
             }
             catch {
-                throw new InstanceNotFoundException(loginNameFollow, typeof(UserAccount).FullName);
+                throw new InstanceNotFoundException(userIdFollow, typeof(UserAccount).FullName);
             }
 
             return false;

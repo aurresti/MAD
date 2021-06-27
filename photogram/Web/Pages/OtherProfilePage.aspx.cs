@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                 lUser.Text = user.FirstName;
                 if (SessionManager.IsUserAuthenticated(Context))
                 {
-                    if (SessionManager.ExistFollow(Context, user.FirstName))
+                    if (SessionManager.ExistFollow(Context, id))
                     {
                         lIsFollow.Visible = true;
                     }
@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
             string valor = Request.QueryString["userId"];
             long id = (long)Convert.ToDouble(valor);
-            var followed = SessionManager.SeeFollowers(id);
+            var followed = SessionManager.SeeFolloweds(id);
             gvFollowed.DataSource = followed;
             gvFollowed.DataBind();
             if (gvFollowed.Visible)
@@ -110,7 +110,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
         {
             string valor = Request.QueryString["userId"];
             long id = (long)Convert.ToDouble(valor);
-            var follower = SessionManager.SeeFolloweds(id);
+            var follower = SessionManager.SeeFollowers(id);
             gvFollower.DataSource = follower;
             gvFollower.DataBind();
             if (gvFollower.Visible)
@@ -134,7 +134,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages
                     UserProfile user = SessionManager.FindUserProfileDetailsUser(id);
                     if (SessionManager.IsUserAuthenticated(Context))
                     {
-                        if (SessionManager.ExistFollow(Context, user.FirstName))
+                        if (SessionManager.ExistFollow(Context, id))
                         {
                             SessionManager.UnFollowUser(Context, id);
                             lIsFollow.Visible = false;

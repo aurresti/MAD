@@ -52,9 +52,9 @@ namespace Es.Udc.DotNet.Photogram.Model.UserDao
         /// <summary>
         /// Checks if the specified follow exists.
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <param name="loginNameFollow"> User loginName Follow. </param>
+        /// <param name="loginName"> User id. </param>
+        /// <param name="loginNameFollow"> User id Follow. </param>
         /// <returns> Boolean to indicate if the follow exists </returns>
-        bool FollowExists(string loginName, string loginNameFollow);
+        bool FollowExists(long userId, long userIdFollow);
     }
 }

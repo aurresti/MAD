@@ -539,7 +539,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                     userService.FollowUser(user2.userId, user1.userId);
                     userService.FollowUser(user3.userId, user1.userId);
 
-                    bool followBD = userService.UserFollowExists("user1","user2");
+                    bool followBD = userService.UserFollowExists(user1.userId, user2.userId);
 
                     Assert.IsTrue(followBD);
 

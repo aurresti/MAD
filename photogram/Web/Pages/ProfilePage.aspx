@@ -48,9 +48,9 @@
     </div>
     <div>
         <center>
-            <asp:Image ID="Image1" runat="server" Height="16px" />
-            <asp:Image ID="Image2" runat="server" />
-            <asp:Image ID="Image3" runat="server" />
+            <asp:Image ID="Image1" runat="server" Height="96"/>
+            <asp:Image ID="Image2" runat="server" Height="96"/>
+            <asp:Image ID="Image3" runat="server" Height="96"/>
         </center>
     </div>
     <center>

@@ -24,6 +24,7 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                     hlUser.Text = user.FirstName;
                     UserSession userSession =
                         (UserSession)Context.Session["userSession"];
+                    //UserSession userSession = SessionManager.GetUserSession(Context);
                     if (SessionManager.IsUserAuthenticated(Context))
                     {
                         if ((long)imageShow.User == userSession.UserProfileId)
