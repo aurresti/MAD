@@ -32,6 +32,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         private Comment commentProfile;
         private static ICommentDao commentProfileDao;
 
+        private TransactionScope transaction;
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -61,17 +62,25 @@ namespace Es.Udc.DotNet.Photogram.Test
 
         //
         //Use ClassCleanup to run code after all tests in a class have run
-        [ClassCleanup()]
+        [ClassCleanup]
         public static void MyClassCleanup()
         {
             TestManager.ClearNInjectKernel(kernel);
         }
 
+        //Use TestCleanup to run code after each test has run
+        [TestCleanup]
+        public void MyTestCleanup()
+        {
+            transaction.Dispose();
+        }
         //
         //Use TestInitialize to run code before running each test
         [TestInitialize()]
         public void MyTestInitialize()
         {
+            transaction = new TransactionScope();
+
             userProfile = new UserAccount();
             userProfile.loginName = "jsmith";
             userProfile.password = "password";
@@ -108,18 +117,6 @@ namespace Es.Udc.DotNet.Photogram.Test
             commentProfileDao.Create(commentProfile);
         }
 
-        //Use TestCleanup to run code after each test has run
-        [TestCleanup()]
-        public void MyTestCleanup()
-        {
-            try
-            {
-                userProfileDao.Remove(userProfile.userId);
-            }
-            catch (Exception)
-            {
-            }
-        }
 
         #endregion Additional test attributes
 
