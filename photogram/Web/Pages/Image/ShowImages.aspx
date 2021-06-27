@@ -13,13 +13,18 @@
     <form runat="server">  
         <div>
                 <center>
-                    <asp:GridView ID="gridMembersList" 
+                    <asp:GridView ID="gridImageList" 
     AutoGenerateColumns="False" 
                 runat="server"  
                 allowpaging="true"
+                onrowcommand="gridImageList_RowCommand"
+                AutoPostBack="True"
                >
             <Columns>
-                <asp:BoundField DataField="ImageId" HeaderText="ImageId"/>
+                <asp:BoundField DataField="ImageId" HeaderText="ImageId">
+                    <HeaderStyle CssClass="hidden-field" />
+                    <ItemStyle CssClass="hidden-field"/>
+                    </asp:BoundField>
                         <asp:ImageField DataImageUrlField="url"  DataImageUrlFormatString="{0}"  
                             HeaderText ="Imagen" ControlStyle-Width="200px" ControlStyle-Height = "250px">
                         </asp:ImageField>
@@ -37,11 +42,11 @@
                         <asp:BoundField DataField="numLikes" HeaderText="Likes"/>
         
             <asp:TemplateField HeaderText="Dar Like">
-            <ItemTemplate>
-                <asp:Button ID="btnViewmore"  
-                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>
-                " CommandName="More" runat="server" Text="Like" />
-            </ItemTemplate>
+                <ItemTemplate>
+                    <asp:Button ID="btnViewmore"  
+                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>
+                    " CommandName="More" runat="server" Text="like" AutoPostBack="True"/>
+                </ItemTemplate>
             </asp:TemplateField> 
             </Columns>
             </asp:GridView>  
@@ -49,4 +54,14 @@
                 </center>
             </div>
         </form>
+        <br />
+        <!-- "Previous" and "Next" links. -->
+        <div class="previousNextLinks">
+            <span class="previousLink">
+                <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
+                    Visible="False"></asp:HyperLink>
+            </span><span class="nextLink">
+                <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
+            </span>
+        </div>
 </asp:Content>

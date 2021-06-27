@@ -126,6 +126,12 @@
   <data name="name" xml:space="preserve">
     <value>name</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
   <data name="searchButton" xml:space="preserve">
     <value>Search</value>
   </data>
