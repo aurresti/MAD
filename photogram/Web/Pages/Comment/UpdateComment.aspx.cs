@@ -8,7 +8,7 @@ using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.Photogram.Web.Pages.Comment
 {
-    public partial class UpdateComment : System.Web.UI.Page
+    public partial class UpdateComment : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
