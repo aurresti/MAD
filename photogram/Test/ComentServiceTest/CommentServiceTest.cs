@@ -302,6 +302,38 @@ namespace Es.Udc.DotNet.Photogram.Test
                 // transaction.Complete() is not called, so Rollback is executed.
             }
         }
+        /// <summary>
+        /// A test for IsCommentsByUser
+        /// </summary>
+        [TestMethod]
+        public void IsCommentByUserTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var userId =
+                    userService.CreateUser(loginName, clearPassword,
+                        new UserProfile(firstName, lastName, email, language, country));
+
+                var categoryId = categoryService.CreateCategory("sofa");
+
+                var image =
+                    new ImageProfile("titulo", "description", new DateTime(2008, 5, 1, 8, 30, 52), "de", categoryId, userId, 0, "");
+
+                var imageId = imageService.CreateImage("titulo", image);
+
+                var commentId = commentService.AddComment(userId, imageId, "text");
+
+                var commentId2 = commentService.AddComment(userId, imageId, "jajajajajaj ");
+
+                var obtained = commentService.GetComments(imageId);
+
+
+                // Check data, same size? same elements?
+                Assert.IsTrue(commentService.IsCommentsByUser(commentId,userId));
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class

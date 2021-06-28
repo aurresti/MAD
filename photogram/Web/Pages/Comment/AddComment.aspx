@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.Photogram.Web.Pages.Comment.AddComment" meta:resourcekey="Page"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="AddComment.aspx.cs" 
+    Inherits="Es.Udc.DotNet.Photogram.Web.Pages.Comment.AddComment" meta:resourcekey="Page"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuWelcome" runat="server">
     <asp:Label ID="lTitleProfile" runat="server" meta:resourcekey="lTitleProfile"></asp:Label>
 </asp:Content>

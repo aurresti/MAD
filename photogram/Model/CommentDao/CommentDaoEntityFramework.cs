@@ -152,7 +152,61 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
             }
             Update(c);
         }
+        public bool IsCommentsByUser(long commentId, long userId)
+        {
+            Comment comment;
 
+            UserAccount userAccount;
+
+            DbSet<UserAccount> userProfiles = Context.Set<UserAccount>();
+
+            DbSet<Comment> commentProfiles = Context.Set<Comment>();
+
+            try
+            {
+                userAccount =
+                    (from u in userProfiles
+                     where u.userId == userId
+                     select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserAccount).FullName);
+            }
+            try
+            {
+                comment =
+                     (from u in commentProfiles
+                      where u.commentId == commentId
+                      select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(commentId, typeof(Comment).FullName);
+            }
+
+            try
+            {
+                userAccount =
+                    (from u in userProfiles
+                     from l in u.Comments
+                     where u.userId == userId && l.commentId == commentId
+                     select u).Single();
+            }
+            catch (Exception e)
+            {
+                throw new InstanceNotFoundException(commentId, typeof(Comment).FullName);
+            }
+
+            //Console.Write("usuario " + user.loginName + " is been followed by " + follow.loginName + "\n");
+
+            if (userAccount == null)
+                throw new InstanceNotFoundException(userId,
+                    typeof(UserAccount).FullName);
+
+            return true;
+
+        }
         #endregion ICommentDao Members
     }
 }

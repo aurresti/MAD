@@ -42,5 +42,13 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentDao
         /// <returns>The Comment</returns>
         /// <exception cref="InstanceNotFoundException"/>
         Comment FindComment(long userId, long imageId);
+
+        /// <summary>
+        /// Finds if comment is made by user
+        /// </summary>
+        /// <param name="commentId">commentId</param>
+        /// <param name="userId">userId</param>
+        /// <returns>List comments of Image</returns>
+        bool IsCommentsByUser(long commentId, long userId);
     }
 }

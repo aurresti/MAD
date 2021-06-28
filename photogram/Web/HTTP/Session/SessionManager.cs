@@ -583,6 +583,23 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             return likeExists;
         }
 
+        public static bool IsCommentByUser(HttpContext context, long commentId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            bool comment = commentService.IsCommentsByUser(commentId, userSession.UserProfileId);
+
+            return comment;
+        }
+
+        public static Comment FindComment(long commentId)
+        {
+            Comment comment = commentService.FindComment(commentId);
+
+            return comment;
+        }
+
         public static void CreateComment(HttpContext context, long imageId, String description)
         {
             UserSession userSession =

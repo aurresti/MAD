@@ -107,6 +107,27 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
             return list;
         }
 
+        public bool IsCommentsByUser(long commentId, long userId) {
+                try
+                {
+                    return CommentDao.IsCommentsByUser(commentId, userId);
+                }
+                catch (InstanceNotFoundException e)
+                {
+                    return false;
+                }
+        }
+        public Comment FindComment(long commentId) 
+        {
+            try
+            {
+                return CommentDao.Find(commentId);
+            }
+            catch (InstanceNotFoundException e)
+            {
+                return null;
+            }
+        }
         #endregion ICommentService Members
     }
 }

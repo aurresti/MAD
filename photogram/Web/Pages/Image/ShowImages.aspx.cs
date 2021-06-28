@@ -124,21 +124,6 @@ namespace Es.Udc.DotNet.Photogram.Web.Pages.Image
                         ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
                 }
             }
-
-
-        }
-
-        protected void gridImageList_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType != DataControlRowType.DataRow)
-                return;
-
-            //se recupera la entidad que genera la row
-            ImageBlock image = e.Row.DataItem as ImageBlock;
-            long imageId = Convert.ToInt32(e.Row.Cells[0].Text);
-            List<Castle.Core.Pair<Model.Comment, UserAccount>> comments = SessionManager.SeeComment(imageId);
-            if (comments.Count == 0)
-                e.Row.Cells[9].Controls.Clear();
         }
     }   
 }

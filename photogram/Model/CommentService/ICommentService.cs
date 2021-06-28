@@ -56,5 +56,20 @@ namespace Es.Udc.DotNet.Photogram.Model.CommentService
         /// <returns>List comments of Image</returns>
         List<Pair<Comment, UserAccount>> GetComments(long imageId);
 
+        /// <summary>
+        /// Finds if comment is made by user
+        /// </summary>
+        /// <param name="commentId">commentId</param>
+        /// <param name="userId">userId</param>
+        /// <returns>boolean</returns>
+        bool IsCommentsByUser(long commentId, long userId);
+
+        /// <summary>
+        /// Finds comment
+        /// </summary>
+        /// <param name="commentId">commentId</param>
+        /// <returns>Comment</returns>
+        Comment FindComment(long commentId);
+
     }
 }
