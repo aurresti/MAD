@@ -120,14 +120,20 @@
   <data name="bComment.Text" xml:space="preserve">
     <value>Comentar</value>
   </data>
+  <data name="bComment2.Text" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="lBeginComment2.Text" xml:space="preserve">
+    <value>Actualizar Comentario</value>
+  </data>
   <data name="lnkExit.Text" xml:space="preserve">
-    <value>Salir</value>
+    <value>Sair</value>
   </data>
   <data name="lnkHome.Text" xml:space="preserve">
     <value>Inicio</value>
   </data>
   <data name="lnkMyProfile.Text" xml:space="preserve">
-    <value>Mi Perfil</value>
+    <value>Meu Perfil</value>
   </data>
   <data name="lSeeComment.Text" xml:space="preserve">
     <value>Comentarios</value>
@@ -136,6 +142,6 @@
     <value>Ver Comentarios</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Actualizar comentario</value>
+    <value>Actualizar Comentario</value>
   </data>
 </root>

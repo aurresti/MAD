@@ -100,7 +100,6 @@
     <Content Include="Pages\Comment\SeeComments.aspx" />
     <Content Include="Pages\Comment\UpdateComment.aspx" />
     <Content Include="Pages\Error\InternalError.aspx" />
-    <Content Include="Pages\HomePage.aspx" />
     <Content Include="Pages\Image\ImageProfile.aspx" />
     <Content Include="Pages\Image\SearchImage.aspx" />
     <Content Include="Pages\Image\ShowImages.aspx" />
@@ -173,13 +172,6 @@
     </Compile>
     <Compile Include="Pages\Error\InternalError.aspx.designer.cs">
       <DependentUpon>InternalError.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\HomePage.aspx.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\HomePage.aspx.designer.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Image\ImageProfile.aspx.cs">
       <DependentUpon>ImageProfile.aspx</DependentUpon>
@@ -442,13 +434,13 @@
     <Content Include="Pages\Image\App_LocalResources\ShowImage.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Comment\App_LocalResources\UploadComment.aspx.es.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.es.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Comment\App_LocalResources\UploadComment.aspx.gl.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Comment\App_LocalResources\UploadComment.aspx.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

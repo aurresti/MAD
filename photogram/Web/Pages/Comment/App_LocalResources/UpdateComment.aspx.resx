@@ -120,6 +120,12 @@
   <data name="bComment.Text" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="bComment2.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="lBeginComment2.Text" xml:space="preserve">
+    <value>Update Comment</value>
+  </data>
   <data name="lnkExit.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
@@ -136,6 +142,6 @@
     <value>See Comments</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Upload comment</value>
+    <value>Update Comment</value>
   </data>
 </root>

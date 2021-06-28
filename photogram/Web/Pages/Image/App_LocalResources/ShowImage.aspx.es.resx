@@ -171,6 +171,9 @@
   <data name="lTitleHome.Text" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="lTitleProfile.Text" xml:space="preserve">
+    <value>Visualizacion Imagenes</value>
+  </data>
   <data name="name.Text" xml:space="preserve">
     <value>Autor</value>
   </data>
@@ -178,7 +181,7 @@
     <value>Número de "me gusta"</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Photogram  - Inicio</value>
+    <value>Photogram  - Visualizacion Imagenes</value>
   </data>
   <data name="title.Text" xml:space="preserve">
     <value>Titulo</value>

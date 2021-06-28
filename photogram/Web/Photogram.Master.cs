@@ -21,7 +21,16 @@ namespace Es.Udc.DotNet.Photogram.Web
                     lblDash3.Visible = false;
                 if (lnkLogout != null)
                     lnkLogout.Visible = false;
-
+                if (lnkProfile != null)
+                    lnkProfile.Visible = false;
+                if (lnkUploadImage != null)
+                    lnkUploadImage.Visible = false;
+                if (lnkExit != null)
+                    lnkExit.Visible = false;
+                if (lnkHome != null)
+                    lnkHome.Visible = false;
+                if (lnkAuthenticate != null)
+                    lnkAuthenticate.Visible = false;
             }
             else
             {
@@ -31,8 +40,12 @@ namespace Es.Udc.DotNet.Photogram.Web
                         + " " + SessionManager.GetUserSession(Context).FirstName;
                 if (lblDash1 != null)
                     lblDash1.Visible = false;
-                if (lnkAuthenticate != null)
-                    lnkAuthenticate.Visible = false;
+                if (lnkAuth != null)
+                    lnkAuth.Visible = false;
+                if (lnkRegister != null)
+                    lnkRegister.Visible = false;
+                if (lnkUploadImage != null)
+                    lnkUploadImage.Visible = false;
             }
         }
     }
