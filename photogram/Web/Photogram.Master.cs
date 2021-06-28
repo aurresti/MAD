@@ -27,8 +27,6 @@ namespace Es.Udc.DotNet.Photogram.Web
                     lnkUploadImage.Visible = false;
                 if (lnkExit != null)
                     lnkExit.Visible = false;
-                if (lnkHome != null)
-                    lnkHome.Visible = false;
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
             }
